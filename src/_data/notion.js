@@ -1,3 +1,4 @@
+import 'dotenv/config';
 // Notion API 数据获取模块
 // ⚠️  仅构建/服务端使用，禁止在前端直接引用密钥
 // 此模块仅在 Eleventy 构建时运行，不会暴露到前端
@@ -276,3 +277,5 @@ function getSampleData() {
 module.exports = async function() {
   return await getNotionData();
 };
+
+if (!process.env.NOTION_API_TOKEN) { throw new Error('Missing NOTION_API_TOKEN (check .env.local / CI / Vercel).'); }
