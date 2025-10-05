@@ -20,26 +20,26 @@
   {% endif %}
   <meta property="og:title" content="{{ title or 'My Studio' }}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ (page.url or '/') | url }}">
-  <link rel="canonical" href="{{ (page.url or '/') | url }}">
+  <meta property="og:url" content="{{ page.url or '/' }}">
+  <link rel="canonical" href="{{ page.url or '/' }}">
   <meta name="theme-color" content="#ffffff">
 
   {# ===== 页面级样式（优先加载，确保优先级）===== #}
   {% if pageCSS %}
     {% if pageCSS.push %} {# array #}
       {% for href in pageCSS %}
-        <link rel="stylesheet" href="{{ href | url }}">
+        <link rel="stylesheet" href="{{ href }}">
       {% endfor %}
     {% else %} {# string #}
-      <link rel="stylesheet" href="{{ pageCSS | url }}">
+      <link rel="stylesheet" href="{{ pageCSS }}">
     {% endif %}
   {% endif %}
 
   {# ===== 全局样式（统一入口）===== #}
-  <link rel="stylesheet" href="{{ '/assets/site.css' | url }}">
+  <link rel="stylesheet" href="assets/site.css">
 
   {# ===== Favicon（按需更换路径）===== #}
-  <link rel="icon" href="{{ '/assets/favicon.ico' | url }}">
+  <link rel="icon" href="assets/favicon.ico">
 </head>
 
 <body
@@ -48,14 +48,14 @@
 >
   {# ===== 顶部导航 ===== #}
   <nav class="navbar" role="navigation" aria-label="主导航">
-    <a href="{{ '/' | url }}" id="navlogo" aria-label="首页">
-      <img src="{{ '/assets/Pics/Ellipse 1.png' | url }}" alt="Logo">
+    <a href="/" id="navlogo" aria-label="首页">
+      <img src="assets/Pics/Ellipse 1.png" alt="Logo">
     </a>
     <ul class="nav-list">
-      <li><a class="navlink" href="{{ '/zhi/'  | url }}">知</a></li>
-      <li><a class="navlink" href="{{ '/xing/' | url }}">行</a></li>
-      <li><a class="navlink" href="{{ '/he/'   | url }}">合</a></li>
-      <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
+      <li><a class="navlink" href="zhi/">知</a></li>
+      <li><a class="navlink" href="xing/">行</a></li>
+      <li><a class="navlink" href="he/">合</a></li>
+      <li><a class="navlink" href="yi/">一</a></li>
     </ul>
   </nav>
 
@@ -91,7 +91,7 @@
           </svg>
           <div class="wechat-tooltip" role="tooltip">
             <div class="tooltip-content">
-              <img class="wechat-qr" src="{{ '/assets/Icons/wechat-qr.png' | url }}" alt="WeChat QR">
+              <img class="wechat-qr" src="assets/Icons/wechat-qr.png" alt="WeChat QR">
             </div>
           </div>
         </a>
@@ -187,10 +187,10 @@
   {% if pageJS %}
     {% if pageJS.push %}
       {% for src in pageJS %}
-        <script defer src="{{ src | url }}"></script>
+        <script defer src="{{ src }}"></script>
       {% endfor %}
     {% else %}
-      <script defer src="{{ pageJS | url }}"></script>
+      <script defer src="{{ pageJS }}"></script>
     {% endif %}
   {% endif %}
 
