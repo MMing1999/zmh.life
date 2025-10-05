@@ -1,0 +1,28 @@
+{
+  "name": "website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "npx @11ty/eleventy --serve --watch --port=8080",
+    "build": "npx @11ty/eleventy",
+    "clean": "rm -rf dist _site node_modules package-lock.json",
+    "notion-sync": "node notion-scheduler.js",
+    "notion-build": "npx @11ty/eleventy --quiet",
+    "deploy": "./deploy-to-web.sh",
+    "deploy:preview": "npm run build && ./deploy-to-web.sh",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^4.0.2",
+    "@11ty/eleventy-plugin-rss": "^2.0.4",
+    "@notionhq/client": "^5.1.0",
+    "@sindresorhus/slugify": "^2.2.1",
+    "dotenv": "^17.2.3",
+    "markdown-it": "^14.1.0",
+    "node-cron": "^4.2.1"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "mode": "local",
+  "toast-ui-editor": {
+    "local": {
+      "css": "/plugins/toast-ui-editor/dist/toastui-editor.css",
+      "js": "/plugins/toast-ui-editor/dist/toastui-editor.js"
+    },
+    "remote": {
+      "css": "https://uicdn.toast.com/editor/latest/toastui-editor.min.css",
+      "js": "https://uicdn.toast.com/editor/latest/toastui-editor-all.min.js"
+    }
+  },
+  "version": "3.2.2",
+  "lastUpdated": "2023-02-24",
+  "repository": {
+    "url": "https://github.com/nhn/tui.editor.git",
+    "ssh": "git@github.com:nhn/tui.editor.git"
+  }
+}

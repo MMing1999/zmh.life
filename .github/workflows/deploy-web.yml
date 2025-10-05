@@ -1,0 +1,64 @@
+name: Deploy to GitHub Pages (Web Branch)
+
+# 触发条件：推送到 dev 分支
+on:
+  push:
+    branches:
+      - dev
+  workflow_dispatch: # 允许手动触发
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+      # 1. 检出代码
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 获取完整历史记录，用于 gh-pages action
+      
+      # 2. 设置 Node.js 20
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+      
+      # 3. 安装依赖
+      - name: Install dependencies
+        run: npm ci
+      
+      # 4. 构建项目（注入环境变量）
+      - name: Build Eleventy project
+        run: npm run build
+        env:
+          # 从 GitHub Secrets 读取 Notion API 配置
+          # 需要在 GitHub → Settings → Secrets and variables → Actions 中添加以下 Secrets：
+          # - NOTION_API_TOKEN: 你的 Notion API Token
+          # - IDEAS_DATABASE_ID: 想法数据库 ID
+          # - QUESTIONS_DATABASE_ID: 问题数据库 ID
+          NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
+          IDEAS_DATABASE_ID: ${{ secrets.IDEAS_DATABASE_ID }}
+          QUESTIONS_DATABASE_ID: ${{ secrets.QUESTIONS_DATABASE_ID }}
+      
+      # 5. 发布到 web 分支（GitHub Pages）
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          # 发布到 web 分支
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          publish_branch: web
+          # 强制创建孤立分支（清空历史）
+          force_orphan: true
+          # 提交信息
+          commit_message: 'Deploy: Auto-deploy from dev branch - ${{ github.sha }}'
+      
+      # 6. 输出部署信息
+      - name: Output deployment info
+        run: |
+          echo "🚀 GitHub Pages 部署完成！"
+          echo "📁 构建产物已发布到 web 分支"
+          echo "🌐 预览站点: https://mming1999.github.io/zmh.life/"
+          echo "📝 提交哈希: ${{ github.sha }}"

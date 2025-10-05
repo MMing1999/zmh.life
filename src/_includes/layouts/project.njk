@@ -1,0 +1,168 @@
+---
+layout: layouts/base.njk
+---
+
+{# =============================
+   layouts/project.njk
+   说明：
+   - 继承全局骨架 layouts/base.njk
+   - 仅负责“项目详情页”的主体内容结构
+   - 样式：在页面 front-matter 里用 pageCSS 指定 /assets/css/project.css
+   - 渲染顺序：
+     封面 → 标题 → 发布日期 → 分类 → 标签 → 可选信息 → 正文
+   ============================= #}
+
+<article class="project" itemscope itemtype="https://schema.org/CreativeWork">
+
+  {# 1) 封面图（若有） #}
+  {% if cover %}
+    <figure class="project-hero">
+      <img src="{{ cover | url }}" alt="" itemprop="image">
+    </figure>
+  {% endif %}
+
+  {# 2) 标题 #}
+  <header class="project-header">
+    {% if title %}
+      <h1 class="project-title" itemprop="name">{{ title }}</h1>
+    {% endif %}
+
+  {# 3) 摘要（标题下方） #}
+  {% if summary %}
+    <p class="project-summary">{{ summary }}</p>
+  {% endif %}
+
+  <div class="project-divider project-divider--header"></div>
+
+  {# 4) 元信息：发布日期 / 分类 / 标签（同一行可换行） #}
+  <div class="project-meta">
+    <div class="project-line">
+      <span class="label">发布日期：</span>
+      <time class="value" itemprop="datePublished">{{ page.date | fmtDate }}</time>
+    </div>
+
+    {% if categories and categories.length %}
+      <div class="project-line">
+        <span class="label">分类:</span>
+        <span class="value">
+          {% for c in categories %}
+            {% set categoryMap = {
+              "design": "设计",
+              "art": "艺术", 
+              "dev": "开发",
+              "product": "产品",
+              "startup": "创业"
+            } %}
+            <span class="chip">{{ categoryMap[c] or c }}</span>
+          {% endfor %}
+        </span>
+      </div>
+    {% endif %}
+
+    {% if tags and tags.length %}
+      <div class="project-line">
+        <span class="label">标签:</span>
+        <span class="value tag-list" itemprop="keywords">
+          {% for t in tags %}
+            <a class="tag" href="{{ '/tags/' | url }}{{ t | url }}/">#{{ t }}</a>
+          {% endfor %}
+        </span>
+      </div>
+    {% endif %}
+  </div>
+  </header>
+
+  <div class="project-divider"></div>
+
+  {# 6) 可选信息（有就显示、无就不渲染）
+      period / tools / client / collaborators / fee / links #}
+  {% set hasOptional = period or (tools and tools.length) or client or (collaborators and collaborators.length) or fee or (links and (links | length)) %}
+  {% if hasOptional %}
+    <section class="project-attrs">
+
+      {% if period %}
+        <div class="attr">
+          <div class="attr-label">时间周期</div>
+          <div class="attr-val">{{ period }}</div>
+        </div>
+      {% endif %}
+
+      {% if tools %}
+        <div class="attr">
+          <div class="attr-label">工具</div>
+          <div class="attr-val">
+            {# 支持两种写法：
+               1) tools: [Figma, Eleventy, GitHub Pages] → 自动用 ｜ 连接
+               2) tools: "Figma｜Eleventy｜GitHub Pages" → 原样显示 #}
+            {% if tools.push %}
+              {{ tools | join(' ｜ ') }}
+            {% else %}
+              {{ tools }}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if client %}
+        <div class="attr">
+          <div class="attr-label">客户</div>
+          <div class="attr-val">{{ client }}</div>
+        </div>
+      {% endif %}
+
+      {% if collaborators %}
+        <div class="attr">
+          <div class="attr-label">合作者</div>
+          <div class="attr-val">
+            {# 支持两种写法：
+               1) collaborators: ["@张三 - 文案策划", "@李四 - 硬件开发"] → 自动用 ｜ 连接
+               2) collaborators: "@张三｜@李四" → 原样显示 #}
+            {% if collaborators.push %}
+              {{ collaborators | join(' ｜ ') }}
+            {% else %}
+              {{ collaborators }}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if fee %}
+        <div class="attr">
+          <div class="attr-label">报酬/价格</div>
+          <div class="attr-val">{{ fee }}</div>
+        </div>
+      {% endif %}
+
+      {% if links and (links | length) %}
+        <div class="attr">
+          <div class="attr-label">链接</div>
+          <div class="attr-val btns">
+            {# links 示例：
+               links:
+                 demo: "https://example.com"
+                 repo: "https://github.com/..."
+                 doc:  "https://notion.so/..."
+            #}
+            {% for key, href in links %}
+              <a class="btn{% if key == 'repo' %} btn--ghost{% endif %}" href="{{ href }}" target="_blank" rel="noopener">
+                {{ key }}
+              </a>
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
+
+    </section>
+    <div class="project-divider"></div>
+  {% endif %}
+
+  {# 7) 正文内容（Markdown 渲染输出） #}
+  <section class="project-body" itemprop="text">
+    {{ content | safe }}
+  </section>
+
+  {# 底部返回 #}
+  <div class="project-back">
+    <a class="link-back" href="{{ '/xing/' | url }}">← 返回「行 · Doing」</a>
+  </div>
+</article>

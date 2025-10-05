@@ -1,0 +1,252 @@
+---
+layout: layouts/base.njk
+title: "行 · Doing"
+description: "这里展示一些真实或虚构项目的记录。下面是分组标签（TagBar）与项目卡片画廊。"
+section: "xing"
+pageName: "xing"
+pageCSS: "/assets/Css/xing.css"
+---
+
+<section class="xing-hero-fullwidth">
+  <div class="xing-hero-container">
+    <div class="xing-hero">
+      <div class="hero-images">
+        <div class="hero-pic-1">
+          <img src="/assets/Pics/xing-portfolo-01-temp.jpg" alt="Portfolio 1">
+          <div class="hero-caption">
+            <h2>Portfolio 1</h2>
+            <p>作品集描述：一句话概述/主打亮点。这里会链接到更炫的外部 portfolio 站。</p>
+          </div>
+        </div>
+
+        <div class="hero-pic-2">
+          <img src="/assets/Pics/xing-portfolo-02-temp.jpg" alt="Portfolio 2">
+          <div class="hero-caption">
+            <h2>Portfolio 2</h2>
+            <p>第二组封面与描述（点击底部条切换）。</p>
+          </div>
+        </div>
+
+        <div class="hero-pic-3">
+          <img src="/assets/Pics/xing-portfolo-03-temp.jpg" alt="Portfolio 3">
+          <div class="hero-caption">
+            <h2>Portfolio 3</h2>
+            <p>第三组封面与描述。</p>
+          </div>
+        </div>
+
+        <div class="hero-pic-4">
+          <img src="/assets/Pics/xing/xing-portfolo-04-temp.jpg" alt="Portfolio 4">
+          <div class="hero-caption">
+            <h2>Portfolio 4</h2>
+            <p>第四组封面与描述。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="xing-content">
+  <div class="hero-intro">
+    <div class="wrap">
+      <h1>行 · Doing</h1>
+      <p class="xing-title__description">这里展示一些真实或虚构项目的记录。下面是分组标签（TagBar）与项目卡片画廊。</p>
+    </div>
+  </div>
+
+  <section class="xing-title">
+    <h2>行动库</h2>
+  </section>
+
+  <section class="xing-controls" aria-label="搜索和分类">
+    <div class="xing-controls__container">
+      <div class="xing-filter" aria-label="分类切换">
+        <ul class="xing-filter__list">
+          <li>
+            <button
+              class="xing-filter__btn is-active"
+              data-key="all"
+              type="button"
+            >全部</button>
+          </li>
+          <li>
+            <button
+              class="xing-filter__btn"
+              data-key="design"
+              type="button"
+            >设计</button>
+          </li>
+          <li>
+            <button
+              class="xing-filter__btn"
+              data-key="art"
+              type="button"
+            >艺术</button>
+          </li>
+          <li>
+            <button
+              class="xing-filter__btn"
+              data-key="dev"
+              type="button"
+            >开发</button>
+          </li>
+          <li>
+            <button
+              class="xing-filter__btn"
+              data-key="product"
+              type="button"
+            >产品</button>
+          </li>
+          <li>
+            <button
+              class="xing-filter__btn"
+              data-key="startup"
+              type="button"
+            >创业</button>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="xing-searchbar">
+        <input id="xingSearch" type="search" placeholder="搜索项目…">
+      </div>
+    </div>
+  </section>
+
+  <ul class="xing-card-grid" id="xingGallery">
+    {% for project in collections.xing_all %}
+    <li class="xing-card"
+        data-cats="{{ project.data.categories | join(',') }}"
+        data-date="{{ project.date | fmtDate }}">
+      <a class="xing-card__link" href="{{ project.url }}">
+        <div class="xing-card__header">
+          <div class="xing-card__date" data-date="{{ project.date | fmtDate }}">
+            <span class="xing-card__date-year"></span>
+            <span class="xing-card__date-separator"></span>
+            <span class="xing-card__date-month"></span>
+            <span class="xing-card__date-day-separator"></span>
+            <span class="xing-card__date-day"></span>
+          </div>
+          <h4 class="xing-card__title">{{ project.data.title }}</h4>
+        </div>
+
+        {% if project.data.categories %}
+        <div class="xing-card__categories">
+          {% for category in project.data.categories %}
+          <span class="xing-card__category">{{ category | translateCategory }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if project.data.cover %}
+        <div class="xing-card__media">
+          <img class="xing-card__cover"
+               src="{{ project.data.cover }}"
+               alt="{{ project.data.title }}">
+        </div>
+        {% endif %}
+
+        <div class="xing-card__footer">
+          {% if project.data.tags %}
+          <div class="xing-card__tags">
+            {% for tag in project.data.tags %}
+            <span class="xing-card__tag">{{ tag }}</span>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          {% if project.data.summary %}
+          <p class="xing-card__summary">{{ project.data.summary }}</p>
+          {% endif %}
+        </div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<script>
+  (function () {
+    const btns   = document.querySelectorAll('.xing-filter__btn');
+    const list   = document.getElementById('xingGallery');
+    const cards  = Array.from(list.querySelectorAll('.xing-card'));
+    const search = document.getElementById('xingSearch');
+
+    let currentKey = 'all';
+
+    // 处理日期显示
+    function formatDates() {
+      const dateElements = document.querySelectorAll('.xing-card__date');
+      dateElements.forEach(dateEl => {
+        const fullDate = dateEl.dataset.date;
+        if (fullDate) {
+          const parts = fullDate.split('-');
+          const year = parts[0];
+          const month = parts[1];
+          const day = parts[2];
+          
+          const yearEl = dateEl.querySelector('.xing-card__date-year');
+          const monthEl = dateEl.querySelector('.xing-card__date-month');
+          const dayEl = dateEl.querySelector('.xing-card__date-day');
+          
+          if (yearEl) yearEl.textContent = year;
+          if (monthEl) monthEl.textContent = month;
+          if (dayEl) dayEl.textContent = day;
+        }
+      });
+    }
+
+    // 是否匹配某个卡片
+    function matchCard(li, key, q) {
+      const cats = (li.dataset.cats || '').split(',').filter(Boolean);
+      const byCat = key === 'all' || cats.includes(key);
+      if (!q) return byCat;
+      const text = li.innerText.toLowerCase();
+      return byCat && text.includes(q.toLowerCase());
+    }
+
+    // 应用过滤
+    function apply() {
+      const q = (search && search.value || '').trim();
+      cards.forEach(li => {
+        li.style.display = matchCard(li, currentKey, q) ? '' : 'none';
+      });
+    }
+
+    // 绑定 tag 切换
+    btns.forEach(b => b.addEventListener('click', () => {
+      currentKey = b.dataset.key;
+      btns.forEach(x => x.classList.toggle('is-active', x === b));
+      apply();
+    }));
+
+    // 绑定搜索
+    if (search) search.addEventListener('input', apply);
+
+    // 初始：显示全部
+    apply();
+    
+    // 格式化日期显示
+    formatDates();
+  })();
+</script>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('#xingSlides .slide'));
+    const dots   = Array.from(document.querySelectorAll('#xingControls .dot'));
+    if (!slides.length || !dots.length) return;
+
+    let i = 0;
+    function go(n){
+      i = n;
+      slides.forEach((s,idx)=> s.classList.toggle('is-active', idx===i));
+      dots.forEach((d,idx)=> d.classList.toggle('is-active', idx===i));
+    }
+    dots.forEach((d,idx)=> d.addEventListener('click', ()=> go(idx)));
+
+    // 如需自动轮播，取消下一行注释
+    // setInterval(()=> go((i+1)%slides.length), 5000);
+  })();
+</script>

@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+title: "Collection · 收集"
+description: "灵感、资料、片段收集。收集有价值的设计灵感、技术资源、学习笔记和收藏链接。建立个人的知识库，为创作和学习提供素材支持。"
+section: "zhi"
+pageName: "collection"
+pageCSS: "/assets/Css/zhi.css"
+---
+
+收集灵感与想法
+
+<div class="collection-content">
+  <!-- 全局按钮组 -->
+  <div class="part1-btn">
+    <button class="tab-button active" data-tab="ideas">想法</button>
+    <span class="tab-separator">/</span>
+    <button class="tab-button" data-tab="questions">问题</button>
+  </div>
+
+    <!-- 想法内容 -->
+    <div class="tab-content active" id="ideas-content">
+      {% for idea in notion.ideas %}
+      <div class="part2-notion">
+        <div class="part2-notion-time">{{ idea.date | fmtDateTime }}</div>
+        <div class="part2-notion-text">{{ idea.content | safe }}</div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- 问题内容 -->
+    <div class="tab-content" id="questions-content">
+      {% for question in notion.questions %}
+      <div class="part2-notion">
+        <div class="part2-notion-time">{{ question.date | fmtDateTime }}</div>
+        <div class="part2-notion-text">{{ question.content | safe }}</div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // 移除所有活动状态
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // 添加当前活动状态
+      this.classList.add('active');
+      const targetContent = document.getElementById(targetTab + '-content');
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+});
+</script>
