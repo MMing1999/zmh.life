@@ -8,7 +8,7 @@ const cors = require('cors');
 const yaml = require('js-yaml');
 
 const app = express();
-const PORT = 3005;
+const PORT = 3000;
 
 // 配置
 const CODING_PATH = '/Users/zhangminghua/My_Projects/mywebsite/zmh.life-main';
