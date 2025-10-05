@@ -51,18 +51,39 @@ jobs:
           head -10 dist/index.html
           echo "✅ 构建验证完成"
       
-      # 5. 发布到 web 分支（GitHub Pages）
-      - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          # 发布到 web 分支
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          publish_branch: web
-          # 强制创建孤立分支（清空历史）
-          force_orphan: true
-          # 提交信息
-          commit_message: 'chore: auto-deploy from dev → web'
+      # 5. 手动推送到 web 分支
+      - name: Deploy to web branch
+        run: |
+          echo "🚀 开始部署到 web 分支..."
+          
+          # 配置 Git 用户信息
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # 添加远程仓库（如果需要）
+          git remote -v
+          
+          # 创建或切换到 web 分支
+          git checkout -B web
+          
+          # 清空当前分支内容
+          git rm -rf . || true
+          
+          # 复制构建产物
+          cp -r dist/* . || true
+          
+          # 添加所有文件
+          git add .
+          
+          # 提交更改
+          git commit -m "chore: auto-deploy from dev → web" || echo "No changes to commit"
+          
+          # 推送到远程 web 分支
+          git push origin web --force
+          
+          echo "✅ 部署到 web 分支完成！"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
       # 6. 输出部署信息
       - name: Output deployment info
