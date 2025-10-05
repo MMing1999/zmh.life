@@ -38,9 +38,18 @@ jobs:
           # - NOTION_API_TOKEN: 你的 Notion API Token
           # - IDEAS_DATABASE_ID: 想法数据库 ID
           # - QUESTIONS_DATABASE_ID: 问题数据库 ID
-          NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN }}
-          IDEAS_DATABASE_ID: ${{ secrets.IDEAS_DATABASE_ID }}
-          QUESTIONS_DATABASE_ID: ${{ secrets.QUESTIONS_DATABASE_ID }}
+          NOTION_API_TOKEN: ${{ secrets.NOTION_API_TOKEN || 'placeholder_token' }}
+          IDEAS_DATABASE_ID: ${{ secrets.IDEAS_DATABASE_ID || 'placeholder_ideas_id' }}
+          QUESTIONS_DATABASE_ID: ${{ secrets.QUESTIONS_DATABASE_ID || 'placeholder_questions_id' }}
+      
+      # 4.5. 验证构建产物
+      - name: Verify build output
+        run: |
+          echo "📁 检查构建产物..."
+          ls -la dist/
+          echo "📄 检查 index.html..."
+          head -10 dist/index.html
+          echo "✅ 构建验证完成"
       
       # 5. 发布到 web 分支（GitHub Pages）
       - name: Deploy to GitHub Pages
