@@ -1,0 +1,689 @@
+/* ===============================
+   行 · Doing 页面专用样式 (xing.css)
+   =============================== */
+
+/* --------------------------------
+   0) 页面全局（布局已移至全局样式）
+--------------------------------- */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+/* 页面内容容器，保持全局1400px限制 */
+.xing-content {
+  max-width: 1400px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* 响应式设计：在小屏幕上调整边距 */
+@media (max-width: 768px) {
+  .xing-content {
+    width: 90%; /* 移动设备上减少边距到5% */
+  }
+}
+
+@media (max-width: 480px) {
+  .xing-content {
+    width: 95%; /* 小屏幕设备上进一步减少边距 */
+    padding: 0 12px;
+  }
+}
+
+/* --------------------------------
+   1) HERO - 图片展示（全宽section）
+--------------------------------- */
+
+
+/* 全宽hero section，突破main.page-wrap的1400px限制 */
+.xing-hero-fullwidth {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: -2.2vh;
+  /* 确保突破父容器的宽度限制 */
+  max-width: none;
+  overflow-x: hidden;
+}
+
+.xing-hero-container {
+  width: 100%;
+  height: var(--hero-h);
+  min-height: var(--hero-min-height);
+  position: relative;
+  background: transparent;
+}
+
+.xing-hero {
+  position: relative;
+  width: 100%;
+  background: transparent;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 20px 20px 20px; /* 顶部12px，左右20px，底部20px */
+}
+
+.hero-images {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  justify-content: center;
+  align-items: stretch;
+  flex: 1;
+  max-width: none;
+  box-sizing: border-box;
+}
+
+/* Hero图片样式 - 按比例设置宽度 */
+.hero-pic-1 {
+  flex: 2;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pic-2 {
+  flex: 3;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pic-3 {
+  flex: 5;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pic-4 {
+  flex: 2;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-pic-1 img,
+.hero-pic-2 img,
+.hero-pic-3 img,
+.hero-pic-4 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  color: #fff;
+  padding: 30px 20px 20px 20px;
+}
+
+.hero-caption h2 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.hero-caption p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+/* Hero Intro 部分 */
+.hero-intro {
+  padding: 36px 0;
+  background: transparent;
+  flex-shrink: 0;
+}
+
+.hero-intro .wrap {
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  padding: 0 12px; /* 保持与图片相同的左右间距 */
+  box-sizing: border-box;
+}
+
+.hero-intro h1 {
+  margin: 0 0 12px 0;
+  font-size: 32px;
+  font-weight: 600;
+  color: #333;
+}
+
+.hero-intro p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+/* 响应式设计 */
+@media (max-width: 1400px) {
+  .hero-images {
+    gap: 10px;
+  }
+  
+  .hero-intro h1 {
+    font-size: 28px; /* 中等屏幕减小标题字号 */
+  }
+  
+  .hero-intro p {
+    font-size: 14px; /* 中等屏幕减小描述字号 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-images {
+    gap: 8px;
+    padding: 0 12px; /* 保持左右12px间距 */
+  }
+  
+  .hero-intro h1 {
+    font-size: 24px; /* 平板屏幕进一步减小标题字号 */
+  }
+  
+  .hero-intro p {
+    font-size: 13px; /* 平板屏幕进一步减小描述字号 */
+  }
+  
+  .hero-intro {
+    padding: 24px 0; /* 平板屏幕减小padding */
+  }
+}
+
+/* iPad横屏模式特殊处理 */
+@media (max-width: 1024px) and (min-height: 768px) {
+  .xing-hero-container {
+    min-height: 500px; /* iPad横屏时确保最小500px高度 */
+  }
+}
+
+@media (max-width: 768px) {
+  .xing-hero-container {
+    height: auto; /* 移动端取消固定高度 */
+    min-height: calc(100vh - var(--nav-height));
+  }
+  
+  .xing-hero {
+    padding: 12px 15px 15px 15px; /* 顶部12px，左右15px，底部15px */
+    height: auto; /* 移动端取消固定高度 */
+  }
+  
+  .hero-images {
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    flex: none; /* 移动端取消flex: 1 */
+    padding: 0 12px; /* 保持左右12px间距 */
+  }
+  
+  .hero-pic-1,
+  .hero-pic-2,
+  .hero-pic-3,
+  .hero-pic-4 {
+    flex: none;
+    width: 100%;
+    height: 300px; /* 增加移动端图片高度 */
+  }
+  
+  .hero-intro {
+    padding: 20px 0; /* 移动端减小padding */
+  }
+}
+
+/* --------------------------------
+   2) 行动库标题
+--------------------------------- */
+.xing-title {
+  margin: 32px auto 12px;
+  text-align: center;
+}
+
+.xing-title__description {
+  margin: 36px 0 16px 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.xing-title h2 {
+  margin: 0;
+  font-size: 40px;
+  line-height: 1.2;
+}
+
+/* 标题响应式设计 */
+@media (max-width: 1200px) {
+  .xing-title h2 {
+    font-size: 36px; /* 中等屏幕减小标题字号 */
+  }
+  
+  .xing-title__description {
+    font-size: 15px; /* 中等屏幕减小描述字号 */
+  }
+}
+
+@media (max-width: 1024px) {
+  .xing-title h2 {
+    font-size: 32px; /* 平板屏幕进一步减小标题字号 */
+  }
+  
+  .xing-title__description {
+    font-size: 14px; /* 平板屏幕进一步减小描述字号 */
+  }
+}
+
+@media (max-width: 768px) {
+  .xing-title h2 {
+    font-size: 28px; /* 移动端标题字号 */
+  }
+  
+  .xing-title__description {
+    font-size: 13px; /* 移动端描述字号 */
+  }
+}
+
+/* --------------------------------
+   4) 搜索框和分类标签（同一行布局）
+--------------------------------- */
+.xing-controls {
+  margin: 20px auto;
+  max-width: 100%;
+}
+
+.xing-controls__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  padding: 0 16px;
+}
+
+/* 分类标签（左侧） */
+.xing-filter {
+  flex: 1;
+}
+
+.xing-filter__list {
+  list-style: none;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 0;
+}
+
+.xing-filter__btn {
+  appearance: none;
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  color: #000;
+  padding: 8px 0;
+  white-space: nowrap;
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.xing-filter__btn:hover { 
+  opacity: 0.7; 
+}
+
+.xing-filter__btn.is-active { 
+  color: #000; 
+}
+
+.xing-filter__btn.is-active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #000;
+  border-radius: 1px;
+}
+
+/* 搜索框（右侧） */
+.xing-searchbar {
+  flex-shrink: 0;
+  position: relative;
+}
+
+.xing-searchbar input[type="search"] {
+  appearance: none;
+  border: none;
+  border-bottom: 1px solid #000;
+  background: transparent;
+  color: #000;
+  padding: 8px 0;
+  font: inherit;
+  width: 240px;
+  text-align: left;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.xing-searchbar input[type="search"]:focus {
+  border-bottom-color: #000;
+}
+
+.xing-searchbar input[type="search"]::placeholder {
+  color: #999;
+}
+
+/* 控制栏响应式设计 */
+@media (max-width: 900px) {
+  .xing-controls__container {
+    gap: 16px;
+    padding: 0 12px;
+  }
+  
+  .xing-searchbar input[type="search"] {
+    width: 200px; /* 中等屏幕减小搜索框宽度 */
+  }
+  
+  .xing-filter__btn {
+    padding: 6px 0; /* 中等屏幕减小按钮padding */
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .xing-controls__container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+  }
+  
+  .xing-filter {
+    order: 2;
+  }
+  
+  .xing-searchbar {
+    order: 1;
+    align-self: center;
+  }
+  
+  .xing-filter__list {
+    justify-content: center;
+  }
+  
+  .xing-searchbar input[type="search"] {
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .xing-controls__container {
+    padding: 0 12px;
+  }
+  
+  .xing-filter__list {
+    gap: 8px;
+  }
+  
+  .xing-filter__btn {
+    padding: 4px 8px;
+    font-size: 14px;
+  }
+  
+  /* 移动端日期分隔线调整 */
+  .xing-card__date-separator {
+    margin: 0 4px;
+  }
+  
+  .xing-card__date-day-separator {
+    width: 8px;
+    margin: 0 2px;
+  }
+  
+  .xing-card__date {
+    font-size: 11px;
+  }
+}
+
+/* --------------------------------
+   6) 卡片网格
+--------------------------------- */
+.xing-card-grid {
+  list-style: none;
+  margin: 20px 0;
+  padding: 0 16px;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+@media (max-width: 1200px) { 
+  .xing-card-grid { 
+    grid-template-columns: repeat(3, minmax(0, 1fr)); 
+    gap: 16px;
+  } 
+}
+@media (max-width: 840px) { 
+  .xing-card-grid { 
+    grid-template-columns: repeat(2, minmax(0, 1fr)); 
+    gap: 16px;
+  } 
+}
+@media (max-width: 520px) { 
+  .xing-card-grid { 
+    grid-template-columns: 1fr; 
+    padding: 0 12px;
+    gap: 12px;
+  } 
+}
+
+/* ==========================================
+   7) 卡片视觉 - xing-2.0 新布局
+   ========================================== */
+
+.xing-card{
+  border: none;
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform .18s ease;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 400px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.xing-card:hover {
+  transform: translateY(-2px);
+}
+
+.xing-card__link {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* —— 顶部：日期 + 标题 —— */
+.xing-card__header {
+  padding: 16px 0 8px 0;
+}
+
+.xing-card__date {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.xing-card__date-year {
+  color: #999;
+  font-weight: 500;
+}
+
+.xing-card__date-separator {
+  flex: 1;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 8px;
+  align-self: center;
+}
+
+.xing-card__date-month {
+  color: #999;
+}
+
+.xing-card__date-day-separator {
+  width: 12px;
+  height: 1px;
+  background-color: #ccc;
+  margin: 0 4px;
+  align-self: center;
+}
+
+.xing-card__date-day {
+  color: #999;
+}
+
+.xing-card__title {
+  margin: 0 0 36px 0;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #000;
+  
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+/* —— 分类标签 —— */
+.xing-card__categories {
+  padding: 4px 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.xing-card__category {
+  display: inline-block;
+  background: transparent;
+  color: #666;
+  padding: 2px 0;
+  font-size: 13px;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* —— 封面图片 —— */
+.xing-card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin: 0;
+}
+
+.xing-card__media > img.xing-card__cover {
+  position: absolute;
+  inset: 0;
+  width: 100%; 
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* —— 底部：标签 + 简介 —— */
+.xing-card__footer {
+  padding: 3px 0 48px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+
+/* 标签样式 */
+.xing-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.xing-card__tag {
+  display: inline-block;
+  background: transparent;
+  color: #666;
+  padding: 2px 0;
+  font-size: 13px;
+  line-height: 1.2;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+/* 简介样式 */
+.xing-card__summary {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #666;
+  margin: 0;
+  
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --------------------------------
+   8) 底部浮动条
+--------------------------------- */
+.bottom-banner {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  display: flex; justify-content: center; align-items: center;
+  background: rgba(255,255,255,.92);
+  backdrop-filter: saturate(1.05) blur(2px);
+  border-top: 1px solid #e5e5e5;
+  padding: 8px 12px;
+  font-size: 14px;
+}
+
+/* --------------------------------
+   9) 回到顶部按钮
+--------------------------------- */
+.back-top {
+  position: fixed;
+  right: 20px; bottom: 70px; z-index: 30;
+  width: 42px; height: 42px;
+  border-radius: 50%;
+  border: 1px solid #000;
+  background: #000; color: #fff;
+  cursor: pointer;
+  display: grid; place-items: center;
+  font-size: 18px;
+}
+.back-top:hover { opacity: .9; }
+
