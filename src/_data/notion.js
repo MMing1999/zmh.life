@@ -1,4 +1,3 @@
-import 'dotenv/config';
 // Notion API 数据获取模块
 // ⚠️  仅构建/服务端使用，禁止在前端直接引用密钥
 // 此模块仅在 Eleventy 构建时运行，不会暴露到前端
