@@ -66,10 +66,8 @@ module.exports = function(eleventyConfig) {
     markdownTemplateEngine: "njk",
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
-    // 确保使用相对路径，不使用路径前缀
-    pathPrefix: "",
     serverOptions: {
-      port: 8080
+      port: 8000
     }
   };
 };

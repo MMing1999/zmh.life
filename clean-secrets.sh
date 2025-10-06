@@ -1,3 +1,19 @@
+# 仅修改文件并 amend，不自动推送（推荐先看效果）
+#bash clean-secrets.sh
+
+# 查看将会命中的敏感行（不改动）
+#bash clean-secrets.sh --dry-run
+
+# 修改+amend 后直接推送到 origin/main（使用 --force-with-lease）
+#bash clean-secrets.sh --push
+
+# 改目标分支名（默认 main）
+#bash clean-secrets.sh --branch main --push
+
+
+
+
+
 #!/usr/bin/env bash
 # clean-secrets.sh
 # Purpose: Remove hardcoded Notion API tokens from the working tree AND the latest commit,

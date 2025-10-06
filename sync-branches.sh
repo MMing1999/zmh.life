@@ -1,7 +1,7 @@
 # 同步 main → 远程
 # 同步 main → dev
 # 同步 main → web
-
+# 使用方式：bash sync-branches.sh
 
 #!/usr/bin/env bash
 # sync-branches.sh
