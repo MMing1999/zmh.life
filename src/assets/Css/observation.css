@@ -1,0 +1,208 @@
+/* =========================================
+   observation.css — 摄影观察类文章详情页样式
+   命名空间：.observation-article*
+   只作用于 layouts/observation.njk 渲染的详情页
+   高优先级：使用 body[data-section="zhi"] 提高特异性
+   ========================================= */
+
+/* -------- 1) 页面结构 -------- */
+body[data-section="zhi"] .observation-article {
+  max-width: 900px !important;       /* 版心宽度 */
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+  display: block !important;
+}
+
+/* -------- 2) 顶部封面 - 竖向 4:3 比例 -------- */
+body[data-section="zhi"] .observation-hero {
+  margin: 0 0 20px !important;
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 3 / 4 !important;    /* 竖向 4:3 比例 */
+  overflow: hidden !important;
+  border-radius: 4px !important;
+}
+body[data-section="zhi"] .observation-hero img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* -------- 3) 标题与基础信息 -------- */
+body[data-section="zhi"] .observation-header {
+  margin: 0 0 24px !important;
+}
+body[data-section="zhi"] .observation-title {
+  margin: 0 0 12px !important;
+  font-size: 40px !important;
+  line-height: 1.2 !important;
+}
+
+/* 简介（标题下方） */
+body[data-section="zhi"] .observation-summary {
+  margin: 8px 0 12px !important;
+  color: #444 !important;
+  line-height: 1.8 !important;
+}
+
+/* -------- 4) 分隔线 -------- */
+body[data-section="zhi"] .observation-divider {
+  height: 1px !important;
+  background: #e0e0e0 !important;
+  margin: 16px 0 !important;
+}
+body[data-section="zhi"] .observation-divider--header {
+  margin: 12px 0 16px !important;
+}
+
+/* -------- 5) 元信息区域 -------- */
+body[data-section="zhi"] .observation-meta {
+  margin: 0 0 16px !important;
+}
+body[data-section="zhi"] .observation-line {
+  margin: 8px 0 !important;
+  display: flex !important;
+  align-items: flex-start !important;
+  gap: 8px !important;
+}
+body[data-section="zhi"] .observation-line .label {
+  color: #666 !important;
+  font-size: 14px !important;
+  min-width: 80px !important;
+  flex-shrink: 0 !important;
+}
+body[data-section="zhi"] .observation-line .value {
+  color: #333 !important;
+  font-size: 14px !important;
+  flex: 1 !important;
+}
+
+/* 标签样式 */
+body[data-section="zhi"] .tag-list {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 6px !important;
+}
+body[data-section="zhi"] .tag {
+  color: #666 !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  padding: 2px 6px !important;
+  background: #f5f5f5 !important;
+  border-radius: 3px !important;
+  transition: all 0.2s ease !important;
+}
+body[data-section="zhi"] .tag:hover {
+  color: #333 !important;
+  background: #e0e0e0 !important;
+}
+
+/* 分类标签样式 */
+body[data-section="zhi"] .chip {
+  display: inline-block !important;
+  padding: 2px 8px !important;
+  background: #f0f0f0 !important;
+  color: #666 !important;
+  font-size: 12px !important;
+  border-radius: 12px !important;
+  margin-right: 6px !important;
+}
+
+/* -------- 6) 可选信息区域 -------- */
+body[data-section="zhi"] .observation-attrs {
+  margin: 16px 0 !important;
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)) !important;
+  gap: 16px !important;
+}
+body[data-section="zhi"] .attr {
+  padding: 12px !important;
+  background: #fafafa !important;
+  border-radius: 4px !important;
+}
+body[data-section="zhi"] .attr-label {
+  font-size: 12px !important;
+  color: #666 !important;
+  margin-bottom: 4px !important;
+  font-weight: 500 !important;
+}
+body[data-section="zhi"] .attr-val {
+  font-size: 14px !important;
+  color: #333 !important;
+  line-height: 1.4 !important;
+}
+
+/* -------- 7) 正文内容 -------- */
+body[data-section="zhi"] .observation-body {
+  margin: 24px 0 !important;
+  line-height: 1.8 !important;
+  color: #333 !important;
+}
+body[data-section="zhi"] .observation-body h1,
+body[data-section="zhi"] .observation-body h2,
+body[data-section="zhi"] .observation-body h3,
+body[data-section="zhi"] .observation-body h4,
+body[data-section="zhi"] .observation-body h5,
+body[data-section="zhi"] .observation-body h6 {
+  margin: 24px 0 12px !important;
+  color: #222 !important;
+}
+body[data-section="zhi"] .observation-body p {
+  margin: 12px 0 !important;
+}
+body[data-section="zhi"] .observation-body img {
+  max-width: 100% !important;
+  height: auto !important;
+  border-radius: 4px !important;
+  margin: 16px 0 !important;
+}
+body[data-section="zhi"] .observation-body blockquote {
+  margin: 16px 0 !important;
+  padding: 12px 16px !important;
+  background: #f8f8f8 !important;
+  border-left: 3px solid #ddd !important;
+  border-radius: 0 4px 4px 0 !important;
+}
+
+/* -------- 8) 底部返回 -------- */
+body[data-section="zhi"] .observation-back {
+  margin: 32px 0 16px !important;
+  text-align: center !important;
+}
+body[data-section="zhi"] .link-back {
+  color: #666 !important;
+  text-decoration: none !important;
+  font-size: 14px !important;
+  transition: color 0.2s ease !important;
+}
+body[data-section="zhi"] .link-back:hover {
+  color: #333 !important;
+}
+
+/* -------- 9) 响应式设计 -------- */
+@media (max-width: 768px) {
+  body[data-section="zhi"] .observation-article {
+    margin: 16px auto !important;
+    padding: 0 12px !important;
+  }
+  
+  body[data-section="zhi"] .observation-title {
+    font-size: 28px !important;
+  }
+  
+  body[data-section="zhi"] .observation-attrs {
+    grid-template-columns: 1fr !important;
+  }
+  
+  body[data-section="zhi"] .observation-line {
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  
+  body[data-section="zhi"] .observation-line .label {
+    min-width: auto !important;
+  }
+}

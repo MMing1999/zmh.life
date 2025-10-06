@@ -1,0 +1,138 @@
+---
+layout: layouts/base.njk
+---
+
+{# =============================
+   layouts/observation.njk
+   说明：
+   - 继承全局骨架 layouts/base.njk
+   - 专门用于"摄影观察类文章"的主体内容结构
+   - 样式：在页面 front-matter 里用 pageCSS 指定 /assets/css/observation.css
+   - 渲染顺序：
+     封面 → 标题 → 简介 → 领域 → 标签 → 时间 → 分类 → 正文
+   ============================= #}
+
+<article class="observation-article" itemscope itemtype="https://schema.org/CreativeWork">
+
+  {# 1) 封面图（若有） - 竖向 4:3 比例 #}
+  {% if coverImage %}
+    <figure class="observation-hero">
+      {% set filename = coverImage | replace('src/assets/Pics/zhi-observation/', '') %}
+      <img src="/assets/Pics/zhi-observation/{{ filename }}" alt="{{ title }}" itemprop="image">
+    </figure>
+  {% endif %}
+
+  {# 2) 标题 #}
+  <header class="observation-header">
+    {% if title %}
+      <h1 class="observation-title" itemprop="name">{{ title }}</h1>
+    {% endif %}
+
+    {# 3) 简介（标题下方） #}
+    {% if summary %}
+      <p class="observation-summary">{{ summary }}</p>
+    {% endif %}
+
+    <div class="observation-divider observation-divider--header"></div>
+
+    {# 4) 元信息：发布日期 / 领域 / 标签 / 分类（同一行可换行） #}
+    <div class="observation-meta">
+      <div class="observation-line">
+        <span class="label">发布时间：</span>
+        <time class="value" itemprop="datePublished">{{ page.date | fmtDate }}</time>
+      </div>
+
+      {% if field %}
+        <div class="observation-line">
+          <span class="label">领域:</span>
+          <span class="value">{{ field }}</span>
+        </div>
+      {% endif %}
+
+      {% if tags and tags.length %}
+        <div class="observation-line">
+          <span class="label">标签:</span>
+          <span class="value tag-list" itemprop="keywords">
+            {% for t in tags %}
+              <a class="tag" href="{{ '/tags/' | url }}{{ t | url }}/">#{{ t }}</a>
+            {% endfor %}
+          </span>
+        </div>
+      {% endif %}
+
+      {% if categories and categories.length %}
+        <div class="observation-line">
+          <span class="label">分类:</span>
+          <span class="value">
+            {% for c in categories %}
+              {% set categoryMap = {
+                "observation": "观察",
+                "photography": "摄影", 
+                "life": "生活",
+                "urban": "城市",
+                "nature": "自然"
+              } %}
+              <span class="chip">{{ categoryMap[c] or c }}</span>
+            {% endfor %}
+          </span>
+        </div>
+      {% endif %}
+    </div>
+  </header>
+
+  <div class="observation-divider"></div>
+
+  {# 5) 可选信息（有就显示、无就不渲染）
+      location / equipment / technique / inspiration #}
+  {% set hasOptional = location or equipment or technique or inspiration %}
+  {% if hasOptional %}
+    <section class="observation-attrs">
+
+      {% if location %}
+        <div class="attr">
+          <div class="attr-label">拍摄地点</div>
+          <div class="attr-val">{{ location }}</div>
+        </div>
+      {% endif %}
+
+      {% if equipment %}
+        <div class="attr">
+          <div class="attr-label">设备</div>
+          <div class="attr-val">
+            {% if equipment.push %}
+              {{ equipment | join(' ｜ ') }}
+            {% else %}
+              {{ equipment }}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+
+      {% if technique %}
+        <div class="attr">
+          <div class="attr-label">拍摄技法</div>
+          <div class="attr-val">{{ technique }}</div>
+        </div>
+      {% endif %}
+
+      {% if inspiration %}
+        <div class="attr">
+          <div class="attr-label">创作灵感</div>
+          <div class="attr-val">{{ inspiration }}</div>
+        </div>
+      {% endif %}
+
+    </section>
+    <div class="observation-divider"></div>
+  {% endif %}
+
+  {# 6) 正文内容（Markdown 渲染输出） #}
+  <section class="observation-body" itemprop="text">
+    {{ content | safe }}
+  </section>
+
+  {# 底部返回 #}
+  <div class="observation-back">
+    <a class="link-back" href="{{ '/zhi/observation/' | url }}">← 返回「观察 · Observation」</a>
+  </div>
+</article>

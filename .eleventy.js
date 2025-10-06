@@ -5,6 +5,28 @@ module.exports = function(eleventyConfig) {
   // 添加插件
   eleventyConfig.addPlugin(require("@11ty/eleventy-plugin-rss"));
   
+  // 添加图片处理插件
+  const Image = require("@11ty/eleventy-img");
+  
+  // 图片短代码
+  eleventyConfig.addShortcode("image", async function(src, alt, sizes) {
+    let metadata = await Image(src, {
+      widths: [300, 400, 600, 800],
+      formats: ["webp", "jpeg"],
+      outputDir: "./dist/assets/images/",
+      urlPath: "/assets/images/"
+    });
+    
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+    
+    return Image.generateHTML(metadata, imageAttributes);
+  });
+  
   // 添加过滤器
   eleventyConfig.addFilter("fmtDate", function(date) {
     if (!date) return '';
@@ -49,6 +71,12 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("xing_all", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/entries/xing/*.md")
       .filter(item => !item.data.isDraft);
+  });
+
+  eleventyConfig.addCollection("zhi-observation", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/entries/zhi-observation/*.md")
+      .filter(item => !item.data.isDraft)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
   });
 
   // 复制静态资源
