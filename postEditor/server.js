@@ -24,6 +24,7 @@ app.use('/font', express.static('font'));
 app.use('/pics', express.static('pics'));
 app.use('/node_modules', express.static('node_modules'));
 app.use('/plugins', express.static('../plugins'));
+app.use('/assets', express.static(path.join(CODING_PATH, 'src/assets')));
 
 // 配置multer用于文件上传
 const storage = multer.diskStorage({
@@ -147,7 +148,14 @@ function generateProjectContent(data) {
   const sectionConfig = SECTIONS[data.section];
   
   // 根据layout选择对应的CSS文件
-  const pageCSS = data.layout === 'project' ? '/assets/Css/project.css' : '/assets/Css/site.css';
+  let pageCSS;
+  if (data.layout === 'project') {
+    pageCSS = '/assets/Css/project.css';
+  } else if (data.layout === 'observation') {
+    pageCSS = '/assets/Css/observation.css';
+  } else {
+    pageCSS = '/assets/Css/site.css';
+  }
   
   const frontmatter = {
     section: data.section,
@@ -158,14 +166,23 @@ function generateProjectContent(data) {
     date: data.date,
     categories: data.categories,
     tags: data.tags,
-    cover: '',
-    period: data.period,
-    tools: data.tools,
-    client: data.client,
-    collaborators: data.collaborators,
-    fee: data.fee,
-    links: data.links
+    cover: data.cover || '',
   };
+  
+  // 根据布局添加不同的字段
+  if (data.layout === 'project') {
+    frontmatter.period = data.period || '';
+    frontmatter.tools = data.tools || [];
+    frontmatter.client = data.client || '';
+    frontmatter.collaborators = data.collaborators || '';
+    frontmatter.fee = data.fee || '';
+    frontmatter.links = data.links || {};
+  } else if (data.layout === 'observation') {
+    frontmatter.location = data.location || '';
+    frontmatter.equipment = data.equipment || '';
+    frontmatter.technique = data.technique || '';
+    frontmatter.inspiration = data.inspiration || '';
+  }
 
   const yamlContent = Object.entries(frontmatter)
     .map(([key, value]) => {

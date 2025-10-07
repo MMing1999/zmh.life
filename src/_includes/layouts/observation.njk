@@ -17,8 +17,7 @@ layout: layouts/base.njk
   {# 1) 封面图（若有） - 竖向 4:3 比例 #}
   {% if coverImage %}
     <figure class="observation-hero">
-      {% set filename = coverImage | replace('src/assets/Pics/zhi-observation/', '') %}
-      <img src="/assets/Pics/zhi-observation/{{ filename }}" alt="{{ title }}" itemprop="image">
+      <img src="{{ coverImage }}" alt="{{ title }}" itemprop="image">
     </figure>
   {% endif %}
 

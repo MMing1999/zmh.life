@@ -28,7 +28,7 @@
             <div class="project">
             <div class="project-hero">
                 <div class="image-upload-area" id="imageUploadArea">
-                    <img src="/pics/Rectangle 98.png" alt="项目封面" class="hero-image" id="heroImage">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik0xNzUgMTI1SDIyNVYxNzVIMTc1VjEyNVoiIGZpbGw9IiNDQ0NDQ0MiLz4KPHN2ZyB4PSIxNzUiIHk9IjEyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJTNi40OCAyMiAxMiAyMlMyMiAxNy41MiAyMiAxMlMxNy41MiAyIDEyIDJaTTEzIDE3SDExVjE1SDEzVjE3Wk0xMyAxM0gxMVY3SDEzVjEzWiIgZmlsbD0iIzk5OTk5OSIvPgo8L3N2Zz4KPC9zdmc+" alt="项目封面" class="hero-image" id="heroImage">
                     <div class="upload-overlay">
                         <div class="upload-text">拖拽图片到此处或点击上传</div>
                     </div>
@@ -76,33 +76,53 @@
                             <span class="button-label">文章</span>
                         </label>
                         <label class="button-item">
-                            <input type="radio" name="layout" value="photo" disabled>
-                            <span class="button-label">摄影</span>
+                            <input type="radio" name="layout" value="observation">
+                            <span class="button-label">观察</span>
                         </label>
                     </div>
                     
                     <span class="meta-label meta-label-spaced">分类:</span>
                     <div class="button-group">
-                        <label class="button-item">
+                        <!-- 项目分类 -->
+                        <label class="button-item" id="projectDesign">
                             <input type="checkbox" name="categories" value="design" checked>
                             <span class="button-label">设计</span>
                         </label>
-                        <label class="button-item">
+                        <label class="button-item" id="projectStartup">
                             <input type="checkbox" name="categories" value="startup" checked>
                             <span class="button-label">创业</span>
                         </label>
-                        <label class="button-item">
+                        <label class="button-item" id="projectArt">
                             <input type="checkbox" name="categories" value="art">
                             <span class="button-label">艺术</span>
                         </label>
-                        <label class="button-item">
+                        <label class="button-item" id="projectDev">
                             <input type="checkbox" name="categories" value="dev">
                             <span class="button-label">开发</span>
                         </label>
-                        <label class="button-item">
+                        <label class="button-item" id="projectProduct">
                             <input type="checkbox" name="categories" value="product">
                             <span class="button-label">产品</span>
                         </label>
+                        
+                        <!-- 观察分类 -->
+                        <label class="button-item" id="obsDocumentary" style="display: none;">
+                            <input type="checkbox" name="categories" value="documentary">
+                            <span class="button-label">纪实</span>
+                        </label>
+                        <label class="button-item" id="obsMoment" style="display: none;">
+                            <input type="checkbox" name="categories" value="moment">
+                            <span class="button-label">瞬间</span>
+                        </label>
+                        <label class="button-item" id="obsHumanity" style="display: none;">
+                            <input type="checkbox" name="categories" value="humanity">
+                            <span class="button-label">人文</span>
+                        </label>
+                        <label class="button-item" id="obsLandscape" style="display: none;">
+                            <input type="checkbox" name="categories" value="landscape">
+                            <span class="button-label">风光</span>
+                        </label>
+                    </div>
                     </div>
                 </div>
                 
@@ -120,7 +140,8 @@
             
             <div class="project-divider"></div>
             
-            <div class="project-details">
+            <!-- 项目详情 - 项目布局时显示 -->
+            <div class="project-details" id="projectDetails">
                 <div class="detail-line">
                     <span class="detail-label">时间周期:</span>
                     <input type="text" class="detail-input" value="" placeholder="请输入时间周期">
@@ -158,6 +179,31 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 观察详情 - 观察布局时显示 -->
+            <div class="observation-details" id="observationDetails" style="display: none;">
+                <div class="detail-line">
+                    <span class="detail-label">拍摄地点:</span>
+                    <input type="text" class="detail-input" value="" placeholder="请输入拍摄地点">
+                </div>
+                
+                <div class="detail-line">
+                    <span class="detail-label">设备:</span>
+                    <input type="text" class="detail-input" value="" placeholder="请输入使用的设备">
+                </div>
+                
+                <div class="detail-line">
+                    <span class="detail-label">拍摄技法:</span>
+                    <input type="text" class="detail-input" value="" placeholder="请输入拍摄技法">
+                </div>
+                
+                <div class="detail-line">
+                    <span class="detail-label">创作灵感:</span>
+                    <textarea class="detail-input" rows="3" placeholder="请输入创作灵感"></textarea>
+                </div>
+            </div>
+            
+            <div class="project-divider"></div>
             
             <!-- 创建按钮 -->
             <div class="create-section">
@@ -209,7 +255,7 @@
                     <!-- 封面图片区域 -->
                     <div class="project-hero">
                         <div class="image-upload-area" id="editImageUploadArea">
-                            <img src="/pics/Rectangle 98.png" alt="项目封面" class="hero-image" id="editHeroImage">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI0MDAiIGhlaWdodD0iMzAwIiBmaWxsPSIjRjVGNUY1Ii8+CjxwYXRoIGQ9Ik0xNzUgMTI1SDIyNVYxNzVIMTc1VjEyNVoiIGZpbGw9IiNDQ0NDQ0MiLz4KPHN2ZyB4PSIxNzUiIHk9IjEyNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjUwIiB2aWV3Qm94PSIwIDAgMjQgMjQiIGZpbGw9Im5vbmUiPgo8cGF0aCBkPSJNMTIgMkM2LjQ4IDIgMiA2LjQ4IDIgMTJTNi40OCAyMiAxMiAyMlMyMiAxNy41MiAyMiAxMlMxNy41MiAyIDEyIDJaTTEzIDE3SDExVjE1SDEzVjE3Wk0xMyAxM0gxMVY3SDEzVjEzWiIgZmlsbD0iIzk5OTk5OSIvPgo8L3N2Zz4KPC9zdmc+" alt="项目封面" class="hero-image" id="editHeroImage">
                             <div class="upload-overlay">
                                 <div class="upload-text">拖拽图片到此处或点击上传</div>
                             </div>
@@ -258,32 +304,36 @@
                                 <span class="button-label">文章</span>
                             </label>
                             <label class="button-item">
-                                <input type="radio" name="editLayout" value="photo">
-                                <span class="button-label">摄影</span>
+                                <input type="radio" name="editLayout" value="observation">
+                                <span class="button-label">观察</span>
                             </label>
                         </div>
                         
                         <span class="meta-label meta-label-spaced">分类:</span>
                         <div class="button-group">
                             <label class="button-item">
-                                <input type="checkbox" name="editCategories" value="design">
-                                <span class="button-label">设计</span>
+                                <input type="checkbox" name="editCategories" value="documentary">
+                                <span class="button-label">纪实</span>
                             </label>
                             <label class="button-item">
-                                <input type="checkbox" name="editCategories" value="startup">
-                                <span class="button-label">创业</span>
+                                <input type="checkbox" name="editCategories" value="moment">
+                                <span class="button-label">瞬间</span>
                             </label>
                             <label class="button-item">
-                                <input type="checkbox" name="editCategories" value="art">
-                                <span class="button-label">艺术</span>
+                                <input type="checkbox" name="editCategories" value="humanity">
+                                <span class="button-label">人文</span>
                             </label>
                             <label class="button-item">
-                                <input type="checkbox" name="editCategories" value="dev">
-                                <span class="button-label">开发</span>
+                                <input type="checkbox" name="editCategories" value="landscape">
+                                <span class="button-label">风光</span>
                             </label>
                             <label class="button-item">
-                                <input type="checkbox" name="editCategories" value="product">
-                                <span class="button-label">产品</span>
+                                <input type="checkbox" name="editCategories" value="discovery">
+                                <span class="button-label">发现</span>
+                            </label>
+                            <label class="button-item">
+                                <input type="checkbox" name="editCategories" value="ecology">
+                                <span class="button-label">生态</span>
                             </label>
                         </div>
                     </div>
@@ -303,43 +353,6 @@
                 <div class="project-divider"></div>
                 
                 <!-- 详细信息 -->
-                <div class="project-details">
-                    <div class="detail-line">
-                        <span class="detail-label">时间周期:</span>
-                        <input type="text" class="detail-input" id="editPeriod" value="" placeholder="请输入时间周期">
-                    </div>
-                    
-                    <div class="detail-line">
-                        <span class="detail-label">工具:</span>
-                        <input type="text" class="detail-input" id="editTools" value="" placeholder="请输入使用的工具">
-                    </div>
-                    
-                    <div class="detail-line">
-                        <span class="detail-label">客户:</span>
-                        <input type="text" class="detail-input" id="editClient" value="" placeholder="请输入客户名称">
-                    </div>
-                    
-                    <div class="detail-line">
-                        <span class="detail-label">合作者:</span>
-                        <input type="text" class="detail-input" id="editCollaborators" value="" placeholder="请输入合作者信息">
-                    </div>
-                    
-                    <div class="detail-line">
-                        <span class="detail-label">报酬/价格:</span>
-                        <input type="text" class="detail-input" id="editFee" value="" placeholder="请输入报酬或价格">
-                    </div>
-                    
-                    <div class="detail-line">
-                        <span class="detail-label">链接:</span>
-                        <div class="links-input" id="editLinksInput">
-                            <div class="link-row">
-                                <input type="text" class="link-text-input" placeholder="链接名称" value="">
-                                <input type="text" class="link-url-input" placeholder="链接地址" value="">
-                                <button type="button" class="add-link-btn" onclick="addEditLinkRow()">+</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 
                 <div class="project-divider"></div>
                 
@@ -1741,6 +1754,17 @@
                     }
                 });
             });
+            
+            // 监听布局变化，调整图片比例
+            document.querySelectorAll('input[name="layout"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    updateImageAspectRatio(this.value);
+                });
+            });
+            
+            // 初始化默认布局
+            const defaultLayout = document.querySelector('input[name="layout"]:checked')?.value || 'project';
+            updateImageAspectRatio(defaultLayout);
         });
         
         function loadTagButtons() {
@@ -1868,9 +1892,22 @@
                     console.log('图片上传成功:', data);
                     // 更新图片src为服务器路径
                     const heroImage = document.getElementById('heroImage');
-                    heroImage.src = data.imagePath;
-                    // 保存图片路径到全局变量，供创建项目时使用
-                    window.uploadedImagePath = data.imagePath;
+                    
+                    // 验证图片是否能正常加载
+                    const testImg = new Image();
+                    testImg.onload = function() {
+                        // 图片加载成功，更新显示
+                        heroImage.src = data.relativePath;
+                        window.uploadedImagePath = data.relativePath;
+                        updateResolutionDisplay();
+                        console.log('图片显示更新成功');
+                    };
+                    testImg.onerror = function() {
+                        // 图片加载失败，保持预览图片
+                        console.error('服务器图片加载失败，保持预览图片');
+                        alert('图片上传成功但显示失败，请重试');
+                    };
+                    testImg.src = data.relativePath;
                 } else {
                     console.error('图片上传失败:', data.error);
                     alert('图片上传失败: ' + data.error);
@@ -1885,12 +1922,92 @@
         function updateResolutionDisplay() {
             const resolutionDisplay = document.getElementById('resolutionDisplay');
             const heroImage = document.getElementById('heroImage');
+            const imageUploadArea = document.getElementById('imageUploadArea');
             
-            // 获取显示区域的尺寸
-            const displayWidth = heroImage.offsetWidth;
-            const displayHeight = heroImage.offsetHeight;
+            if (!resolutionDisplay || !heroImage || !imageUploadArea) return;
             
-            resolutionDisplay.textContent = `${displayWidth}×${displayHeight}`;
+            // 获取当前布局
+            const currentLayout = document.querySelector('input[name="layout"]:checked')?.value || 'project';
+            
+            // 根据布局显示不同的分辨率信息
+            if (currentLayout === 'observation') {
+                resolutionDisplay.textContent = '4:3 竖向';
+            } else {
+                resolutionDisplay.textContent = '16:9 横向';
+            }
+            
+            // 如果有上传的图片且不是默认图片，显示实际尺寸
+            if (heroImage.src && 
+                !heroImage.src.includes('data:image/svg+xml') && 
+                !heroImage.src.includes('Rectangle')) {
+                const img = new Image();
+                img.onload = function() {
+                    resolutionDisplay.textContent = `${this.naturalWidth}×${this.naturalHeight}`;
+                };
+                img.onerror = function() {
+                    // 图片加载失败，保持当前显示
+                    console.warn('图片尺寸获取失败');
+                };
+                img.src = heroImage.src;
+            }
+        }
+        
+        function updateImageAspectRatio(layout) {
+            const imageUploadArea = document.getElementById('imageUploadArea');
+            const resolutionDisplay = document.getElementById('resolutionDisplay');
+            const projectDetails = document.getElementById('projectDetails');
+            const observationDetails = document.getElementById('observationDetails');
+            
+            if (!imageUploadArea || !resolutionDisplay) return;
+            
+            // 移除之前的比例类
+            imageUploadArea.classList.remove('aspect-16-9', 'aspect-4-3');
+            
+            if (layout === 'observation') {
+                // 观察布局使用4:3竖向比例
+                imageUploadArea.classList.add('aspect-4-3');
+                resolutionDisplay.textContent = '4:3 竖向';
+                
+                // 显示观察详情，隐藏项目详情
+                if (projectDetails) projectDetails.style.display = 'none';
+                if (observationDetails) observationDetails.style.display = 'block';
+                
+                // 显示观察分类，隐藏项目分类
+                document.getElementById('projectDesign').style.display = 'none';
+                document.getElementById('projectStartup').style.display = 'none';
+                document.getElementById('projectArt').style.display = 'none';
+                document.getElementById('projectDev').style.display = 'none';
+                document.getElementById('projectProduct').style.display = 'none';
+                
+                document.getElementById('obsDocumentary').style.display = 'block';
+                document.getElementById('obsMoment').style.display = 'block';
+                document.getElementById('obsHumanity').style.display = 'block';
+                document.getElementById('obsLandscape').style.display = 'block';
+                
+            } else {
+                // 项目布局使用16:9横向比例
+                imageUploadArea.classList.add('aspect-16-9');
+                resolutionDisplay.textContent = '16:9 横向';
+                
+                // 显示项目详情，隐藏观察详情
+                if (projectDetails) projectDetails.style.display = 'block';
+                if (observationDetails) observationDetails.style.display = 'none';
+                
+                // 显示项目分类，隐藏观察分类
+                document.getElementById('projectDesign').style.display = 'block';
+                document.getElementById('projectStartup').style.display = 'block';
+                document.getElementById('projectArt').style.display = 'block';
+                document.getElementById('projectDev').style.display = 'block';
+                document.getElementById('projectProduct').style.display = 'block';
+                
+                document.getElementById('obsDocumentary').style.display = 'none';
+                document.getElementById('obsMoment').style.display = 'none';
+                document.getElementById('obsHumanity').style.display = 'none';
+                document.getElementById('obsLandscape').style.display = 'none';
+            }
+            
+            // 更新分辨率显示
+            updateResolutionDisplay();
         }
         
         function addLinkRow() {
@@ -2291,6 +2408,7 @@ function hello() {
         
         function collectFormData() {
             // 收集所有表单数据
+            const layout = document.querySelector('input[name="layout"]:checked')?.value || 'project';
             const data = {
                 // 基本信息
                 title: document.querySelector('.project-title-input')?.value || '',
@@ -2298,7 +2416,7 @@ function hello() {
                 
                 // 领域和布局
                 section: document.querySelector('input[name="section"]:checked')?.value || 'xing',
-                layout: document.querySelector('input[name="layout"]:checked')?.value || 'project',
+                layout: layout,
                 
                 // 分类（多选）
                 categories: Array.from(document.querySelectorAll('input[name="categories"]:checked'))
@@ -2316,16 +2434,26 @@ function hello() {
                 // 封面图片
                 cover: window.uploadedImagePath || document.querySelector('#heroImage')?.src || '',
                 
-                // 项目详情
-                period: document.querySelector('input[placeholder*="时间周期"]')?.value || '',
-                tools: document.querySelector('input[placeholder*="工具"]')?.value || '',
-                client: document.querySelector('input[placeholder*="客户"]')?.value || '',
-                collaborators: document.querySelector('input[placeholder*="合作者"]')?.value || '',
-                fee: document.querySelector('input[placeholder*="报酬"]')?.value || '',
-                
-                // 链接
-                links: collectLinks()
+                // 编辑器内容
+                content: window.markdownEditor ? window.markdownEditor.getMarkdown() : ''
             };
+            
+            // 根据布局添加不同的详情字段
+            if (layout === 'project') {
+                // 项目详情
+                data.period = document.querySelector('input[placeholder*="时间周期"]')?.value || '';
+                data.tools = document.querySelector('input[placeholder*="工具"]')?.value || '';
+                data.client = document.querySelector('input[placeholder*="客户"]')?.value || '';
+                data.collaborators = document.querySelector('input[placeholder*="合作者"]')?.value || '';
+                data.fee = document.querySelector('input[placeholder*="报酬"]')?.value || '';
+                data.links = collectLinks();
+            } else if (layout === 'observation') {
+                // 观察详情
+                data.location = document.querySelector('input[placeholder*="拍摄地点"]')?.value || '';
+                data.equipment = document.querySelector('input[placeholder*="设备"]')?.value || '';
+                data.technique = document.querySelector('input[placeholder*="拍摄技法"]')?.value || '';
+                data.inspiration = document.querySelector('textarea[placeholder*="创作灵感"]')?.value || '';
+            }
             
             return data;
         }
