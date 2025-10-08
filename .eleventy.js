@@ -49,6 +49,20 @@ module.exports = function(eleventyConfig) {
     return translations[category] || category;
   });
 
+  // 添加日期格式化过滤器
+  eleventyConfig.addFilter("formatDate", function(date) {
+    if (!date) return '';
+    const d = new Date(date);
+    const year = d.getFullYear();
+    const month = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return {
+      year: year,
+      month: month,
+      day: day
+    };
+  });
+
   // 添加日期时间格式化过滤器
   eleventyConfig.addFilter("fmtDateTime", function(dateObj) {
     if (!dateObj) return "";
@@ -75,6 +89,12 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addCollection("zhi-observation", function(collectionApi) {
     return collectionApi.getFilteredByGlob("src/entries/zhi-observation/*.md")
+      .filter(item => !item.data.isDraft)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  });
+
+  eleventyConfig.addCollection("writing", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/entries/zhi-writing/*.md")
       .filter(item => !item.data.isDraft)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   });

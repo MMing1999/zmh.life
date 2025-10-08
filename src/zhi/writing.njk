@@ -1,0 +1,487 @@
+---
+layout: layouts/base.njk
+title: "Writing · 写作"
+description: "技术文章、学习笔记和经验分享。通过写作来整理思路，分享知识，记录成长过程中的思考和收获。"
+section: "zhi"
+pageName: "writing"
+pageCSS: "/assets/Css/writing.css"
+---
+
+<!--
+  文件夹关系说明：
+  - 图片地址：/assets/images/zhi-writing/
+  - 帖子地址：/entries/zhi-writing/
+  - CSS文件：/assets/Css/writing.css
+-->
+
+<!-- Main Content - Two Column Layout -->
+<div class="writing-container">
+  
+  <!-- Left Column: Articles Container (8/10) -->
+  <div class="articles-container">
+    
+    <!-- Articles List -->
+    <div class="articles-list">
+      {% for article in collections.writing %}
+      <article class="article-item">
+        <!-- 卡片总容器 -->
+        <div class="article-card-container">
+          <!-- 时间显示在图片上面 -->
+          <div class="article-time-overlay">
+            <div class="article-time">
+              {% set dateObj = article.date | formatDate %}
+              <span class="time-month">{{ dateObj.month }}</span>
+              <div class="time-separator-short"></div>
+              <span class="time-day">{{ dateObj.day }}</span>
+              <div class="time-separator-medium"></div>
+              <span class="time-year">{{ dateObj.year }}</span>
+              <div class="time-separator-long"></div>
+            </div>
+            <div class="article-meta-right">
+              <div class="article-meta-left-separator"></div>
+              {% if article.data.column %}
+              <div class="article-column-tag">{{ article.data.column }}</div>
+              {% endif %}
+              {% if article.data.category %}
+              <div class="article-column-divider">/</div>
+              <span class="article-category">{{ article.data.category }}</span>
+              {% endif %}
+              {% if article.data.categories %}
+                {% for cat in article.data.categories %}
+                <div class="article-column-divider">/</div>
+                <span class="article-category">{{ cat }}</span>
+                {% endfor %}
+              {% endif %}
+              {% if article.data.tags %}
+              <div class="article-tags-divider">/</div>
+              <div class="article-tags-inline">
+                {% for tag in article.data.tags %}
+                <span class="article-tag">#{{ tag }}</span>
+                {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+          </div>
+          
+          <!-- 图片和标题+简介左右布局 -->
+          <div class="article-main-layout">
+            <!-- 封面容器（左边） -->
+            {% if article.data.coverImage %}
+            <div class="article-cover-container">
+              <div class="article-cover-image">
+                <img src="{{ article.data.coverImage }}" alt="{{ article.data.title }}">
+              </div>
+            </div>
+            {% endif %}
+            
+            <!-- 文字容器（右边） -->
+            <div class="article-text-container">
+              <h3 class="article-title">
+                <a href="{{ article.url }}">{{ article.data.title }}</a>
+              </h3>
+              {% if article.data.summary %}
+              <p class="article-summary">{{ article.data.summary }}</p>
+              {% endif %}
+            </div>
+          </div>
+          
+          <!-- 列表视图专用布局 -->
+          <div class="article-list-layout">
+            <h3 class="article-title">
+              <a href="{{ article.url }}">{{ article.data.title }}</a>
+            </h3>
+            <div class="article-flex-separator"></div>
+            <div class="article-time-overlay">
+              <div class="article-time">
+                <span class="time-month">{{ dateObj.month }}</span>
+                <div class="time-separator-short"></div>
+                <span class="time-day">{{ dateObj.day }}</span>
+                <div class="time-separator-medium"></div>
+                <span class="time-year">{{ dateObj.year }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+      
+      <!-- Empty State -->
+      {% if collections.writing | length == 0 %}
+      <div class="empty-state">
+        <h3>暂无文章</h3>
+        <p>还没有发布任何写作内容，<a href="/zhi/collection/">去收集一些灵感</a>吧！</p>
+      </div>
+      {% endif %}
+      
+      <!-- Pagination -->
+      <div class="pagination-container">
+        <div class="pagination">
+          <button class="pagination-btn" id="prevPage" disabled>上一页</button>
+          <div class="pagination-numbers" id="paginationNumbers"></div>
+          <button class="pagination-btn" id="nextPage" disabled>下一页</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Right Column: Navigation Container (2/10) -->
+  <div class="navigation-container">
+    
+    <!-- View Toggle -->
+    <div class="nav-section">
+      <div class="view-toggle-list">
+        <a href="#" class="view-toggle-item active" data-view="board">看板</a>
+        <span class="view-toggle-divider">/</span>
+        <a href="#" class="view-toggle-item" data-view="list">列表</a>
+      </div>
+    </div>
+    
+    <!-- Search -->
+    <div class="nav-section">
+      <div class="search-box">
+        <input type="text" placeholder="搜索文章..." id="articleSearch">
+      </div>
+    </div>
+    
+    <div class="nav-divider"></div>
+    
+    <!-- Categories -->
+    <div class="nav-section">
+      <div class="category-list">
+        <div class="category-row">
+          <a href="#" class="category-item" data-category="essay">随笔</a>
+          <span class="category-divider">/</span>
+          <a href="#" class="category-item" data-category="reflection">反思</a>
+        </div>
+        <div class="category-row">
+          <a href="#" class="category-item" data-category="record">记录</a>
+          <span class="category-divider">/</span>
+          <a href="#" class="category-item" data-category="notes">笔记</a>
+        </div>
+      </div>
+      <div class="divider"></div>
+    </div>
+    
+    <!-- Columns -->
+    <div class="nav-section">
+      <div class="column-list">
+        <a href="#" class="column-item" data-column="ai-thinking">AI思考专栏</a>
+        <a href="#" class="column-item" data-column="design-thinking">设计思考专栏</a>
+        <a href="#" class="column-item" data-column="fullstack-dev">全栈开发专栏</a>
+      </div>
+      <div class="divider"></div>
+    </div>
+    
+    <!-- Tags -->
+    <div class="nav-section">
+      <div class="tags-list">
+        <a href="#" class="tag-item" data-tag="JavaScript">#JavaScript</a>
+        <a href="#" class="tag-item" data-tag="CSS">#CSS</a>
+        <a href="#" class="tag-item" data-tag="React">#React</a>
+        <a href="#" class="tag-item" data-tag="Vue">#Vue</a>
+        <a href="#" class="tag-item" data-tag="设计">#设计</a>
+        <a href="#" class="tag-item" data-tag="工具">#工具</a>
+        <a href="#" class="tag-item" data-tag="工作流">#工作流</a>
+        <a href="#" class="tag-item" data-tag="思考">#思考</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const categoryItems = document.querySelectorAll('.category-item');
+  const columnItems = document.querySelectorAll('.column-item');
+  const tagItems = document.querySelectorAll('.tag-item');
+  const viewToggleItems = document.querySelectorAll('.view-toggle-item');
+  const articleItems = document.querySelectorAll('.article-item');
+  const articleListContainer = document.querySelector('.article-list');
+  const prevBtn = document.getElementById('prevPage');
+  const nextBtn = document.getElementById('nextPage');
+  const paginationNumbers = document.getElementById('paginationNumbers');
+  
+  // 分页设置
+  const ITEMS_PER_PAGE = 20;
+  let currentPage = 1;
+  let filteredArticles = Array.from(articleItems);
+  let totalPages = 1;
+  
+  // 分类映射
+  const categoryMap = {
+    'essay': '随笔',
+    'reflection': '反思', 
+    'record': '记录',
+    'notes': '笔记'
+  };
+  
+  // 专栏映射
+  const columnMap = {
+    'ai-thinking': 'AI思考专栏',
+    'design-thinking': '设计思考专栏',
+    'fullstack-dev': '全栈开发专栏'
+  };
+  
+  // 选中的标签
+  let selectedTags = new Set();
+  
+  // 当前视图
+  let currentView = 'board';
+  
+  // 切换视图
+  function switchView(view) {
+    currentView = view;
+    if (view === 'list') {
+      articleListContainer.classList.add('list-view');
+    } else {
+      articleListContainer.classList.remove('list-view');
+    }
+  }
+  
+  function filterArticles(selectedCategory, selectedColumn) {
+    filteredArticles = Array.from(articleItems).filter(article => {
+      // 分类过滤
+      let categoryMatch = true;
+      if (selectedCategory !== null) {
+        categoryMatch = false;
+        const articleCategory = article.querySelector('.article-category');
+        const articleCategories = article.querySelectorAll('.article-category');
+        
+        if (articleCategory) {
+          categoryMatch = articleCategory.textContent === categoryMap[selectedCategory];
+        }
+        
+        articleCategories.forEach(cat => {
+          if (cat.textContent === categoryMap[selectedCategory]) {
+            categoryMatch = true;
+          }
+        });
+      }
+      
+      // 专栏过滤
+      let columnMatch = true;
+      if (selectedColumn !== null) {
+        columnMatch = false;
+        const articleColumn = article.querySelector('.article-column-tag');
+        
+        if (articleColumn) {
+          columnMatch = articleColumn.textContent === columnMap[selectedColumn];
+        }
+      }
+      
+      // 标签过滤
+      let tagMatch = true;
+      if (selectedTags.size > 0) {
+        tagMatch = false;
+        const articleTags = article.querySelectorAll('.article-tag');
+        
+        articleTags.forEach(tag => {
+          const tagText = tag.textContent.replace('#', '');
+          if (selectedTags.has(tagText)) {
+            tagMatch = true;
+          }
+        });
+      }
+      
+      return categoryMatch && columnMatch && tagMatch;
+    });
+    
+    currentPage = 1;
+    updatePagination();
+    showCurrentPage();
+  }
+  
+  function updatePagination() {
+    totalPages = Math.ceil(filteredArticles.length / ITEMS_PER_PAGE);
+    
+    // 如果只有一页或没有内容，隐藏分页控件
+    if (totalPages <= 1) {
+      document.querySelector('.pagination-container').classList.add('hidden');
+      return;
+    } else {
+      document.querySelector('.pagination-container').classList.remove('hidden');
+    }
+    
+    // 更新分页按钮状态
+    prevBtn.disabled = currentPage <= 1;
+    nextBtn.disabled = currentPage >= totalPages;
+    
+    // 生成页码
+    paginationNumbers.innerHTML = '';
+    
+    const maxVisiblePages = 5;
+    let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+    let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+    
+    if (endPage - startPage + 1 < maxVisiblePages) {
+      startPage = Math.max(1, endPage - maxVisiblePages + 1);
+    }
+    
+    for (let i = startPage; i <= endPage; i++) {
+      const pageBtn = document.createElement('a');
+      pageBtn.href = '#';
+      pageBtn.className = `pagination-number ${i === currentPage ? 'active' : ''}`;
+      pageBtn.textContent = i;
+      pageBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        currentPage = i;
+        updatePagination();
+        showCurrentPage();
+      });
+      paginationNumbers.appendChild(pageBtn);
+    }
+  }
+  
+  function showCurrentPage() {
+    // 隐藏所有文章
+    articleItems.forEach(article => {
+      article.style.display = 'none';
+    });
+    
+    // 显示当前页的文章
+    const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    
+    filteredArticles.slice(startIndex, endIndex).forEach(article => {
+      article.style.display = 'block';
+    });
+  }
+  
+  // 上一页按钮
+  prevBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (currentPage > 1) {
+      currentPage--;
+      updatePagination();
+      showCurrentPage();
+    }
+  });
+  
+  // 下一页按钮
+  nextBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (currentPage < totalPages) {
+      currentPage++;
+      updatePagination();
+      showCurrentPage();
+    }
+  });
+  
+  // 分类按钮事件
+  categoryItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const category = this.getAttribute('data-category');
+      
+      // 如果点击的是已选中的项目，则取消选择并显示所有文章
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        const activeColumn = document.querySelector('.column-item.active');
+        const column = activeColumn ? activeColumn.getAttribute('data-column') : null;
+        filterArticles(null, column);
+        return;
+      }
+      
+      // 移除所有其他项目的active类
+      categoryItems.forEach(otherItem => {
+        otherItem.classList.remove('active');
+      });
+      
+      // 为当前点击的项目添加active类
+      this.classList.add('active');
+      
+      // 根据分类过滤文章
+      const activeColumn = document.querySelector('.column-item.active');
+      const column = activeColumn ? activeColumn.getAttribute('data-column') : null;
+      filterArticles(category, column);
+    });
+  });
+  
+  // 专栏按钮事件
+  columnItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const column = this.getAttribute('data-column');
+      
+      // 如果点击的是已选中的项目，则取消选择并显示所有文章
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        const activeCategory = document.querySelector('.category-item.active');
+        const category = activeCategory ? activeCategory.getAttribute('data-category') : null;
+        filterArticles(category, null);
+        return;
+      }
+      
+      // 移除所有其他项目的active类
+      columnItems.forEach(otherItem => {
+        otherItem.classList.remove('active');
+      });
+      
+      // 为当前点击的项目添加active类
+      this.classList.add('active');
+      
+      // 根据专栏过滤文章
+      const activeCategory = document.querySelector('.category-item.active');
+      const category = activeCategory ? activeCategory.getAttribute('data-category') : null;
+      filterArticles(category, column);
+    });
+  });
+  
+  // 标签按钮事件
+  tagItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const tag = this.getAttribute('data-tag');
+      
+      // 切换标签选中状态
+      if (this.classList.contains('active')) {
+        this.classList.remove('active');
+        selectedTags.delete(tag);
+      } else {
+        this.classList.add('active');
+        selectedTags.add(tag);
+      }
+      
+      // 重新过滤文章
+      const activeCategory = document.querySelector('.category-item.active');
+      const activeColumn = document.querySelector('.column-item.active');
+      const category = activeCategory ? activeCategory.getAttribute('data-category') : null;
+      const column = activeColumn ? activeColumn.getAttribute('data-column') : null;
+      filterArticles(category, column);
+    });
+  });
+  
+  // 视图切换按钮事件
+  viewToggleItems.forEach(item => {
+    item.addEventListener('click', function(e) {
+      e.preventDefault();
+      
+      const view = this.getAttribute('data-view');
+      
+      // 如果点击的是已选中的项目，则不执行任何操作
+      if (this.classList.contains('active')) {
+        return;
+      }
+      
+      // 移除所有其他项目的active类
+      viewToggleItems.forEach(otherItem => {
+        otherItem.classList.remove('active');
+      });
+      
+      // 为当前点击的项目添加active类
+      this.classList.add('active');
+      
+      // 切换视图
+      switchView(view);
+    });
+  });
+  
+  // 初始化
+  updatePagination();
+  showCurrentPage();
+});
+</script>
