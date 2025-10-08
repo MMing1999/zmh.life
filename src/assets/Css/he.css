@@ -1,0 +1,361 @@
+/* He合页面样式 - 极简风格 */
+
+/* 覆盖page-wrap的margin和padding */
+body[data-page="he"] main.page-wrap {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: none;
+}
+
+/* 去掉导航栏和section1之间的分隔 */
+body[data-page="he"] .navbar {
+  margin-bottom: 0;
+  border-bottom: none;
+}
+
+.he-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.he-section {
+  margin-bottom: 4rem;
+  display: flex;
+  gap: 12px;
+  min-height: 400px;
+  position: relative;
+}
+
+/* section之间的分隔线 */
+.he-section:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+/* Section 1 全屏高度样式 */
+.fullscreen-section {
+  min-height: calc(100vh - 80px);
+  margin: 0;
+  padding: 0;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  gap: 12px;
+  position: relative;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: -1rem;
+}
+
+
+/* 全屏section的分隔线 */
+.fullscreen-section::after {
+  content: '';
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+}
+
+/* Section 1 容器样式 */
+.l1-left-container {
+  flex: 0 0 40%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.manifesto-text {
+  font-size: 1.4rem;
+  line-height: 1.2;
+  color: #2c3e50;
+  font-family: 'Fusion Pixel', monospace;
+  font-weight: bold;
+}
+
+.manifesto-text p {
+  margin-bottom: 0;
+  text-align: left;
+  font-weight: bold;
+}
+
+.manifesto-text p:first-child {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.l1-right-container{
+  flex: 0 0 60%;
+  padding: 0rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+}
+
+.right-top-content {
+  flex: 0 0 60%;
+  align-self: flex-end;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem 0 0 0;
+  margin: 0;
+
+}
+
+.right-bottom-content {
+  flex: 0 0 auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+/* Section 2-4 容器样式 */
+.l2-left-container,
+.l2-right-container,
+.l3-left-container,
+.l3-right-container,
+.l4-left-container,
+.l4-right-container {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.l2-left-container,
+.l3-left-container,
+.l4-left-container {
+  flex: 0 0 40%;
+}
+
+.l2-right-container,
+.l3-right-container,
+.l4-right-container {
+  flex: 0 0 60%;
+}
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 300;
+  margin: 0;
+  color: #2c3e50;
+  letter-spacing: 2px;
+}
+
+.personal-intro {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #5a6c7d;
+  margin: 0;
+}
+
+
+.personal-photo {
+  width: 200px;
+  height: 267px;
+  border-radius: 0;
+  object-fit: cover;
+  border: none;
+  box-shadow: none;
+  display: block;
+  align-self: flex-start;
+  margin: 0;
+  padding: 0;
+}
+
+.subsection-title {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 1rem;
+  color: #37474f;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 0.5rem;
+}
+
+.data-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 2rem;
+}
+
+.data-list li {
+  padding: 0.5rem 0;
+  color: #546e7a;
+  font-size: 1rem;
+  border-left: 3px solid transparent;
+  padding-left: 1rem;
+  transition: all 0.3s ease;
+}
+
+.data-list li:hover {
+  border-left-color: #2196f3;
+  color: #1976d2;
+  transform: translateX(5px);
+}
+
+.character-text,
+.principle-text,
+.value-text,
+.viewpoint-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #424242;
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 8px;
+  border-left: 4px solid #4caf50;
+}
+
+.achievement-list {
+  list-style: none;
+  padding: 0;
+}
+
+.achievement-list li {
+  padding: 0.8rem 0;
+  color: #424242;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.achievement-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.countdown-item {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-number {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #2c3e50;
+  line-height: 1;
+}
+
+.countdown-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #7f8c8d;
+  margin-top: 0.5rem;
+}
+
+.countdown-description {
+  text-align: center;
+  font-size: 1rem;
+  color: #546e7a;
+  font-style: italic;
+  margin: 0;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .he-section {
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .fullscreen-section {
+    max-width: 100%;
+    left: 0;
+    transform: none;
+    padding: 0 1rem;
+  }
+  
+  
+  /* 移动端分隔线调整 */
+  .he-section:not(:last-child)::after,
+  .fullscreen-section::after {
+    left: 1rem;
+    right: 1rem;
+  }
+  
+  
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .personal-photo {
+    width: 150px;
+    height: 150px;
+  }
+  
+  .countdown-container {
+    gap: 1rem;
+  }
+  
+  .countdown-item {
+    padding: 1rem;
+  }
+  
+  .countdown-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .he-container {
+    padding: 0 1rem;
+  }
+  
+  .he-section {
+    margin-bottom: 2rem;
+    gap: 12px;
+  }
+  
+  .fullscreen-section {
+    padding: 0 1rem;
+  }
+  
+  
+  .section-title {
+    font-size: 1.5rem;
+  }
+  
+  .countdown-container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

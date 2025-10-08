@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "npx @11ty/eleventy --serve --watch --port=8000",
+    "dev": "npx @11ty/eleventy --serve --watch --port=8080",
     "build": "npx @11ty/eleventy",
     "clean": "rm -rf dist _site node_modules package-lock.json",
     "notion-sync": "node notion-scheduler.js",
