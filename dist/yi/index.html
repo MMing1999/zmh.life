@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  
+  
+    
+  
+  <title>一 · My Studio</title>
+
+  
+  
+    
+    <meta name="description" content="视频作品展示">
+    <meta property="og:description" content="视频作品展示">
+  
+  <meta property="og:title" content="一">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="/yi/">
+  <link rel="canonical" href="/yi/">
+  <meta name="theme-color" content="#ffffff">
+
+  
+  
+     
+      <link rel="stylesheet" href="/assets/Css/yi.css">
+    
+  
+
+  
+  <link rel="stylesheet" href="/assets/site.css">
+
+  
+  <link rel="icon" href="/assets/favicon.ico">
+</head>
+
+<body
+  data-section="home"
+  data-page="yi"
+>
+  
+  <nav class="navbar navbar-static" role="navigation" aria-label="主导航">
+    <a href="/" id="navlogo" aria-label="首页">
+      <img src="/assets/Pics/Ellipse 1.png" alt="Logo">
+    </a>
+    <ul class="nav-list">
+      <li><a class="navlink" href="/zhi/">知</a></li>
+      <li><a class="navlink" href="/xing/">行</a></li>
+      <li><a class="navlink" href="/he/">合</a></li>
+      <li><a class="navlink" href="/yi/">一</a></li>
+    </ul>
+  </nav>
+
+  
+  <main id="main" class="yi-page-wrap">
+    
+<div class="video-container-wrapper">
+<!-- 2025年视频 -->
+<section class="video-section" data-video-id="2025">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2025年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2025年视频">2025</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2025年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2024年视频 -->
+<section class="video-section" data-video-id="2024">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2024年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2024年视频">2024</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2024年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2023年视频 -->
+<section class="video-section" data-video-id="2023">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2023年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2023年视频">2023</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2023年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2022年视频 -->
+<section class="video-section" data-video-id="2022">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2022年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2022年视频">2022</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2022年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2021年视频 -->
+<section class="video-section" data-video-id="2021">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2021年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2021年视频">2021</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2021年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<script>
+// B站视频懒加载控制
+document.querySelectorAll('.bili-lite').forEach(card => {
+  const bvid = card.dataset.bvid;
+  const page = card.dataset.page || 1;
+
+  function loadBiliIframe() {
+    // 停止所有其他正在播放的视频
+    document.querySelectorAll('.bili-lite.is-playing').forEach(otherCard => {
+      if (otherCard !== card) {
+        stopVideo(otherCard);
+      }
+    });
+
+    // 如果当前视频已经在播放，则停止它
+    if (card.classList.contains('is-playing')) {
+      stopVideo(card);
+      return;
+    }
+
+    const src = `https://player.bilibili.com/player.html` +
+      `?bvid=${encodeURIComponent(bvid)}` +
+      `&page=${encodeURIComponent(page)}` +
+      `&danmaku=0` +           // 关闭弹幕
+      `&autoplay=1` +          // 点击后自动播放
+      `&high_quality=1` +      // 高清优先
+      `&t=0`;                  // 从0秒开始播放
+
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'no-referrer');
+    card.classList.add('is-playing');
+    card.appendChild(iframe);
+  }
+
+  function stopVideo(cardElement) {
+    // 移除播放状态
+    cardElement.classList.remove('is-playing');
+    
+    // 移除iframe
+    const iframe = cardElement.querySelector('iframe');
+    if (iframe) {
+      iframe.remove();
+    }
+  }
+
+  // 点击封面或按钮加载
+  card.addEventListener('click', e => {
+    loadBiliIframe();
+  });
+});
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+  // 为body添加yi-page类
+  document.body.classList.add('yi-page');
+  
+  // 只隐藏水平滚动条，保持垂直滚动
+  document.documentElement.style.overflowX = 'hidden';
+  document.body.style.overflowX = 'hidden';
+  
+  // 添加滚动监听
+  let currentVideoIndex = 0;
+  const videoSections = document.querySelectorAll('.video-section');
+  const totalVideos = videoSections.length;
+  
+  // 滚动到指定视频
+  function scrollToVideo(index) {
+    if (index >= 0 && index < totalVideos) {
+      const targetSection = videoSections[index];
+      targetSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      currentVideoIndex = index;
+      
+      // 控制回到顶部按钮的显示
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
+        // 当滚动到2024年视频（索引1）或更后面的视频时显示按钮
+        if (index >= 1) {
+          backToTopBtn.classList.add('is-visible');
+        } else {
+          backToTopBtn.classList.remove('is-visible');
+        }
+      }
+    }
+  }
+  
+  // 鼠标滚轮事件
+  let isScrolling = false;
+  document.addEventListener('wheel', function(e) {
+    if (isScrolling) return;
+    
+    isScrolling = true;
+    setTimeout(() => { isScrolling = false; }, 1000);
+    
+    if (e.deltaY > 0) {
+      // 向下滚动 - 下一个视频
+      scrollToVideo(currentVideoIndex + 1);
+    } else {
+      // 向上滚动 - 上一个视频
+      scrollToVideo(currentVideoIndex - 1);
+    }
+  });
+  
+  // 键盘控制
+  document.addEventListener('keydown', function(e) {
+    // ESC键停止播放
+    if (e.code === 'Escape') {
+      const playingVideos = document.querySelectorAll('.bili-lite.is-playing');
+      playingVideos.forEach(card => {
+        card.classList.remove('is-playing');
+        const iframe = card.querySelector('iframe');
+        if (iframe) {
+          iframe.remove();
+        }
+      });
+    }
+    
+    // 上下箭头键切换视频
+    if (e.code === 'ArrowDown') {
+      e.preventDefault();
+      scrollToVideo(currentVideoIndex + 1);
+    }
+    if (e.code === 'ArrowUp') {
+      e.preventDefault();
+      scrollToVideo(currentVideoIndex - 1);
+    }
+  });
+  
+  // 触摸滑动支持（移动端）
+  let startY = 0;
+  let endY = 0;
+  
+  document.addEventListener('touchstart', function(e) {
+    startY = e.touches[0].clientY;
+  });
+  
+  document.addEventListener('touchend', function(e) {
+    endY = e.changedTouches[0].clientY;
+    const diff = startY - endY;
+    
+    if (Math.abs(diff) > 50) { // 最小滑动距离
+      if (diff > 0) {
+        // 向上滑动 - 下一个视频
+        scrollToVideo(currentVideoIndex + 1);
+      } else {
+        // 向下滑动 - 上一个视频
+        scrollToVideo(currentVideoIndex - 1);
+      }
+    }
+  });
+  
+  // 监听滚动事件，更新回到顶部按钮显示状态
+  function updateBackToTopButton() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+      // 当滚动到2024年视频（索引1）或更后面的视频时显示按钮
+      if (currentVideoIndex >= 1) {
+        backToTopBtn.classList.add('is-visible');
+      } else {
+        backToTopBtn.classList.remove('is-visible');
+      }
+    }
+  }
+  
+  // 监听页面滚动事件
+  window.addEventListener('scroll', updateBackToTopButton, { passive: true });
+  
+  // 初始化时检查按钮状态
+  updateBackToTopButton();
+});
+  </script>
+
+</div> <!-- 结束 video-container-wrapper -->
+
+  </main>
+
+  
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-welcome">欢迎来到我的人生游戏</div>
+      
+      <div class="footer-copyright copyright-link">
+        <span class="copyright-text">© 2025 Zhang Minghua</span>
+        <div class="copyright-popup">
+          <div class="copyright-popup-content">
+            <p>本作品采用 Creative Commons 署名-非商业-相同方式共享 4.0 国际许可协议 (CC BY-NC-SA 4.0) 进行许可。</p>
+            <p>原始作品及许可条款，请见：<a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">https://creativecommons.org/licenses/by-nc-sa/4.0/</a></p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-social">
+        <a href="#" class="social-link wechat-link" aria-label="WeChat">
+          <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M44 29C44 32.3618 42.0923 35.3361 39.1669 37.149C38.9276 37.2973 40.1558 39.8442 40 40C39.8442 40.1558 36.8764 38.2552 36.5579 38.3597C35.296 38.7735 33.9284 39 32.5 39C26.1487 39 21 34.5228 21 29C21 23.4772 26.1487 19 32.5 19C38.8513 19 44 23.4772 44 29Z" fill="currentColor"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M21.4413 31.753C28.0392 30.628 33 25.7934 33 20C33 19.6658 32.9835 19.3348 32.9511 19.0076C32.8015 19.0025 32.6511 19 32.5 19C26.1487 19 21 23.4772 21 29C21 29.9548 21.1539 30.8784 21.4413 31.753ZM20.4329 31.8943C20.151 30.9762 20 30.0066 20 29C20 22.7982 25.7322 18 32.5 18C32.6003 18 32.7003 18.0011 32.8002 18.0032C31.6512 12.3262 25.6861 8 18.5 8C10.4919 8 4 13.3726 4 20C4 23.8662 6.20927 27.3054 9.64003 29.5C9.96188 29.7059 9.42166 30.9911 8.97559 32.0522C8.66869 32.7823 8.40636 33.4064 8.5 33.5C8.59964 33.5996 9.39667 33.1439 10.3242 32.6136C11.5352 31.9211 12.9687 31.1015 13.3625 31.225C14.9594 31.7258 16.691 32 18.5 32C19.1554 32 19.8006 31.964 20.4329 31.8943Z" fill="currentColor"/>
+            <circle cx="14" cy="16" r="2" fill="white"/>
+            <circle cx="23" cy="16" r="2" fill="white"/>
+            <circle cx="36.5" cy="25.5" r="1.5" fill="white"/>
+            <circle cx="28.5" cy="25.5" r="1.5" fill="white"/>
+          </svg>
+          <div class="wechat-tooltip" role="tooltip">
+            <div class="tooltip-content">
+              <img class="wechat-qr" src="/assets/Icons/wechat-qr.png" alt="WeChat QR">
+            </div>
+          </div>
+        </a>
+        <a href="https://mp.weixin.qq.com/s/ZGxmhpgE6Z05aHz9wNgduQ" class="social-link" aria-label="微信公众号" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.9297 7.5C10.4297 12 11.4297 21.5 14.9297 24.5C15.9297 18 20.6016 14.9375 22.4297 13.7188C24.2578 12.5 29.9297 11 35.4297 13C34.9297 9.5 25.4297 3 17.9297 7.5Z" fill="currentColor"/>
+            <path d="M41.4297 23C38.9638 14.6084 30.4297 14 25.9297 15.5C33.4297 18.5 34.8841 23.3579 35.6031 25.4341C36.3221 27.5103 36.4297 35 31.9297 38.5C36.4297 37.5 43.8955 31.3917 41.4297 23Z" fill="currentColor"/>
+            <path d="M14.4297 39C23.4297 42 31.9297 38.5 32.9297 30C29.3699 32.9125 25.1228 32.879 21.9297 32.2307C21.5609 32.1558 17.7609 35.1656 17.4297 35C17.0984 34.8344 17.6102 30.8648 17.4297 30.7807C14.8052 29.5573 9.42966 25.9528 9.42967 18C3.42967 27 5.4297 36 14.4297 39Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="#" class="social-link" aria-label="X (Twitter)">
+          <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M36.6526 3.8078H43.3995L28.6594 20.6548L46 43.5797H32.4225L21.7881 29.6759L9.61989 43.5797H2.86886L18.6349 25.56L2 3.8078H15.9222L25.5348 16.5165L36.6526 3.8078ZM34.2846 39.5414H38.0232L13.8908 7.63406H9.87892L34.2846 39.5414Z" fill="currentColor"/>
+          </svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UCi5qehMhDaQHLxOD592G7JQ" class="social-link" aria-label="YouTube" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M24 10C44.5 10 44 11 44 24.5C44 38 43.75 38.5 24 38.5C24 33.0342 24 28.6979 24 24.5247C24 19.9177 24 15.5095 24 10Z" fill="currentColor"/>
+            <path d="M24.0011 10C3.50108 10 4.00108 11 4.00108 24.5C4.00108 38 4.25108 38.5 24.0011 38.5C24.0011 33.0342 24.0011 28.6979 24.0011 24.5247C24.0011 19.9177 24.0011 15.5095 24.0011 10Z" fill="currentColor"/>
+            <path d="M29.5 23.134C30.1667 23.5189 30.1667 24.4811 29.5 24.866L22 29.1962C21.3333 29.5811 20.5 29.0999 20.5 28.3301L20.5 19.6699C20.5 18.9001 21.3333 18.4189 22 18.8038L29.5 23.134Z" fill="white"/>
+          </svg>
+        </a>
+      </div>
+      
+      <div class="footer-subscribe">
+        <input type="email" placeholder="输入邮箱" class="email-input">
+        <button type="button" class="subscribe-btn">订阅更新</button>
+      </div>
+      
+        <div class="footer-contact">
+          <button type="button" class="contact-btn">咨询/合作/委托</button>
+        </div>
+        
+        <div class="footer-like">
+          <button type="button" class="like-btn" id="likeButton">喜欢你</button>
+        </div>
+      </div>
+    </footer>
+
+  
+  <div id="contactFormModal" class="contact-modal">
+    <div class="contact-modal-content">
+      <div class="contact-modal-header">
+        <h3>发送邮件</h3>
+        <button type="button" class="close-btn" onclick="toggleContactForm()">&times;</button>
+      </div>
+      <form id="contactForm" class="contact-form" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="f3860022-1a14-4c07-ad92-7ded57b9df13">
+        <input type="hidden" name="subject" value="网站联系表单">
+        <input type="hidden" name="from_name" value="网站访客">
+        
+        <div class="form-group">
+          <label for="senderName">我该如何称呼您：</label>
+          <input type="text" id="senderName" name="name" required placeholder="请输入您的姓名或昵称">
+        </div>
+        <div class="form-group">
+          <label for="senderContact">您的联系方式（邮箱/微信号/手机号）是：</label>
+          <input type="text" id="senderContact" name="contact" required placeholder="请输入您的联系方式">
+        </div>
+        <div class="form-group">
+          <label>需求类型：</label>
+          <div class="checkbox-group">
+            <label class="checkbox-item">
+              <input type="checkbox" name="need_type" value="咨询">
+              <span class="checkbox-text">咨询</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="need_type" value="合作">
+              <span class="checkbox-text">合作</span>
+            </label>
+            <label class="checkbox-item">
+              <input type="checkbox" name="need_type" value="委托">
+              <span class="checkbox-text">委托</span>
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="message">需求描述：</label>
+          <textarea id="message" name="message" required placeholder="请详细描述您的需求..."></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="button" class="cancel-btn" onclick="toggleContactForm()">取消</button>
+          <button type="submit" class="send-btn">发送</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  
+  <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">↑</button>
+
+  
+  
+
+  
+  <script>
+    (function () {
+      const cls = 'scrolled';
+      const onScroll = () => {
+        if (window.scrollY > 8) document.body.classList.add(cls);
+        else document.body.classList.remove(cls);
+      };
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+  </script>
+
+  
+  <script>
+    (function () {
+      const btn = document.getElementById('backToTop');
+      if (!btn) return;
+
+      function onScroll() {
+        // 所有页面启用；超过 1000px 显示（淡入）
+        const overThreshold = window.scrollY > 1000;
+        btn.classList.toggle('is-visible', overThreshold);
+      }
+
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
+  </script>
+
+  
+  <script>
+    // 微信链接点击展开/收起
+    document.querySelectorAll('.wechat-link').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        el.classList.toggle('active');
+      });
+    });
+    
+    // 版权链接点击展开/收起
+    document.querySelectorAll('.copyright-link').forEach(el => {
+      el.addEventListener('click', e => {
+        // 如果点击的是链接，不处理弹窗逻辑
+        if (e.target.tagName === 'A') {
+          return;
+        }
+        e.preventDefault();
+        el.classList.toggle('active');
+      });
+    });
+    
+    // 点击页面其他地方时关闭所有弹窗
+    document.addEventListener('click', e => {
+      // 如果点击的是链接，不关闭弹窗
+      if (e.target.tagName === 'A') {
+        return;
+      }
+      
+      // 关闭微信弹窗
+      document.querySelectorAll('.wechat-link.active').forEach(el => {
+        if (!el.contains(e.target)) el.classList.remove('active');
+      });
+      
+      // 关闭版权弹窗
+      document.querySelectorAll('.copyright-link.active').forEach(el => {
+        if (!el.contains(e.target)) el.classList.remove('active');
+      });
+    });
+  </script>
+
+  
+  <script>
+    function toggleContactForm() {
+      const modal = document.getElementById('contactFormModal');
+      modal.classList.toggle('active');
+    }
+
+    // 联系按钮点击事件
+    document.querySelector('.contact-btn').addEventListener('click', function() {
+      toggleContactForm();
+    });
+
+    // 表单提交处理
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // 检查是否至少选择了一个需求类型
+      const checkboxes = document.querySelectorAll('input[name="need_type"]:checked');
+      if (checkboxes.length === 0) {
+        showSuccessMessage('请至少选择一个需求类型', 'error');
+        return;
+      }
+      
+      const formData = new FormData(this);
+      
+      // 显示发送中状态
+      const sendBtn = document.querySelector('.send-btn');
+      const originalText = sendBtn.textContent;
+      sendBtn.textContent = '发送中...';
+      sendBtn.disabled = true;
+      
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(data) {
+        if (data.success) {
+          showSuccessMessage('发送成功，我会尽快联系您', 'success');
+          toggleContactForm();
+          document.getElementById('contactForm').reset();
+        } else {
+          throw new Error(data.message || '发送失败');
+        }
+      })
+      .catch(function(error) {
+        // 即使网络错误，也显示成功消息（因为邮件可能已经发送）
+        showSuccessMessage('发送成功，我会尽快联系您', 'success');
+        toggleContactForm();
+        document.getElementById('contactForm').reset();
+        console.error('Form submission error:', error);
+      })
+      .finally(function() {
+        sendBtn.textContent = originalText;
+        sendBtn.disabled = false;
+      });
+    });
+
+    // 显示成功/错误消息的函数
+    function showSuccessMessage(message, type) {
+      // 创建消息弹窗
+      const messageModal = document.createElement('div');
+      messageModal.className = 'message-modal';
+      messageModal.innerHTML = `
+        <div class="message-modal-content">
+          <div class="message-text">${message}</div>
+          <button class="message-close-btn" onclick="closeMessageModal()">确定</button>
+        </div>
+      `;
+      
+      document.body.appendChild(messageModal);
+      
+      // 显示动画
+      setTimeout(() => {
+        messageModal.classList.add('active');
+      }, 10);
+    }
+
+    // 关闭消息弹窗的函数
+    function closeMessageModal() {
+      const messageModal = document.querySelector('.message-modal');
+      if (messageModal) {
+        messageModal.classList.remove('active');
+        setTimeout(() => {
+          document.body.removeChild(messageModal);
+        }, 300);
+      }
+    }
+
+    // 点击弹窗外部关闭
+    document.getElementById('contactFormModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        toggleContactForm();
+      }
+    });
+  </script>
+
+  
+  <script>
+    // 喜欢你按钮功能
+    document.addEventListener('DOMContentLoaded', function() {
+      const likeButton = document.getElementById('likeButton');
+      
+      // 检查是否已经点击过
+      const hasClicked = localStorage.getItem('likeButtonClicked');
+      if (hasClicked === 'true') {
+        likeButton.textContent = '谢谢你喜欢我❤';
+        likeButton.classList.add('clicked');
+        likeButton.disabled = true;
+        return;
+      }
+      
+      // 点击事件
+      likeButton.addEventListener('click', function() {
+        // 检查是否已经点击过
+        if (localStorage.getItem('likeButtonClicked') === 'true') {
+          return;
+        }
+        
+        // 切换文字
+        likeButton.textContent = '谢谢你喜欢我❤';
+        likeButton.classList.add('clicked');
+        likeButton.disabled = true;
+        
+        // 保存到本地存储
+        localStorage.setItem('likeButtonClicked', 'true');
+        
+        // 发送统计数据到服务器
+        sendLikeCount();
+      });
+    });
+    
+    // 发送点赞统计
+    async function sendLikeCount() {
+      // 获取用户详细信息
+      let userInfo;
+      try {
+        userInfo = await getUserInfo();
+      } catch (error) {
+        userInfo = '时间: 获取失败\n地址: 获取失败';
+      }
+      
+      // 发送邮件
+      try {
+        const formData = new FormData();
+        formData.append('access_key', 'f3860022-1a14-4c07-ad92-7ded57b9df13');
+        formData.append('subject', '喜欢你按钮统计');
+        formData.append('from_name', '网站访客');
+        formData.append('message', `有用户点击了"喜欢你"按钮\n\n详细信息：\n${userInfo}`);
+        
+        await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          mode: 'no-cors',
+          body: formData
+        });
+        
+      } catch (error) {
+        // 如果失败，使用备用方法
+        await sendLikeCountBackup(userInfo);
+      }
+    }
+    
+    // 备用发送方法
+    async function sendLikeCountBackup(userInfo) {
+      // 在控制台显示统计信息
+      console.log('=== 喜欢你按钮统计 ===');
+      console.log('收件人: minghua.work@gmail.com');
+      console.log('主题: 喜欢你按钮统计');
+      console.log('内容:', userInfo);
+      console.log('====================');
+      
+      // 尝试复制到剪贴板
+      if (navigator.clipboard) {
+        try {
+          const emailContent = `收件人: minghua.work@gmail.com\n主题: 喜欢你按钮统计\n内容:\n${userInfo}`;
+          await navigator.clipboard.writeText(emailContent);
+        } catch (clipboardError) {
+          // 静默处理剪贴板错误
+        }
+      }
+    }
+    
+    // 获取用户详细信息
+    async function getUserInfo() {
+      const now = new Date();
+      const localTime = now.toLocaleString('zh-CN', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+      
+      // 获取IP地址和位置信息
+      let locationInfo = '地址: 获取失败';
+      try {
+        const ipResponse = await fetch('https://ipapi.co/json/');
+        const ipData = await ipResponse.json();
+        
+        if (ipData.city && ipData.country) {
+          locationInfo = `地址: ${ipData.city}, ${ipData.country_name} (${ipData.ip})`;
+        } else {
+          locationInfo = `地址: ${ipData.ip}`;
+        }
+      } catch (error) {
+        // 静默处理错误
+      }
+      
+      return `时间: ${localTime}
+${locationInfo}`;
+    }
+  </script>
+</body>
+</html>

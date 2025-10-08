@@ -4,122 +4,67 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  
-  
-    
-  
-  <title>Collection · 收集 · My Studio</title>
+  {# ===== 标题（优先页面标题，后缀站点名） ===== #}
+  {% if title %}
+    {% set _title = title ~ ' · My Studio' %}
+  {% else %}
+    {% set _title = 'My Studio' %}
+  {% endif %}
+  <title>{{ _title }}</title>
 
-  
-  
-  <meta property="og:title" content="Collection · 收集">
+  {# ===== 可选描述 / OG（复用 summary） ===== #}
+  {% if summary %}
+    {% set _desc = summary | striptags | trim | truncate(160, true, '…') %}
+    <meta name="description" content="{{ _desc }}">
+    <meta property="og:description" content="{{ _desc }}">
+  {% endif %}
+  <meta property="og:title" content="{{ title or 'My Studio' }}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="/zhi/collection/">
-  <link rel="canonical" href="/zhi/collection/">
+  <meta property="og:url" content="{{ (page.url or '/') | url }}">
+  <link rel="canonical" href="{{ (page.url or '/') | url }}">
   <meta name="theme-color" content="#ffffff">
 
-  
-  
-     
-      <link rel="stylesheet" href="/assets/Css/zhi.css">
-    
-  
+  {# ===== 页面级样式（优先加载，确保优先级）===== #}
+  {% if pageCSS %}
+    {% if pageCSS.push %} {# array #}
+      {% for href in pageCSS %}
+        <link rel="stylesheet" href="{{ href | url }}">
+      {% endfor %}
+    {% else %} {# string #}
+      <link rel="stylesheet" href="{{ pageCSS | url }}">
+    {% endif %}
+  {% endif %}
 
-  
-  <link rel="stylesheet" href="/assets/site.css">
+  {# ===== 全局样式（统一入口）===== #}
+  <link rel="stylesheet" href="{{ '/assets/site.css' | url }}">
 
-  
-  <link rel="icon" href="/assets/favicon.ico">
+  {# ===== Favicon（按需更换路径）===== #}
+  <link rel="icon" href="{{ '/assets/favicon.ico' | url }}">
 </head>
 
 <body
-  data-section="zhi"
-  data-page="collection"
+  data-section="{{ section or 'home' }}"
+  data-page="{{ page.fileSlug }}"
 >
-  
-  <nav class="navbar" role="navigation" aria-label="主导航">
-    <a href="/" id="navlogo" aria-label="首页">
-      <img src="/assets/Pics/Ellipse 1.png" alt="Logo">
+  {# ===== 顶部导航（非浮动） ===== #}
+  <nav class="navbar navbar-static" role="navigation" aria-label="主导航">
+    <a href="{{ '/' | url }}" id="navlogo" aria-label="首页">
+      <img src="{{ '/assets/Pics/Ellipse 1.png' | url }}" alt="Logo">
     </a>
     <ul class="nav-list">
-      <li><a class="navlink" href="/zhi/">知</a></li>
-      <li><a class="navlink" href="/xing/">行</a></li>
-      <li><a class="navlink" href="/he/">合</a></li>
-      <li><a class="navlink" href="/yi/">一</a></li>
+      <li><a class="navlink" href="{{ '/zhi/'  | url }}">知</a></li>
+      <li><a class="navlink" href="{{ '/xing/' | url }}">行</a></li>
+      <li><a class="navlink" href="{{ '/he/'   | url }}">合</a></li>
+      <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
     </ul>
   </nav>
 
-  
-  <main id="main" class="page-wrap">
-    
-收集灵感与想法
-
-<div class="collection-content">
-  <!-- 全局按钮组 -->
-  <div class="part1-btn">
-    <button class="tab-button active" data-tab="ideas">想法</button>
-    <span class="tab-separator">/</span>
-    <button class="tab-button" data-tab="questions">问题</button>
-  </div>
-
-    <!-- 想法内容 -->
-    <div class="tab-content active" id="ideas-content">
-      
-      <div class="part2-notion">
-        <div class="part2-notion-time">2025.10.8 14:28</div>
-        <div class="part2-notion-text">这是一个示例想法，用于演示页面功能。请设置Notion API密钥以获取真实数据。</div>
-      </div>
-      
-      <div class="part2-notion">
-        <div class="part2-notion-time">2025.10.7 14:28</div>
-        <div class="part2-notion-text">今天看到一个很棒的设计作品，色彩搭配很有创意，值得学习借鉴。</div>
-      </div>
-      
-    </div>
-
-    <!-- 问题内容 -->
-    <div class="tab-content" id="questions-content">
-      
-      <div class="part2-notion">
-        <div class="part2-notion-time">2025.10.8 14:28</div>
-        <div class="part2-notion-text">这是一个示例问题，用于演示页面功能。请设置Notion API密钥以获取真实数据。</div>
-      </div>
-      
-      <div class="part2-notion">
-        <div class="part2-notion-time">2025.10.6 14:28</div>
-        <div class="part2-notion-text">如何更好地组织前端代码结构？是否需要引入新的架构模式？</div>
-      </div>
-      
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-  const tabButtons = document.querySelectorAll('.tab-button');
-  const tabContents = document.querySelectorAll('.tab-content');
-
-  tabButtons.forEach(button => {
-    button.addEventListener('click', function() {
-      const targetTab = this.getAttribute('data-tab');
-      
-      // 移除所有活动状态
-      tabButtons.forEach(btn => btn.classList.remove('active'));
-      tabContents.forEach(content => content.classList.remove('active'));
-      
-      // 添加当前活动状态
-      this.classList.add('active');
-      const targetContent = document.getElementById(targetTab + '-content');
-      if (targetContent) {
-        targetContent.classList.add('active');
-      }
-    });
-  });
-});
-</script>
-
+  {# ===== 页面主体（全屏布局，无1400px限制） ===== #}
+  <main id="main" class="yi-page-wrap">
+    {{ content | safe }}
   </main>
 
-  
+  {# ===== 页脚 ===== #}
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-welcome">欢迎来到我的人生游戏</div>
@@ -146,7 +91,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </svg>
           <div class="wechat-tooltip" role="tooltip">
             <div class="tooltip-content">
-              <img class="wechat-qr" src="/assets/Icons/wechat-qr.png" alt="WeChat QR">
+              <img class="wechat-qr" src="{{ '/assets/Icons/wechat-qr.png' | url }}" alt="WeChat QR">
             </div>
           </div>
         </a>
@@ -186,7 +131,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
     </footer>
 
-  
+  {# ===== 联系表单弹窗 ===== #}
   <div id="contactFormModal" class="contact-modal">
     <div class="contact-modal-content">
       <div class="contact-modal-header">
@@ -235,13 +180,21 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 
-  
+  {# ===== 回到顶部悬浮按钮 ===== #}
   <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">↑</button>
 
-  
-  
+  {# ===== 页面级脚本（可选；支持 string 或 array；defer）===== #}
+  {% if pageJS %}
+    {% if pageJS.push %}
+      {% for src in pageJS %}
+        <script defer src="{{ src | url }}"></script>
+      {% endfor %}
+    {% else %}
+      <script defer src="{{ pageJS | url }}"></script>
+    {% endif %}
+  {% endif %}
 
-  
+  {# ===== 滚动时给 body 加 .scrolled（用于导航压缩/阴影等）===== #}
   <script>
     (function () {
       const cls = 'scrolled';
@@ -254,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
   </script>
 
-  
+  {# ===== 回到顶部按钮逻辑 ===== #}
   <script>
     (function () {
       const btn = document.getElementById('backToTop');
@@ -275,7 +228,7 @@ document.addEventListener('DOMContentLoaded', function() {
     })();
   </script>
 
-  
+  {# ===== 微信浮窗和版权弹窗点击切换逻辑 ===== #}
   <script>
     // 微信链接点击展开/收起
     document.querySelectorAll('.wechat-link').forEach(el => {
@@ -316,7 +269,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   </script>
 
-  
+  {# ===== Web3Forms 邮件发送功能 ===== #}
   <script>
     function toggleContactForm() {
       const modal = document.getElementById('contactFormModal');
@@ -415,7 +368,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   </script>
 
-  
+  {# ===== 喜欢你按钮功能 ===== #}
   <script>
     // 喜欢你按钮功能
     document.addEventListener('DOMContentLoaded', function() {
