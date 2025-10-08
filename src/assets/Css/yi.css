@@ -1,0 +1,125 @@
+/* ===== Yi 页面全屏视频布局样式 ===== */
+
+/* 重置页面布局，取消1400px限制 */
+.yi-page-wrap {
+  width: 100vw;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 导航栏保持 sticky 效果 */
+.navbar.navbar-static {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* 视频容器包装器 */
+.video-container-wrapper {
+  width: 100vw;
+  flex: 1;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: y mandatory;
+}
+
+/* 视频容器样式 */
+.video-section {
+  width: 100vw;
+  height: 56.25vw; /* 16:9 比例 */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+
+/* B站视频卡片样式 */
+.bili-lite {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+}
+
+.bili-lite__poster {
+  display: none; /* 完全隐藏原始封面图片 */
+}
+
+.bili-lite__play {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  background: transparent;
+  width: 50%;
+  height: 50%;
+  border-radius: 8px;
+  font-family: 'Fusion Pixel', monospace;
+  font-size: 20rem;
+  font-weight: bold;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: white;
+  text-shadow: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bili-lite__play:focus-visible { 
+  outline: 2px solid #1e90ff; 
+}
+
+/* 真正加载了 iframe 之后，去掉封面/按钮 */
+.bili-lite.is-playing .bili-lite__poster,
+.bili-lite.is-playing .bili-lite__play {
+  display: none;
+}
+
+.bili-lite iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .bili-lite__play {
+    font-size: 12rem;
+  }
+  
+  .video-section {
+    height: 56.25vw; /* 16:9 比例 */
+  }
+}
+
+@media (max-width: 480px) {
+  .bili-lite__play {
+    font-size: 8rem;
+  }
+}
+
+/* 确保页面没有水平滚动条，但保持垂直滚动 */
+body.yi-page {
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* 页脚样式 */
+.footer {
+  flex-shrink: 0;
+  width: 100%;
+  z-index: 1000;
+}

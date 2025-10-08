@@ -4,172 +4,67 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  
-  
-    
-  
-  <title>合 · My Studio</title>
+  {# ===== 标题（优先页面标题，后缀站点名） ===== #}
+  {% if title %}
+    {% set _title = title ~ ' · My Studio' %}
+  {% else %}
+    {% set _title = 'My Studio' %}
+  {% endif %}
+  <title>{{ _title }}</title>
 
-  
-  
-  <meta property="og:title" content="合">
+  {# ===== 可选描述 / OG（复用 summary） ===== #}
+  {% if summary %}
+    {% set _desc = summary | striptags | trim | truncate(160, true, '…') %}
+    <meta name="description" content="{{ _desc }}">
+    <meta property="og:description" content="{{ _desc }}">
+  {% endif %}
+  <meta property="og:title" content="{{ title or 'My Studio' }}">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="/he/">
-  <link rel="canonical" href="/he/">
+  <meta property="og:url" content="{{ (page.url or '/') | url }}">
+  <link rel="canonical" href="{{ (page.url or '/') | url }}">
   <meta name="theme-color" content="#ffffff">
 
-  
-  
-     
-      <link rel="stylesheet" href="/assets/Css/he.css">
-    
-  
+  {# ===== 页面级样式（优先加载，确保优先级）===== #}
+  {% if pageCSS %}
+    {% if pageCSS.push %} {# array #}
+      {% for href in pageCSS %}
+        <link rel="stylesheet" href="{{ href | url }}">
+      {% endfor %}
+    {% else %} {# string #}
+      <link rel="stylesheet" href="{{ pageCSS | url }}">
+    {% endif %}
+  {% endif %}
 
-  
-  <link rel="stylesheet" href="/assets/site.css">
+  {# ===== 全局样式（统一入口）===== #}
+  <link rel="stylesheet" href="{{ '/assets/site.css' | url }}">
 
-  
-  <link rel="icon" href="/assets/favicon.ico">
+  {# ===== Favicon（按需更换路径）===== #}
+  <link rel="icon" href="{{ '/assets/favicon.ico' | url }}">
 </head>
 
 <body
-  data-section="home"
-  data-page="he"
+  data-section="{{ section or 'home' }}"
+  data-page="{{ page.fileSlug }}"
 >
-  
-  <nav class="navbar" role="navigation" aria-label="主导航">
-    <a href="/" id="navlogo" aria-label="首页">
-      <img src="/assets/Pics/Ellipse 1.png" alt="Logo">
+  {# ===== 顶部导航（非浮动） ===== #}
+  <nav class="navbar navbar-static" role="navigation" aria-label="主导航">
+    <a href="{{ '/' | url }}" id="navlogo" aria-label="首页">
+      <img src="{{ '/assets/Pics/Ellipse 1.png' | url }}" alt="Logo">
     </a>
     <ul class="nav-list">
-      <li><a class="navlink" href="/zhi/">知</a></li>
-      <li><a class="navlink" href="/xing/">行</a></li>
-      <li><a class="navlink" href="/he/">合</a></li>
-      <li><a class="navlink" href="/yi/">一</a></li>
+      <li><a class="navlink" href="{{ '/zhi/'  | url }}">知</a></li>
+      <li><a class="navlink" href="{{ '/xing/' | url }}">行</a></li>
+      <li><a class="navlink" href="{{ '/he/'   | url }}">合</a></li>
+      <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
     </ul>
   </nav>
 
-  
-  <main id="main" class="page-wrap">
-    
-<!-- Section 1: 个人介绍 - 全屏高度 -->
-<section class="he-section fullscreen-section" id="section1">
-  <div class="l1-left-container">
-    <div class="manifesto-text">
-      <p>::✥宣言✥::</p>
-      <p>
-
-        {样本 -✹- 观察}，<br>
-        {好奇 [⇝] 存在}，<br>
-        {时间(⅟ )切片}，<br>
-        {制造{   }空间}，<br>
-        {分裂 +∞+ 记忆}，<br>
-        {非语言/☈/叙事}，<br>
-        {视觉 !ꕥ! 诗学}，<br>
-        {感知."✤".体验}，<br>
-        {交换..௹..信任}，<br>
-        {生产░☁░未知}，<br>
-        {解构 ◑◐ 混乱}，<br>
-        {进行 *ૐ* 抵抗}，<br>
-        {联盟¤¤卌¤¤他者}，<br>
-        {创造 ✦✦✦ 未来}，<br>
-        {人生·☯·游戏}。<br>
-      </p>
-    </div>
-  </div>
-  <div class="l1-right-container">
-    <div class="right-top-content">
-      <h1 class="section-title">张茗华 Max Zeno</h1>
-      <p class="personal-intro">一辈子都想搞创造的人 Creating, for life.</p>
-    </div>
-    <div class="right-bottom-content">
-      <img src="/assets/Pics/he/Snipaste_2025-10-07_23-06-37.png" alt="张茗华" class="personal-photo">
-    </div>
-  </div>
-</section>
-
-<div class="he-container">
-  <!-- Section 2: 个人数据 -->
-  <section class="he-section" id="section2">
-    <div class="l2-left-container">
-      <h3 class="subsection-title">教育背景</h3>
-      <ul class="data-list">
-        <li>毕业院校信息</li>
-        <li>专业信息</li>
-      </ul>
-      
-      <h3 class="subsection-title">工作经历</h3>
-      <ul class="data-list">
-        <li>工作经历1</li>
-        <li>工作经历2</li>
-      </ul>
-    </div>
-    <div class="l2-right-container">
-      <h3 class="subsection-title">技能专长</h3>
-      <ul class="data-list">
-        <li>技能点1</li>
-        <li>技能点2</li>
-      </ul>
-      
-      <h3 class="subsection-title">获奖信息</h3>
-      <ul class="data-list">
-        <li>获奖1</li>
-        <li>获奖2</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Section 3: 性格原则 -->
-  <section class="he-section" id="section3">
-    <div class="l3-left-container">
-      <h3 class="subsection-title">性格特点</h3>
-      <p class="character-text">性格描述内容</p>
-      
-      <h3 class="subsection-title">人生原则</h3>
-      <p class="principle-text">原则内容</p>
-    </div>
-    <div class="l3-right-container">
-      <h3 class="subsection-title">价值观</h3>
-      <p class="value-text">价值观内容</p>
-      
-      <h3 class="subsection-title">生活观点</h3>
-      <p class="viewpoint-text">观点内容</p>
-    </div>
-  </section>
-
-  <!-- Section 4: 人生成就与倒计时 -->
-  <section class="he-section" id="section4">
-    <div class="l4-left-container">
-      <h3 class="subsection-title">人生成就清单</h3>
-      <ul class="achievement-list">
-        <li>成就1</li>
-        <li>成就2</li>
-        <li>成就3</li>
-      </ul>
-    </div>
-    <div class="l4-right-container">
-      <h3 class="subsection-title">人生倒计时</h3>
-      <div class="countdown-container">
-        <div class="countdown-item">
-          <span class="countdown-number">0</span>
-          <span class="countdown-label">年</span>
-        </div>
-        <div class="countdown-item">
-          <span class="countdown-number">0</span>
-          <span class="countdown-label">月</span>
-        </div>
-        <div class="countdown-item">
-          <span class="countdown-number">0</span>
-          <span class="countdown-label">日</span>
-        </div>
-      </div>
-      <p class="countdown-description">人生进度描述</p>
-    </div>
-  </section>
-</div>
+  {# ===== 页面主体（全屏布局，无1400px限制） ===== #}
+  <main id="main" class="yi-page-wrap">
+    {{ content | safe }}
   </main>
 
-  
+  {# ===== 页脚 ===== #}
   <footer class="footer">
     <div class="footer-content">
       <div class="footer-welcome">欢迎来到我的人生游戏</div>
@@ -196,7 +91,7 @@
           </svg>
           <div class="wechat-tooltip" role="tooltip">
             <div class="tooltip-content">
-              <img class="wechat-qr" src="/assets/Icons/wechat-qr.png" alt="WeChat QR">
+              <img class="wechat-qr" src="{{ '/assets/Icons/wechat-qr.png' | url }}" alt="WeChat QR">
             </div>
           </div>
         </a>
@@ -236,7 +131,7 @@
       </div>
     </footer>
 
-  
+  {# ===== 联系表单弹窗 ===== #}
   <div id="contactFormModal" class="contact-modal">
     <div class="contact-modal-content">
       <div class="contact-modal-header">
@@ -285,13 +180,21 @@
     </div>
   </div>
 
-  
+  {# ===== 回到顶部悬浮按钮 ===== #}
   <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">↑</button>
 
-  
-  
+  {# ===== 页面级脚本（可选；支持 string 或 array；defer）===== #}
+  {% if pageJS %}
+    {% if pageJS.push %}
+      {% for src in pageJS %}
+        <script defer src="{{ src | url }}"></script>
+      {% endfor %}
+    {% else %}
+      <script defer src="{{ pageJS | url }}"></script>
+    {% endif %}
+  {% endif %}
 
-  
+  {# ===== 滚动时给 body 加 .scrolled（用于导航压缩/阴影等）===== #}
   <script>
     (function () {
       const cls = 'scrolled';
@@ -304,7 +207,7 @@
     })();
   </script>
 
-  
+  {# ===== 回到顶部按钮逻辑 ===== #}
   <script>
     (function () {
       const btn = document.getElementById('backToTop');
@@ -325,7 +228,7 @@
     })();
   </script>
 
-  
+  {# ===== 微信浮窗和版权弹窗点击切换逻辑 ===== #}
   <script>
     // 微信链接点击展开/收起
     document.querySelectorAll('.wechat-link').forEach(el => {
@@ -366,7 +269,7 @@
     });
   </script>
 
-  
+  {# ===== Web3Forms 邮件发送功能 ===== #}
   <script>
     function toggleContactForm() {
       const modal = document.getElementById('contactFormModal');
@@ -465,7 +368,7 @@
     });
   </script>
 
-  
+  {# ===== 喜欢你按钮功能 ===== #}
   <script>
     // 喜欢你按钮功能
     document.addEventListener('DOMContentLoaded', function() {

@@ -12,6 +12,10 @@
 
   
   
+    
+    <meta name="description" content="视频作品展示">
+    <meta property="og:description" content="视频作品展示">
+  
   <meta property="og:title" content="一">
   <meta property="og:type" content="website">
   <meta property="og:url" content="/yi/">
@@ -19,6 +23,10 @@
   <meta name="theme-color" content="#ffffff">
 
   
+  
+     
+      <link rel="stylesheet" href="/assets/Css/yi.css">
+    
   
 
   
@@ -33,7 +41,7 @@
   data-page="yi"
 >
   
-  <nav class="navbar" role="navigation" aria-label="主导航">
+  <nav class="navbar navbar-static" role="navigation" aria-label="主导航">
     <a href="/" id="navlogo" aria-label="首页">
       <img src="/assets/Pics/Ellipse 1.png" alt="Logo">
     </a>
@@ -46,9 +54,243 @@
   </nav>
 
   
-  <main id="main" class="page-wrap">
-    <h1>一</h1>
-<p>作为人生电影的播放页</p>
+  <main id="main" class="yi-page-wrap">
+    
+<div class="video-container-wrapper">
+<!-- 2025年视频 -->
+<section class="video-section" data-video-id="2025">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2025年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2025年视频">2025</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2025年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2024年视频 -->
+<section class="video-section" data-video-id="2024">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2024年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2024年视频">2024</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2024年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2023年视频 -->
+<section class="video-section" data-video-id="2023">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2023年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2023年视频">2023</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2023年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2022年视频 -->
+<section class="video-section" data-video-id="2022">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2022年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2022年视频">2022</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2022年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<!-- 2021年视频 -->
+<section class="video-section" data-video-id="2021">
+  <div class="bili-lite" data-bvid="BV15N4y1H7eH" data-page="1">
+    <img class="bili-lite__poster" src="/assets/Pics/首页.png" alt="2021年视频封面" />
+    <button class="bili-lite__play" aria-label="播放2021年视频">2021</button>
+    <noscript>
+      <a href="https://www.bilibili.com/video/BV15N4y1H7eH" target="_blank" rel="noopener">在哔哩哔哩观看2021年视频</a>
+    </noscript>
+  </div>
+</section>
+
+<script>
+// B站视频懒加载控制
+document.querySelectorAll('.bili-lite').forEach(card => {
+  const bvid = card.dataset.bvid;
+  const page = card.dataset.page || 1;
+
+  function loadBiliIframe() {
+    // 停止所有其他正在播放的视频
+    document.querySelectorAll('.bili-lite.is-playing').forEach(otherCard => {
+      if (otherCard !== card) {
+        stopVideo(otherCard);
+      }
+    });
+
+    // 如果当前视频已经在播放，则停止它
+    if (card.classList.contains('is-playing')) {
+      stopVideo(card);
+      return;
+    }
+
+    const src = `https://player.bilibili.com/player.html` +
+      `?bvid=${encodeURIComponent(bvid)}` +
+      `&page=${encodeURIComponent(page)}` +
+      `&danmaku=0` +           // 关闭弹幕
+      `&autoplay=1` +          // 点击后自动播放
+      `&high_quality=1` +      // 高清优先
+      `&t=0`;                  // 从0秒开始播放
+
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.allow = 'autoplay; fullscreen; picture-in-picture; clipboard-write';
+    iframe.setAttribute('allowfullscreen', '');
+    iframe.setAttribute('referrerpolicy', 'no-referrer');
+    card.classList.add('is-playing');
+    card.appendChild(iframe);
+  }
+
+  function stopVideo(cardElement) {
+    // 移除播放状态
+    cardElement.classList.remove('is-playing');
+    
+    // 移除iframe
+    const iframe = cardElement.querySelector('iframe');
+    if (iframe) {
+      iframe.remove();
+    }
+  }
+
+  // 点击封面或按钮加载
+  card.addEventListener('click', e => {
+    loadBiliIframe();
+  });
+});
+
+// 页面加载完成后初始化
+document.addEventListener('DOMContentLoaded', function() {
+  // 为body添加yi-page类
+  document.body.classList.add('yi-page');
+  
+  // 只隐藏水平滚动条，保持垂直滚动
+  document.documentElement.style.overflowX = 'hidden';
+  document.body.style.overflowX = 'hidden';
+  
+  // 添加滚动监听
+  let currentVideoIndex = 0;
+  const videoSections = document.querySelectorAll('.video-section');
+  const totalVideos = videoSections.length;
+  
+  // 滚动到指定视频
+  function scrollToVideo(index) {
+    if (index >= 0 && index < totalVideos) {
+      const targetSection = videoSections[index];
+      targetSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+      currentVideoIndex = index;
+      
+      // 控制回到顶部按钮的显示
+      const backToTopBtn = document.getElementById('backToTop');
+      if (backToTopBtn) {
+        // 当滚动到2024年视频（索引1）或更后面的视频时显示按钮
+        if (index >= 1) {
+          backToTopBtn.classList.add('is-visible');
+        } else {
+          backToTopBtn.classList.remove('is-visible');
+        }
+      }
+    }
+  }
+  
+  // 鼠标滚轮事件
+  let isScrolling = false;
+  document.addEventListener('wheel', function(e) {
+    if (isScrolling) return;
+    
+    isScrolling = true;
+    setTimeout(() => { isScrolling = false; }, 1000);
+    
+    if (e.deltaY > 0) {
+      // 向下滚动 - 下一个视频
+      scrollToVideo(currentVideoIndex + 1);
+    } else {
+      // 向上滚动 - 上一个视频
+      scrollToVideo(currentVideoIndex - 1);
+    }
+  });
+  
+  // 键盘控制
+  document.addEventListener('keydown', function(e) {
+    // ESC键停止播放
+    if (e.code === 'Escape') {
+      const playingVideos = document.querySelectorAll('.bili-lite.is-playing');
+      playingVideos.forEach(card => {
+        card.classList.remove('is-playing');
+        const iframe = card.querySelector('iframe');
+        if (iframe) {
+          iframe.remove();
+        }
+      });
+    }
+    
+    // 上下箭头键切换视频
+    if (e.code === 'ArrowDown') {
+      e.preventDefault();
+      scrollToVideo(currentVideoIndex + 1);
+    }
+    if (e.code === 'ArrowUp') {
+      e.preventDefault();
+      scrollToVideo(currentVideoIndex - 1);
+    }
+  });
+  
+  // 触摸滑动支持（移动端）
+  let startY = 0;
+  let endY = 0;
+  
+  document.addEventListener('touchstart', function(e) {
+    startY = e.touches[0].clientY;
+  });
+  
+  document.addEventListener('touchend', function(e) {
+    endY = e.changedTouches[0].clientY;
+    const diff = startY - endY;
+    
+    if (Math.abs(diff) > 50) { // 最小滑动距离
+      if (diff > 0) {
+        // 向上滑动 - 下一个视频
+        scrollToVideo(currentVideoIndex + 1);
+      } else {
+        // 向下滑动 - 上一个视频
+        scrollToVideo(currentVideoIndex - 1);
+      }
+    }
+  });
+  
+  // 监听滚动事件，更新回到顶部按钮显示状态
+  function updateBackToTopButton() {
+    const backToTopBtn = document.getElementById('backToTop');
+    if (backToTopBtn) {
+      // 当滚动到2024年视频（索引1）或更后面的视频时显示按钮
+      if (currentVideoIndex >= 1) {
+        backToTopBtn.classList.add('is-visible');
+      } else {
+        backToTopBtn.classList.remove('is-visible');
+      }
+    }
+  }
+  
+  // 监听页面滚动事件
+  window.addEventListener('scroll', updateBackToTopButton, { passive: true });
+  
+  // 初始化时检查按钮状态
+  updateBackToTopButton();
+});
+  </script>
+
+</div> <!-- 结束 video-container-wrapper -->
+
   </main>
 
   

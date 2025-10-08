@@ -95,7 +95,7 @@ module.exports = function(eleventyConfig) {
     htmlTemplateEngine: "njk",
     dataTemplateEngine: "njk",
     serverOptions: {
-      port: 8000
+      port: 8080
     }
   };
 };
