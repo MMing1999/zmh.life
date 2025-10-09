@@ -10,6 +10,27 @@ html, body {
   max-width: 100%;
 }
 
+/* 确保navbar在xing页面也能正常浮动 */
+.navbar {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  z-index: 1000 !important;
+  background-color: rgba(0, 0, 0, 0.9) !important; /* 确保有背景色 */
+}
+
+/* 确保hero section不会覆盖navbar */
+.xing-hero-fullwidth {
+  z-index: 1;
+  margin-top: var(--nav-h, 80px); /* 为navbar留出空间 */
+}
+
+/* 确保页面内容不被navbar遮挡 */
+.page-wrap {
+  padding-top: var(--nav-h, 80px) !important;
+}
+
 /* 页面内容容器，保持全局1400px限制 */
 .xing-content {
   max-width: 1400px;
@@ -44,7 +65,7 @@ html, body {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  margin-top: -2.2vh;
+  margin-top: 0; /* 移除负边距，避免覆盖navbar */
   /* 确保突破父容器的宽度限制 */
   max-width: none;
   overflow-x: hidden;

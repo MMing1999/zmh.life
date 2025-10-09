@@ -69,32 +69,31 @@
     <div class="articles-list">
       
       <article class="article-item">
-        <!-- 卡片总容器 -->
-        <div class="article-card-container">
-          <!-- 时间显示在图片上面 -->
-          <div class="article-time-overlay">
-            <div class="article-time">
+        <!-- Screen1: 卡片视图 - 参考图1 -->
+        <div class="article-card-container screen1-view">
+          <!-- 顶部：日期和分类标签 -->
+          <div class="article-header">
+            <div class="article-date">
               
-              <span class="time-month">10</span>
-              <div class="time-separator-short"></div>
-              <span class="time-day">26</span>
-              <div class="time-separator-medium"></div>
-              <span class="time-year">2023</span>
-              <div class="time-separator-long"></div>
+              <span class="date-day">26</span>
+              <div class="date-separator"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-long"></div>
+              <span class="date-year">2023</span>
+              <div class="date-meta-separator"></div>
             </div>
-            <div class="article-meta-right">
-              <div class="article-meta-left-separator"></div>
+            <div class="article-meta">
               
-              <div class="article-column-tag">设计思考专栏</div>
+              <span class="article-column">设计思考专栏</span>
               
               
-              <div class="article-column-divider">/</div>
+              <span class="meta-divider">/</span>
               <span class="article-category">记录</span>
               
               
               
-              <div class="article-tags-divider">/</div>
-              <div class="article-tags-inline">
+              <span class="meta-divider">/</span>
+              <div class="article-tags">
                 
                 <span class="article-tag">#JavaScript</span>
                 
@@ -109,74 +108,94 @@
             </div>
           </div>
           
-          <!-- 图片和标题+简介左右布局 -->
-          <div class="article-main-layout">
-            <!-- 封面容器（左边） -->
+          <!-- 主体：图片和文字内容 -->
+          <div class="article-content">
+            <!-- 图片容器（左边） -->
             
-            <div class="article-cover-container">
-              <div class="article-cover-image">
-                <img src="/assets/images/zhi-writing/城市观察-001-cover.jpg" alt="城市观察：光影与节奏">
-              </div>
+            <div class="article-image-container">
+              <img src="/assets/images/zhi-writing/城市观察-001-cover.jpg" alt="城市观察：光影与节奏" class="article-image">
             </div>
             
             
             <!-- 文字容器（右边） -->
-            <div class="article-text-container">
+            <div class="article-text">
               <h3 class="article-title">
                 <a href="/misc/city-observation/">城市观察：光影与节奏</a>
               </h3>
               
-              <p class="article-summary">深入城市肌理，捕捉光影交错下的独特节奏，探讨城市空间与人的互动关系。</p>
+              <p class="article-description">深入城市肌理，捕捉光影交错下的独特节奏，探讨城市空间与人的互动关系。</p>
               
             </div>
           </div>
+        </div>
+        
+        <!-- Screen2: 列表视图 - 参考图2 -->
+        <div class="article-list-container screen2-view">
+          <!-- 隐藏的分类、专栏、标签信息，用于过滤功能 -->
+          <div class="hidden-meta-info">
+            
+            <span class="article-column">设计思考专栏</span>
+            
+            
+            <span class="article-category">记录</span>
+            
+            
+            
+              
+              <span class="article-tag">#JavaScript</span>
+              
+              <span class="article-tag">#CSS</span>
+              
+              <span class="article-tag">#设计</span>
+              
+              <span class="article-tag">#思考</span>
+              
+            
+          </div>
           
-          <!-- 列表视图专用布局 -->
-          <div class="article-list-layout">
-            <h3 class="article-title">
+          <div class="article-list-row">
+            <h3 class="article-title-simple">
               <a href="/misc/city-observation/">城市观察：光影与节奏</a>
             </h3>
-            <div class="article-flex-separator"></div>
-            <div class="article-time-overlay">
-              <div class="article-time">
-                <span class="time-month">10</span>
-                <div class="time-separator-short"></div>
-                <span class="time-day">26</span>
-                <div class="time-separator-medium"></div>
-                <span class="time-year">2023</span>
-              </div>
+            <div class="title-date-separator"></div>
+            <div class="article-date-simple">
+              
+              <span class="date-day">26</span>
+              <div class="date-separator-short"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-medium"></div>
+              <span class="date-year">2023</span>
             </div>
           </div>
         </div>
       </article>
       
       <article class="article-item">
-        <!-- 卡片总容器 -->
-        <div class="article-card-container">
-          <!-- 时间显示在图片上面 -->
-          <div class="article-time-overlay">
-            <div class="article-time">
+        <!-- Screen1: 卡片视图 - 参考图1 -->
+        <div class="article-card-container screen1-view">
+          <!-- 顶部：日期和分类标签 -->
+          <div class="article-header">
+            <div class="article-date">
               
-              <span class="time-month">10</span>
-              <div class="time-separator-short"></div>
-              <span class="time-day">20</span>
-              <div class="time-separator-medium"></div>
-              <span class="time-year">2023</span>
-              <div class="time-separator-long"></div>
+              <span class="date-day">20</span>
+              <div class="date-separator"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-long"></div>
+              <span class="date-year">2023</span>
+              <div class="date-meta-separator"></div>
             </div>
-            <div class="article-meta-right">
-              <div class="article-meta-left-separator"></div>
+            <div class="article-meta">
               
-              <div class="article-column-tag">设计思考专栏</div>
+              <span class="article-column">设计思考专栏</span>
               
               
-              <div class="article-column-divider">/</div>
+              <span class="meta-divider">/</span>
               <span class="article-category">反思</span>
               
               
               
-              <div class="article-tags-divider">/</div>
-              <div class="article-tags-inline">
+              <span class="meta-divider">/</span>
+              <div class="article-tags">
                 
                 <span class="article-tag">#设计</span>
                 
@@ -191,74 +210,94 @@
             </div>
           </div>
           
-          <!-- 图片和标题+简介左右布局 -->
-          <div class="article-main-layout">
-            <!-- 封面容器（左边） -->
+          <!-- 主体：图片和文字内容 -->
+          <div class="article-content">
+            <!-- 图片容器（左边） -->
             
-            <div class="article-cover-container">
-              <div class="article-cover-image">
-                <img src="/assets/images/zhi-writing/抽象构成-010-cover.jpg" alt="抽象构成：设计中的秩序与美">
-              </div>
+            <div class="article-image-container">
+              <img src="/assets/images/zhi-writing/抽象构成-010-cover.jpg" alt="抽象构成：设计中的秩序与美" class="article-image">
             </div>
             
             
             <!-- 文字容器（右边） -->
-            <div class="article-text-container">
+            <div class="article-text">
               <h3 class="article-title">
                 <a href="/misc/abstract-design/">抽象构成：设计中的秩序与美</a>
               </h3>
               
-              <p class="article-summary">探讨抽象构成在设计中的应用，如何通过点、线、面、色彩等元素，创造出富有秩序感和美感的视觉作品。</p>
+              <p class="article-description">探讨抽象构成在设计中的应用，如何通过点、线、面、色彩等元素，创造出富有秩序感和美感的视觉作品。</p>
               
             </div>
           </div>
+        </div>
+        
+        <!-- Screen2: 列表视图 - 参考图2 -->
+        <div class="article-list-container screen2-view">
+          <!-- 隐藏的分类、专栏、标签信息，用于过滤功能 -->
+          <div class="hidden-meta-info">
+            
+            <span class="article-column">设计思考专栏</span>
+            
+            
+            <span class="article-category">反思</span>
+            
+            
+            
+              
+              <span class="article-tag">#设计</span>
+              
+              <span class="article-tag">#工具</span>
+              
+              <span class="article-tag">#工作流</span>
+              
+              <span class="article-tag">#思考</span>
+              
+            
+          </div>
           
-          <!-- 列表视图专用布局 -->
-          <div class="article-list-layout">
-            <h3 class="article-title">
+          <div class="article-list-row">
+            <h3 class="article-title-simple">
               <a href="/misc/abstract-design/">抽象构成：设计中的秩序与美</a>
             </h3>
-            <div class="article-flex-separator"></div>
-            <div class="article-time-overlay">
-              <div class="article-time">
-                <span class="time-month">10</span>
-                <div class="time-separator-short"></div>
-                <span class="time-day">20</span>
-                <div class="time-separator-medium"></div>
-                <span class="time-year">2023</span>
-              </div>
+            <div class="title-date-separator"></div>
+            <div class="article-date-simple">
+              
+              <span class="date-day">20</span>
+              <div class="date-separator-short"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-medium"></div>
+              <span class="date-year">2023</span>
             </div>
           </div>
         </div>
       </article>
       
       <article class="article-item">
-        <!-- 卡片总容器 -->
-        <div class="article-card-container">
-          <!-- 时间显示在图片上面 -->
-          <div class="article-time-overlay">
-            <div class="article-time">
+        <!-- Screen1: 卡片视图 - 参考图1 -->
+        <div class="article-card-container screen1-view">
+          <!-- 顶部：日期和分类标签 -->
+          <div class="article-header">
+            <div class="article-date">
               
-              <span class="time-month">10</span>
-              <div class="time-separator-short"></div>
-              <span class="time-day">15</span>
-              <div class="time-separator-medium"></div>
-              <span class="time-year">2023</span>
-              <div class="time-separator-long"></div>
+              <span class="date-day">15</span>
+              <div class="date-separator"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-long"></div>
+              <span class="date-year">2023</span>
+              <div class="date-meta-separator"></div>
             </div>
-            <div class="article-meta-right">
-              <div class="article-meta-left-separator"></div>
+            <div class="article-meta">
               
-              <div class="article-column-tag">全栈开发专栏</div>
+              <span class="article-column">全栈开发专栏</span>
               
               
-              <div class="article-column-divider">/</div>
+              <span class="meta-divider">/</span>
               <span class="article-category">随笔</span>
               
               
               
-              <div class="article-tags-divider">/</div>
-              <div class="article-tags-inline">
+              <span class="meta-divider">/</span>
+              <div class="article-tags">
                 
                 <span class="article-tag">#React</span>
                 
@@ -273,74 +312,94 @@
             </div>
           </div>
           
-          <!-- 图片和标题+简介左右布局 -->
-          <div class="article-main-layout">
-            <!-- 封面容器（左边） -->
+          <!-- 主体：图片和文字内容 -->
+          <div class="article-content">
+            <!-- 图片容器（左边） -->
             
-            <div class="article-cover-container">
-              <div class="article-cover-image">
-                <img src="/assets/images/zhi-writing/都市掠影-004-cover.jpg" alt="都市掠影：捕捉瞬间的艺术">
-              </div>
+            <div class="article-image-container">
+              <img src="/assets/images/zhi-writing/都市掠影-004-cover.jpg" alt="都市掠影：捕捉瞬间的艺术" class="article-image">
             </div>
             
             
             <!-- 文字容器（右边） -->
-            <div class="article-text-container">
+            <div class="article-text">
               <h3 class="article-title">
                 <a href="/misc/urban-snapshot/">都市掠影：捕捉瞬间的艺术</a>
               </h3>
               
-              <p class="article-summary">分享街头摄影的技巧与心得，如何在喧嚣的都市中捕捉那些富有故事感的瞬间，让平凡的场景变得不平凡。</p>
+              <p class="article-description">分享街头摄影的技巧与心得，如何在喧嚣的都市中捕捉那些富有故事感的瞬间，让平凡的场景变得不平凡。</p>
               
             </div>
           </div>
+        </div>
+        
+        <!-- Screen2: 列表视图 - 参考图2 -->
+        <div class="article-list-container screen2-view">
+          <!-- 隐藏的分类、专栏、标签信息，用于过滤功能 -->
+          <div class="hidden-meta-info">
+            
+            <span class="article-column">全栈开发专栏</span>
+            
+            
+            <span class="article-category">随笔</span>
+            
+            
+            
+              
+              <span class="article-tag">#React</span>
+              
+              <span class="article-tag">#Vue</span>
+              
+              <span class="article-tag">#工具</span>
+              
+              <span class="article-tag">#思考</span>
+              
+            
+          </div>
           
-          <!-- 列表视图专用布局 -->
-          <div class="article-list-layout">
-            <h3 class="article-title">
+          <div class="article-list-row">
+            <h3 class="article-title-simple">
               <a href="/misc/urban-snapshot/">都市掠影：捕捉瞬间的艺术</a>
             </h3>
-            <div class="article-flex-separator"></div>
-            <div class="article-time-overlay">
-              <div class="article-time">
-                <span class="time-month">10</span>
-                <div class="time-separator-short"></div>
-                <span class="time-day">15</span>
-                <div class="time-separator-medium"></div>
-                <span class="time-year">2023</span>
-              </div>
+            <div class="title-date-separator"></div>
+            <div class="article-date-simple">
+              
+              <span class="date-day">15</span>
+              <div class="date-separator-short"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-medium"></div>
+              <span class="date-year">2023</span>
             </div>
           </div>
         </div>
       </article>
       
       <article class="article-item">
-        <!-- 卡片总容器 -->
-        <div class="article-card-container">
-          <!-- 时间显示在图片上面 -->
-          <div class="article-time-overlay">
-            <div class="article-time">
+        <!-- Screen1: 卡片视图 - 参考图1 -->
+        <div class="article-card-container screen1-view">
+          <!-- 顶部：日期和分类标签 -->
+          <div class="article-header">
+            <div class="article-date">
               
-              <span class="time-month">10</span>
-              <div class="time-separator-short"></div>
-              <span class="time-day">10</span>
-              <div class="time-separator-medium"></div>
-              <span class="time-year">2023</span>
-              <div class="time-separator-long"></div>
+              <span class="date-day">10</span>
+              <div class="date-separator"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-long"></div>
+              <span class="date-year">2023</span>
+              <div class="date-meta-separator"></div>
             </div>
-            <div class="article-meta-right">
-              <div class="article-meta-left-separator"></div>
+            <div class="article-meta">
               
-              <div class="article-column-tag">摄影技巧</div>
+              <span class="article-column">摄影技巧</span>
               
               
-              <div class="article-column-divider">/</div>
+              <span class="meta-divider">/</span>
               <span class="article-category">学习笔记</span>
               
               
               
-              <div class="article-tags-divider">/</div>
-              <div class="article-tags-inline">
+              <span class="meta-divider">/</span>
+              <div class="article-tags">
                 
                 <span class="article-tag">#摄影</span>
                 
@@ -355,74 +414,94 @@
             </div>
           </div>
           
-          <!-- 图片和标题+简介左右布局 -->
-          <div class="article-main-layout">
-            <!-- 封面容器（左边） -->
+          <!-- 主体：图片和文字内容 -->
+          <div class="article-content">
+            <!-- 图片容器（左边） -->
             
-            <div class="article-cover-container">
-              <div class="article-cover-image">
-                <img src="/assets/images/zhi-writing/光影之路-008-cover.jpg" alt="光影之路：摄影中的光线运用">
-              </div>
+            <div class="article-image-container">
+              <img src="/assets/images/zhi-writing/光影之路-008-cover.jpg" alt="光影之路：摄影中的光线运用" class="article-image">
             </div>
             
             
             <!-- 文字容器（右边） -->
-            <div class="article-text-container">
+            <div class="article-text">
               <h3 class="article-title">
                 <a href="/misc/light-shadow-photography/">光影之路：摄影中的光线运用</a>
               </h3>
               
-              <p class="article-summary">学习摄影中光线运用的基础知识，从自然光到人工光，探讨如何利用光线创造不同的视觉效果和情感表达。</p>
+              <p class="article-description">学习摄影中光线运用的基础知识，从自然光到人工光，探讨如何利用光线创造不同的视觉效果和情感表达。</p>
               
             </div>
           </div>
+        </div>
+        
+        <!-- Screen2: 列表视图 - 参考图2 -->
+        <div class="article-list-container screen2-view">
+          <!-- 隐藏的分类、专栏、标签信息，用于过滤功能 -->
+          <div class="hidden-meta-info">
+            
+            <span class="article-column">摄影技巧</span>
+            
+            
+            <span class="article-category">学习笔记</span>
+            
+            
+            
+              
+              <span class="article-tag">#摄影</span>
+              
+              <span class="article-tag">#光线</span>
+              
+              <span class="article-tag">#技巧</span>
+              
+              <span class="article-tag">#学习</span>
+              
+            
+          </div>
           
-          <!-- 列表视图专用布局 -->
-          <div class="article-list-layout">
-            <h3 class="article-title">
+          <div class="article-list-row">
+            <h3 class="article-title-simple">
               <a href="/misc/light-shadow-photography/">光影之路：摄影中的光线运用</a>
             </h3>
-            <div class="article-flex-separator"></div>
-            <div class="article-time-overlay">
-              <div class="article-time">
-                <span class="time-month">10</span>
-                <div class="time-separator-short"></div>
-                <span class="time-day">10</span>
-                <div class="time-separator-medium"></div>
-                <span class="time-year">2023</span>
-              </div>
+            <div class="title-date-separator"></div>
+            <div class="article-date-simple">
+              
+              <span class="date-day">10</span>
+              <div class="date-separator-short"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-medium"></div>
+              <span class="date-year">2023</span>
             </div>
           </div>
         </div>
       </article>
       
       <article class="article-item">
-        <!-- 卡片总容器 -->
-        <div class="article-card-container">
-          <!-- 时间显示在图片上面 -->
-          <div class="article-time-overlay">
-            <div class="article-time">
+        <!-- Screen1: 卡片视图 - 参考图1 -->
+        <div class="article-card-container screen1-view">
+          <!-- 顶部：日期和分类标签 -->
+          <div class="article-header">
+            <div class="article-date">
               
-              <span class="time-month">10</span>
-              <div class="time-separator-short"></div>
-              <span class="time-day">05</span>
-              <div class="time-separator-medium"></div>
-              <span class="time-year">2023</span>
-              <div class="time-separator-long"></div>
+              <span class="date-day">05</span>
+              <div class="date-separator"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-long"></div>
+              <span class="date-year">2023</span>
+              <div class="date-meta-separator"></div>
             </div>
-            <div class="article-meta-right">
-              <div class="article-meta-left-separator"></div>
+            <div class="article-meta">
               
-              <div class="article-column-tag">前端开发</div>
+              <span class="article-column">前端开发</span>
               
               
-              <div class="article-column-divider">/</div>
+              <span class="meta-divider">/</span>
               <span class="article-category">技术文章</span>
               
               
               
-              <div class="article-tags-divider">/</div>
-              <div class="article-tags-inline">
+              <span class="meta-divider">/</span>
+              <div class="article-tags">
                 
                 <span class="article-tag">#前端</span>
                 
@@ -437,42 +516,63 @@
             </div>
           </div>
           
-          <!-- 图片和标题+简介左右布局 -->
-          <div class="article-main-layout">
-            <!-- 封面容器（左边） -->
+          <!-- 主体：图片和文字内容 -->
+          <div class="article-content">
+            <!-- 图片容器（左边） -->
             
-            <div class="article-cover-container">
-              <div class="article-cover-image">
-                <img src="/assets/images/zhi-writing/色彩律动-005-cover.jpg" alt="色彩律动：前端色彩搭配指南">
-              </div>
+            <div class="article-image-container">
+              <img src="/assets/images/zhi-writing/色彩律动-005-cover.jpg" alt="色彩律动：前端色彩搭配指南" class="article-image">
             </div>
             
             
             <!-- 文字容器（右边） -->
-            <div class="article-text-container">
+            <div class="article-text">
               <h3 class="article-title">
                 <a href="/misc/color-rhythm-frontend/">色彩律动：前端色彩搭配指南</a>
               </h3>
               
-              <p class="article-summary">探讨前端开发中色彩搭配的原则与实践，如何运用色彩理论，通过CSS实现富有吸引力且用户友好的界面设计。</p>
+              <p class="article-description">探讨前端开发中色彩搭配的原则与实践，如何运用色彩理论，通过CSS实现富有吸引力且用户友好的界面设计。</p>
               
             </div>
           </div>
+        </div>
+        
+        <!-- Screen2: 列表视图 - 参考图2 -->
+        <div class="article-list-container screen2-view">
+          <!-- 隐藏的分类、专栏、标签信息，用于过滤功能 -->
+          <div class="hidden-meta-info">
+            
+            <span class="article-column">前端开发</span>
+            
+            
+            <span class="article-category">技术文章</span>
+            
+            
+            
+              
+              <span class="article-tag">#前端</span>
+              
+              <span class="article-tag">#CSS</span>
+              
+              <span class="article-tag">#色彩</span>
+              
+              <span class="article-tag">#设计</span>
+              
+            
+          </div>
           
-          <!-- 列表视图专用布局 -->
-          <div class="article-list-layout">
-            <h3 class="article-title">
+          <div class="article-list-row">
+            <h3 class="article-title-simple">
               <a href="/misc/color-rhythm-frontend/">色彩律动：前端色彩搭配指南</a>
             </h3>
-            <div class="article-flex-separator"></div>
-            <div class="article-time-overlay">
-              <div class="article-time">
-                <span class="time-month">10</span>
-                <div class="time-separator-short"></div>
-                <span class="time-day">05</span>
-                <div class="time-separator-medium"></div>
-                <span class="time-year">2023</span>
-              </div>
+            <div class="title-date-separator"></div>
+            <div class="article-date-simple">
+              
+              <span class="date-day">05</span>
+              <div class="date-separator-short"></div>
+              <span class="date-month">10</span>
+              <div class="date-separator-medium"></div>
+              <span class="date-year">2023</span>
             </div>
           </div>
         </div>
@@ -514,6 +614,16 @@
     
     <div class="nav-divider"></div>
     
+    <!-- Columns -->
+    <div class="nav-section">
+      <div class="column-list">
+        <a href="#" class="column-item" data-column="ai-thinking">AI思考专栏</a>
+        <a href="#" class="column-item" data-column="design-thinking">设计思考专栏</a>
+        <a href="#" class="column-item" data-column="fullstack-dev">全栈开发专栏</a>
+      </div>
+      <div class="divider"></div>
+    </div>
+    
     <!-- Categories -->
     <div class="nav-section">
       <div class="category-list">
@@ -527,16 +637,6 @@
           <span class="category-divider">/</span>
           <a href="#" class="category-item" data-category="notes">笔记</a>
         </div>
-      </div>
-      <div class="divider"></div>
-    </div>
-    
-    <!-- Columns -->
-    <div class="nav-section">
-      <div class="column-list">
-        <a href="#" class="column-item" data-column="ai-thinking">AI思考专栏</a>
-        <a href="#" class="column-item" data-column="design-thinking">设计思考专栏</a>
-        <a href="#" class="column-item" data-column="fullstack-dev">全栈开发专栏</a>
       </div>
       <div class="divider"></div>
     </div>
@@ -601,10 +701,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // 切换视图
   function switchView(view) {
     currentView = view;
+    const articlesList = document.querySelector('.articles-list');
     if (view === 'list') {
-      articleListContainer.classList.add('list-view');
+      articlesList.classList.add('list-view');
     } else {
-      articleListContainer.classList.remove('list-view');
+      articlesList.classList.remove('list-view');
     }
   }
   
@@ -614,12 +715,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let categoryMatch = true;
       if (selectedCategory !== null) {
         categoryMatch = false;
-        const articleCategory = article.querySelector('.article-category');
         const articleCategories = article.querySelectorAll('.article-category');
-        
-        if (articleCategory) {
-          categoryMatch = articleCategory.textContent === categoryMap[selectedCategory];
-        }
         
         articleCategories.forEach(cat => {
           if (cat.textContent === categoryMap[selectedCategory]) {
@@ -632,7 +728,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let columnMatch = true;
       if (selectedColumn !== null) {
         columnMatch = false;
-        const articleColumn = article.querySelector('.article-column-tag');
+        const articleColumn = article.querySelector('.article-column');
         
         if (articleColumn) {
           columnMatch = articleColumn.textContent === columnMap[selectedColumn];
