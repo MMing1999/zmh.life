@@ -1,0 +1,97 @@
+---
+layout: layouts/base.njk
+---
+
+{# =============================
+   layouts/writing.njk
+   说明：
+   - 继承全局骨架 layouts/base.njk
+   - 仅负责"写作详情页"的主体内容结构
+   - 样式：在页面 front-matter 里用 pageCSS 指定 /assets/css/writing.css
+   - 渲染顺序：
+     封面 → 标题 → 发布日期 → 专栏 → 分类 → 标签 → 正文
+   ============================= #}
+
+<article class="writing" itemscope itemtype="https://schema.org/Article">
+
+  {# 1) 封面图（若有） #}
+  {% if coverImage %}
+    <figure class="writing-hero">
+      <img src="{{ coverImage | url }}" alt="{{ title }}" itemprop="image">
+    </figure>
+  {% endif %}
+
+  {# 2) 标题 #}
+  <header class="writing-header">
+    {% if title %}
+      <h1 class="writing-title" itemprop="name">{{ title }}</h1>
+    {% endif %}
+
+  {# 3) 摘要（标题下方） #}
+  {% if summary %}
+    <p class="writing-summary">{{ summary }}</p>
+  {% endif %}
+
+  <div class="writing-divider writing-divider--title"></div>
+
+  {# 4) 元信息：发布日期 / 专栏 / 分类 / 标签（同一行可换行） #}
+  <div class="writing-meta">
+    <div class="writing-line">
+      <span class="label">发布日期：</span>
+      <time class="value" itemprop="datePublished">{{ page.date | fmtDate }}</time>
+    </div>
+
+    {% if column %}
+      <div class="writing-line">
+        <span class="label">专栏:</span>
+        <span class="value">
+          <span class="chip">{{ column }}</span>
+        </span>
+      </div>
+    {% endif %}
+
+    {% if category %}
+      <div class="writing-line">
+        <span class="label">分类:</span>
+        <span class="value">
+          <span class="chip">{{ category }}</span>
+        </span>
+      </div>
+    {% endif %}
+
+    {% if categories and categories.length %}
+      <div class="writing-line">
+        <span class="label">分类:</span>
+        <span class="value">
+          {% for c in categories %}
+            <span class="chip">{{ c }}</span>
+          {% endfor %}
+        </span>
+      </div>
+    {% endif %}
+
+    {% if tags and tags.length %}
+      <div class="writing-line">
+        <span class="label">标签:</span>
+        <span class="value tag-list" itemprop="keywords">
+          {% for t in tags %}
+            <span class="tag">#{{ t }}</span>
+          {% endfor %}
+        </span>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="writing-divider writing-divider--meta"></div>
+  </header>
+
+  {# 5) 正文内容（Markdown 渲染输出） #}
+  <section class="writing-body" itemprop="text">
+    {{ content | safe }}
+  </section>
+
+  {# 底部返回 #}
+  <div class="writing-back">
+    <a class="link-back" href="{{ '/zhi/writing/' | url }}">← 返回「写作」</a>
+  </div>
+</article>

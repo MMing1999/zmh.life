@@ -6,6 +6,9 @@ tags: ["JavaScript", "CSS", "设计", "思考"]
 summary: "深入城市肌理，捕捉光影交错下的独特节奏，探讨城市空间与人的互动关系。"
 coverImage: "/assets/images/zhi-writing/城市观察-001-cover.jpg"
 column: "设计思考专栏"
+layout: "layouts/writing.njk"
+pageCSS: "/assets/Css/writing.css"
+section: "zhi"
 ---
 
 ## 城市观察：光影与节奏

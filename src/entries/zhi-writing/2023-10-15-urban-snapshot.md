@@ -6,6 +6,9 @@ tags: ["React", "Vue", "工具", "思考"]
 summary: "分享街头摄影的技巧与心得，如何在喧嚣的都市中捕捉那些富有故事感的瞬间，让平凡的场景变得不平凡。"
 coverImage: "/assets/images/zhi-writing/都市掠影-004-cover.jpg"
 column: "全栈开发专栏"
+layout: "layouts/writing.njk"
+pageCSS: "/assets/Css/writing.css"
+section: "zhi"
 ---
 
 ## 都市掠影：捕捉瞬间的艺术

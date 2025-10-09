@@ -6,6 +6,9 @@ tags: ["设计", "工具", "工作流", "思考"]
 summary: "探讨抽象构成在设计中的应用，如何通过点、线、面、色彩等元素，创造出富有秩序感和美感的视觉作品。"
 coverImage: "/assets/images/zhi-writing/抽象构成-010-cover.jpg"
 column: "设计思考专栏"
+layout: "layouts/writing.njk"
+pageCSS: "/assets/Css/writing.css"
+section: "zhi"
 ---
 
 ## 抽象构成：设计中的秩序与美

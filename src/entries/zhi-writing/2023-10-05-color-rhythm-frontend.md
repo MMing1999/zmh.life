@@ -6,6 +6,9 @@ tags: ["前端", "CSS", "色彩", "设计"]
 summary: "探讨前端开发中色彩搭配的原则与实践，如何运用色彩理论，通过CSS实现富有吸引力且用户友好的界面设计。"
 coverImage: "/assets/images/zhi-writing/色彩律动-005-cover.jpg"
 column: "前端开发"
+layout: "layouts/writing.njk"
+pageCSS: "/assets/Css/writing.css"
+section: "zhi"
 ---
 
 ## 色彩律动：前端色彩搭配指南

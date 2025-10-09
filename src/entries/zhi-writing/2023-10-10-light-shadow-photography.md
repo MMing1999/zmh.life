@@ -6,6 +6,9 @@ tags: ["摄影", "光线", "技巧", "学习"]
 summary: "学习摄影中光线运用的基础知识，从自然光到人工光，探讨如何利用光线创造不同的视觉效果和情感表达。"
 coverImage: "/assets/images/zhi-writing/光影之路-008-cover.jpg"
 column: "摄影技巧"
+layout: "layouts/writing.njk"
+pageCSS: "/assets/Css/writing.css"
+section: "zhi"
 ---
 
 ## 光影之路：摄影中的光线运用
