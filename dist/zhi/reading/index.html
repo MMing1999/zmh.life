@@ -52,89 +52,395 @@
   
   <main id="main" class="page-wrap">
     
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Reading · 阅读</h1>
-    <p class="hero-subtitle">读书卡片与短评</p>
-    <p class="hero-description">
-      记录阅读过程中的思考和收获，分享有价值的书籍和文章，建立个人的阅读体系。
-      通过阅读来拓展视野，提升认知，为创作和思考提供养分。
-    </p>
-  </div>
-</section>
-
 <!-- Main Content -->
-<section class="main-sections">
+<section class="reading-main">
   
-  <!-- Book List Section -->
-  <div class="book-section">
-    <div class="section-header">
-      <h2>读书笔记</h2>
-      <p>最近阅读的书籍和思考</p>
+  <!-- Container1: 搜索和分类标签 (固定) -->
+  <div class="reading-container1">
+    <div class="reading-search-section">
+      <div class="search-box">
+        <input type="text" id="readingSearch" placeholder="搜索书籍、作者或标签..." />
+        <button class="search-btn">🔍</button>
+      </div>
     </div>
     
-    <div class="section-content">
-      <!-- 书籍列表 -->
-      <div class="book-grid">
+    <div class="reading-filters">
+      <div class="filter-group">
+        <h4>分类</h4>
+        <div class="filter-tags">
+          <button class="filter-tag active" data-filter="all">全部</button>
+          <button class="filter-tag" data-filter="设计">设计</button>
+          <button class="filter-tag" data-filter="技术">技术</button>
+          <button class="filter-tag" data-filter="商业">商业</button>
+          <button class="filter-tag" data-filter="心理学">心理学</button>
+        </div>
+      </div>
+      
+      <div class="filter-group">
+        <h4>评分</h4>
+        <div class="filter-tags">
+          <button class="filter-tag" data-rating="5">★★★★★</button>
+          <button class="filter-tag" data-rating="4">★★★★☆</button>
+          <button class="filter-tag" data-rating="3">★★★☆☆</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container2: 书籍卡片横向滚动 -->
+  <div class="reading-container2">
+    <button class="scroll-btn scroll-left" id="scrollLeft">←</button>
+    
+    <div class="books-scroll-container" id="booksScroll">
+      <div class="books-scroll-track">
+        
+        <div class="book-card" 
+             data-category="心理学"
+             data-rating="5"
+             data-title="思考，快与慢"
+             data-author="daniel kahneman"
+             data-tags="心理学 认知科学 行为经济学 决策">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/掌中世界-007-cover.jpg" alt="思考，快与慢">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/thinking-fast-and-slow/">思考，快与慢</a>
+              </h3>
+              
+              <p class="book-author">Daniel Kahneman</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card" 
+             data-category="商业"
+             data-rating="5"
+             data-title="创新者的窘境"
+             data-author="clayton m. christensen"
+             data-tags="创新 商业 管理 颠覆性技术">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/瞬间捕捉-006-cover.jpg" alt="创新者的窘境">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/innovators-dilemma/">创新者的窘境</a>
+              </h3>
+              
+              <p class="book-author">Clayton M. Christensen</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card" 
+             data-category="技术"
+             data-rating="5"
+             data-title="算法导论"
+             data-author="thomas h. cormen"
+             data-tags="算法 计算机科学 数据结构 编程">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/纹理之美-009-cover.jpg" alt="算法导论">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/introduction-to-algorithms/">算法导论</a>
+              </h3>
+              
+              <p class="book-author">Thomas H. Cormen</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card" 
+             data-category="设计"
+             data-rating="4"
+             data-title="用户体验要素"
+             data-author="jesse james garrett"
+             data-tags="用户体验 设计 产品设计 交互设计">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/色彩律动-005-cover.jpg" alt="用户体验要素">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/user-experience-elements/">用户体验要素</a>
+              </h3>
+              
+              <p class="book-author">Jesse James Garrett</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card" 
+             data-category="设计"
+             data-rating="5"
+             data-title="设计心理学"
+             data-author="唐纳德·a·诺曼"
+             data-tags="设计 心理学 用户体验 交互设计">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/抽象构成-010-cover.jpg" alt="设计心理学">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/design-psychology/">设计心理学</a>
+              </h3>
+              
+              <p class="book-author">唐纳德·A·诺曼</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card" 
+             data-category="技术"
+             data-rating="4"
+             data-title="javascript高级程序设计"
+             data-author="nicholas c. zakas"
+             data-tags="javascript 编程 前端 web开发">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/城市观察-001-cover.jpg" alt="JavaScript高级程序设计">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/javascript-advanced/">JavaScript高级程序设计</a>
+              </h3>
+              
+              <p class="book-author">Nicholas C. Zakas</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="book-card" 
+             data-category="商业"
+             data-rating="5"
+             data-title="精益创业"
+             data-author="eric ries"
+             data-tags="创业 精益 产品开发 商业模式">
+          
+          <div class="book-cover">
+            
+              <img src="/assets/Pics/zhi-reading/都市掠影-004-cover.jpg" alt="精益创业">
+            
+          </div>
+          
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="/zhi/reading/lean-startup/">精益创业</a>
+              </h3>
+              
+              <p class="book-author">Eric Ries</p>
+              
+              <div class="book-summary">
+                暂无简介
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
+          </div>
+        </div>
         
         
         <!-- 空状态 -->
         
-        <div class="empty-state">
-          <h3>暂无读书笔记</h3>
-          <p>还没有记录任何读书内容，<a href="/zhi/collection/">去收集一些好书</a>吧！</p>
-        </div>
-        
       </div>
     </div>
-  </div>
-
-  <!-- Reading Categories Section -->
-  <div class="categories-section">
-    <div class="section-header">
-      <h2>阅读分类</h2>
-      <p>按类型分类的阅读内容</p>
-    </div>
     
-    <div class="section-content">
-      <div class="section-preview">
-        <div class="preview-item">
-          <h4>设计类书籍</h4>
-          <p>设计心理学、简约至上、用户体验要素</p>
-        </div>
-        <div class="preview-item">
-          <h4>技术类书籍</h4>
-          <p>JavaScript高级程序设计、CSS权威指南</p>
-        </div>
-        <div class="preview-item">
-          <h4>商业类书籍</h4>
-          <p>精益创业、产品思维、商业洞察</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Reading Tips Section -->
-  <div class="tips-section">
-    <div class="section-header">
-      <h2>阅读心得</h2>
-      <p>关于阅读的一些思考和经验</p>
-    </div>
-    
-    <div class="section-content">
-      <p>阅读是获取知识和启发思考的重要方式。有效的阅读需要：</p>
-      <ul>
-        <li><strong>主动思考</strong>：带着问题去阅读，边读边思考</li>
-        <li><strong>记录笔记</strong>：及时记录重要的观点和想法</li>
-        <li><strong>实践应用</strong>：将学到的知识应用到实际工作中</li>
-        <li><strong>分享交流</strong>：与他人讨论和分享阅读心得</li>
-      </ul>
-      <p>好的书籍不仅能传授知识，更能启发思考，改变认知。每一本好书都是与作者的一次深度对话。</p>
-    </div>
+    <button class="scroll-btn scroll-right" id="scrollRight">→</button>
   </div>
 
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取DOM元素
+  const searchInput = document.getElementById('readingSearch');
+  const filterTags = document.querySelectorAll('.filter-tag');
+  const bookCards = document.querySelectorAll('.book-card');
+  const booksScroll = document.getElementById('booksScroll');
+  const scrollLeftBtn = document.getElementById('scrollLeft');
+  const scrollRightBtn = document.getElementById('scrollRight');
+  
+  let currentFilter = 'all';
+  let currentRating = null;
+  let searchKeyword = '';
+  
+  // 搜索功能
+  searchInput.addEventListener('input', function() {
+    searchKeyword = this.value.toLowerCase();
+    filterBooks();
+  });
+  
+  // 分类筛选
+  filterTags.forEach(tag => {
+    tag.addEventListener('click', function() {
+      // 移除所有active类
+      filterTags.forEach(t => t.classList.remove('active'));
+      // 添加active类到当前点击的标签
+      this.classList.add('active');
+      
+      if (this.dataset.filter) {
+        currentFilter = this.dataset.filter;
+        currentRating = null;
+      } else if (this.dataset.rating) {
+        currentRating = parseInt(this.dataset.rating);
+        currentFilter = 'all';
+      }
+      
+      filterBooks();
+    });
+  });
+  
+  // 筛选书籍函数
+  function filterBooks() {
+    bookCards.forEach(card => {
+      const category = card.dataset.category;
+      const rating = parseInt(card.dataset.rating);
+      const title = card.dataset.title;
+      const author = card.dataset.author;
+      const tags = card.dataset.tags;
+      
+      let showCard = true;
+      
+      // 分类筛选
+      if (currentFilter !== 'all' && category !== currentFilter) {
+        showCard = false;
+      }
+      
+      // 评分筛选
+      if (currentRating && rating < currentRating) {
+        showCard = false;
+      }
+      
+      // 搜索筛选
+      if (searchKeyword) {
+        const matchesSearch = title.includes(searchKeyword) || 
+                            author.includes(searchKeyword) || 
+                            tags.includes(searchKeyword);
+        if (!matchesSearch) {
+          showCard = false;
+        }
+      }
+      
+      // 显示/隐藏卡片
+      card.style.display = showCard ? 'block' : 'none';
+    });
+    
+    // 更新滚动按钮状态
+    updateScrollButtons();
+  }
+  
+  // 横向滚动功能
+  let scrollPosition = 0;
+  const scrollStep = 300; // 每次滚动的距离
+  
+  scrollLeftBtn.addEventListener('click', function() {
+    scrollPosition = Math.max(0, scrollPosition - scrollStep);
+    booksScroll.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+    updateScrollButtons();
+  });
+  
+  scrollRightBtn.addEventListener('click', function() {
+    const maxScroll = booksScroll.scrollWidth - booksScroll.clientWidth;
+    scrollPosition = Math.min(maxScroll, scrollPosition + scrollStep);
+    booksScroll.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+    updateScrollButtons();
+  });
+  
+  // 更新滚动按钮状态
+  function updateScrollButtons() {
+    const maxScroll = booksScroll.scrollWidth - booksScroll.clientWidth;
+    scrollLeftBtn.style.opacity = scrollPosition > 0 ? '1' : '0.5';
+    scrollRightBtn.style.opacity = scrollPosition < maxScroll ? '1' : '0.5';
+  }
+  
+  // 监听滚动事件
+  booksScroll.addEventListener('scroll', function() {
+    scrollPosition = this.scrollLeft;
+    updateScrollButtons();
+  });
+  
+  // 初始化
+  updateScrollButtons();
+});
+</script>
 
   </main>
 

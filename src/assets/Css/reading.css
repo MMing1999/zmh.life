@@ -1,0 +1,229 @@
+/* =========================================
+   reading.css — 阅读详情页样式
+   命名空间：.reading*
+   只作用于 layouts/reading.njk 渲染的详情页
+   高优先级：使用 body[data-section="zhi"] 提高特异性
+   ========================================= */
+
+/* -------- 1) 页面结构 -------- */
+body[data-section="zhi"] .reading {
+  max-width: 900px !important;       /* 版心宽度 */
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+  display: block !important;
+}
+
+/* -------- 2) 顶部封面 -------- */
+body[data-section="zhi"] .reading-hero {
+  margin: 0 0 20px !important;
+  position: relative !important;
+  width: 100% !important;
+  max-width: 300px !important;       /* 书籍封面较小 */
+  aspect-ratio: 3 / 4 !important;   /* 3:4 纵向比例 */
+  overflow: hidden !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+}
+body[data-section="zhi"] .reading-hero img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* -------- 3) 标题与基础信息 -------- */
+body[data-section="zhi"] .reading-header {
+  margin: 0 0 24px !important;
+}
+body[data-section="zhi"] .reading-title {
+  margin: 0 0 8px !important;
+  font-size: 36px !important;
+  line-height: 1.2 !important;
+  font-weight: 600 !important;
+}
+
+/* 作者信息 */
+body[data-section="zhi"] .reading-author {
+  margin: 0 0 12px !important;
+  font-size: 18px !important;
+  color: #666 !important;
+  font-style: italic !important;
+}
+
+/* 评分 */
+body[data-section="zhi"] .reading-rating {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin: 8px 0 16px !important;
+}
+body[data-section="zhi"] .reading-rating .star {
+  color: #ffd700 !important;
+  font-size: 18px !important;
+}
+body[data-section="zhi"] .reading-rating .rating-text {
+  font-size: 14px !important;
+  color: #666 !important;
+  margin-left: 4px !important;
+}
+
+/* 信息行（发布日期 / 分类 / 标签） */
+body[data-section="zhi"] .reading-line {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: baseline !important;
+  margin: 6px 0 !important;
+}
+body[data-section="zhi"] .reading-line .label {
+  flex: none !important;
+  min-width: 80px !important;
+  color: #666 !important;
+  font-size: 14px !important;
+}
+body[data-section="zhi"] .reading-line .value {
+  flex: 1 !important;
+  display: inline-flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  font-size: 14px !important;
+}
+
+/* 元信息容器：日期/分类/标签 同排（可换行） */
+body[data-section="zhi"] .reading-meta {
+  display: flex !important;
+  gap: 24px !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  margin: 12px 0 !important;
+}
+body[data-section="zhi"] .reading-meta .reading-line {
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+}
+body[data-section="zhi"] .reading-meta .reading-line .label {
+  min-width: auto !important;
+  font-size: 14px !important;
+  color: #666 !important;
+}
+body[data-section="zhi"] .reading-meta .reading-line .value {
+  flex: initial !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* 分类 chip */
+body[data-section="zhi"] .chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+  background: #fff;
+}
+
+/* 标签 #tag */
+body[data-section="zhi"] .tag-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+body[data-section="zhi"] .tag-list .tag {
+  display: inline-block !important;
+  text-decoration: none !important;
+  color: #000 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+}
+
+/* -------- 4) 正文内容 -------- */
+body[data-section="zhi"] .reading-body {
+  margin: 24px 0 !important;
+}
+body[data-section="zhi"] .reading-body p {
+  margin: 16px 0 !important;
+  line-height: 1.8 !important;
+}
+body[data-section="zhi"] .reading-body h2 {
+  margin: 28px 0 8px !important;
+  font-size: 28px !important;
+}
+body[data-section="zhi"] .reading-body h3 {
+  margin: 22px 0 6px !important;
+  font-size: 22px !important;
+}
+
+/* 分隔线 */
+body[data-section="zhi"] .reading-divider {
+  height: 1px !important;
+  background: #eaeaea !important;
+  margin: 20px 0 !important;
+}
+
+/* 图片与图注 */
+body[data-section="zhi"] .reading-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 12px 0;
+}
+body[data-section="zhi"] .reading-body figure { 
+  margin: 16px 0; 
+}
+body[data-section="zhi"] .reading-body figcaption {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* 代码块 & 引用 */
+body[data-section="zhi"] .reading-body pre {
+  background: #0f0f0f;
+  color: #eaeaea;
+  padding: 14px;
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 13px;
+}
+body[data-section="zhi"] .reading-body blockquote {
+  margin: 16px 0;
+  padding: 10px 14px;
+  border-left: 3px solid #000;
+  background: #fafafa;
+  border-radius: 4px;
+}
+
+/* -------- 5) 返回链接 -------- */
+body[data-section="zhi"] .reading-back {
+  margin: 28px 0 12px;
+}
+body[data-section="zhi"] .link-back {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+}
+body[data-section="zhi"] .link-back:hover {
+  opacity: .8;
+}
+
+/* -------- 6) 响应式 -------- */
+@media (max-width: 640px) {
+  body[data-section="zhi"] .reading { 
+    padding: 0 12px; 
+  }
+  body[data-section="zhi"] .reading-title { 
+    font-size: 28px; 
+  }
+  body[data-section="zhi"] .reading-hero {
+    max-width: 200px !important;
+  }
+}

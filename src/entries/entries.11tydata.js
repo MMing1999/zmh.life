@@ -8,7 +8,7 @@ module.exports = {
       if (t === "work")        return "layouts/project.njk";
       if (t === "note")        return "layouts/project.njk";
       if (t === "observation") return "layouts/observation.njk";
-      if (t === "reading")     return "layouts/project.njk";
+      if (t === "reading")     return "layouts/reading.njk";
       if (t === "collection")  return "layouts/project.njk";
       return "layouts/base.njk";
     },

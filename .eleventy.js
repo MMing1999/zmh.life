@@ -99,6 +99,12 @@ module.exports = function(eleventyConfig) {
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   });
 
+  eleventyConfig.addCollection("reading", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("src/entries/zhi-reading/*.md")
+      .filter(item => !item.data.isDraft)
+      .sort((a, b) => new Date(b.date) - new Date(a.date));
+  });
+
   // 复制静态资源
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("public");

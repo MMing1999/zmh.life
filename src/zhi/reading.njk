@@ -7,66 +7,81 @@ pageName: "reading"
 pageCSS: "/assets/Css/zhi.css"
 ---
 
-<!-- Hero Section -->
-<section class="hero">
-  <div class="hero-content">
-    <h1>Reading · 阅读</h1>
-    <p class="hero-subtitle">读书卡片与短评</p>
-    <p class="hero-description">
-      记录阅读过程中的思考和收获，分享有价值的书籍和文章，建立个人的阅读体系。
-      通过阅读来拓展视野，提升认知，为创作和思考提供养分。
-    </p>
-  </div>
-</section>
-
 <!-- Main Content -->
-<section class="main-sections">
+<section class="reading-main">
   
-  <!-- Book List Section -->
-  <div class="book-section">
-    <div class="section-header">
-      <h2>读书笔记</h2>
-      <p>最近阅读的书籍和思考</p>
+  <!-- Container1: 搜索和分类标签 (固定) -->
+  <div class="reading-container1">
+    <div class="reading-search-section">
+      <div class="search-box">
+        <input type="text" id="readingSearch" placeholder="搜索书籍、作者或标签..." />
+        <button class="search-btn">🔍</button>
+      </div>
     </div>
     
-    <div class="section-content">
-      <!-- 书籍列表 -->
-      <div class="book-grid">
+    <div class="reading-filters">
+      <div class="filter-group">
+        <h4>分类</h4>
+        <div class="filter-tags">
+          <button class="filter-tag active" data-filter="all">全部</button>
+          <button class="filter-tag" data-filter="设计">设计</button>
+          <button class="filter-tag" data-filter="技术">技术</button>
+          <button class="filter-tag" data-filter="商业">商业</button>
+          <button class="filter-tag" data-filter="心理学">心理学</button>
+        </div>
+      </div>
+      
+      <div class="filter-group">
+        <h4>评分</h4>
+        <div class="filter-tags">
+          <button class="filter-tag" data-rating="5">★★★★★</button>
+          <button class="filter-tag" data-rating="4">★★★★☆</button>
+          <button class="filter-tag" data-rating="3">★★★☆☆</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Container2: 书籍卡片横向滚动 -->
+  <div class="reading-container2">
+    <button class="scroll-btn scroll-left" id="scrollLeft">←</button>
+    
+    <div class="books-scroll-container" id="booksScroll">
+      <div class="books-scroll-track">
         {% for book in collections.reading %}
-        <div class="book-card">
+        <div class="book-card" 
+             data-category="{{ book.data.category or '未分类' }}"
+             data-rating="{{ book.data.rating or 0 }}"
+             data-title="{{ book.data.title | lower }}"
+             data-author="{{ book.data.author | lower }}"
+             data-tags="{{ book.data.tags | join(' ') | lower }}">
+          
           <div class="book-cover">
             {% if book.data.cover %}
               <img src="{{ book.data.cover }}" alt="{{ book.data.title }}">
             {% else %}
-              <span>{{ book.data.title | slice(0, 2) }}</span>
+              <div class="book-placeholder">
+                <span>{{ book.data.title | slice(0, 2) }}</span>
+              </div>
             {% endif %}
           </div>
           
-          <h3 class="book-title">
-            <a href="{{ book.url }}">{{ book.data.title }}</a>
-          </h3>
-          
-          <p class="book-author">{{ book.data.author or "未知作者" }}</p>
-          
-          {% if book.data.rating %}
-          <div class="book-rating">
-            {% for i in range(1, 6) %}
-              <span class="star">{{ "★" if i <= book.data.rating else "☆" }}</span>
-            {% endfor %}
+          <div class="book-info">
+            <div class="book-divider-vertical"></div>
+            <div class="book-content">
+              <h3 class="book-title">
+                <a href="{{ book.url }}">{{ book.data.title }}</a>
+              </h3>
+              
+              <p class="book-author">{{ book.data.author or "未知作者" }}</p>
+              
+              <div class="book-summary">
+                {{ book.data.description or "暂无简介" }}
+              </div>
+              
+              <div class="book-divider"></div>
+            </div>
           </div>
-          {% endif %}
-          
-          {% if book.data.review %}
-          <p class="book-review">{{ book.data.review | truncate(100) }}</p>
-          {% endif %}
-          
-          {% if book.data.tags %}
-          <div class="book-tags">
-            {% for tag in book.data.tags %}
-            <span class="tag">{{ tag }}</span>
-            {% endfor %}
-          </div>
-          {% endif %}
         </div>
         {% endfor %}
         
@@ -79,50 +94,128 @@ pageCSS: "/assets/Css/zhi.css"
         {% endif %}
       </div>
     </div>
-  </div>
-
-  <!-- Reading Categories Section -->
-  <div class="categories-section">
-    <div class="section-header">
-      <h2>阅读分类</h2>
-      <p>按类型分类的阅读内容</p>
-    </div>
     
-    <div class="section-content">
-      <div class="section-preview">
-        <div class="preview-item">
-          <h4>设计类书籍</h4>
-          <p>设计心理学、简约至上、用户体验要素</p>
-        </div>
-        <div class="preview-item">
-          <h4>技术类书籍</h4>
-          <p>JavaScript高级程序设计、CSS权威指南</p>
-        </div>
-        <div class="preview-item">
-          <h4>商业类书籍</h4>
-          <p>精益创业、产品思维、商业洞察</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- Reading Tips Section -->
-  <div class="tips-section">
-    <div class="section-header">
-      <h2>阅读心得</h2>
-      <p>关于阅读的一些思考和经验</p>
-    </div>
-    
-    <div class="section-content">
-      <p>阅读是获取知识和启发思考的重要方式。有效的阅读需要：</p>
-      <ul>
-        <li><strong>主动思考</strong>：带着问题去阅读，边读边思考</li>
-        <li><strong>记录笔记</strong>：及时记录重要的观点和想法</li>
-        <li><strong>实践应用</strong>：将学到的知识应用到实际工作中</li>
-        <li><strong>分享交流</strong>：与他人讨论和分享阅读心得</li>
-      </ul>
-      <p>好的书籍不仅能传授知识，更能启发思考，改变认知。每一本好书都是与作者的一次深度对话。</p>
-    </div>
+    <button class="scroll-btn scroll-right" id="scrollRight">→</button>
   </div>
 
 </section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // 获取DOM元素
+  const searchInput = document.getElementById('readingSearch');
+  const filterTags = document.querySelectorAll('.filter-tag');
+  const bookCards = document.querySelectorAll('.book-card');
+  const booksScroll = document.getElementById('booksScroll');
+  const scrollLeftBtn = document.getElementById('scrollLeft');
+  const scrollRightBtn = document.getElementById('scrollRight');
+  
+  let currentFilter = 'all';
+  let currentRating = null;
+  let searchKeyword = '';
+  
+  // 搜索功能
+  searchInput.addEventListener('input', function() {
+    searchKeyword = this.value.toLowerCase();
+    filterBooks();
+  });
+  
+  // 分类筛选
+  filterTags.forEach(tag => {
+    tag.addEventListener('click', function() {
+      // 移除所有active类
+      filterTags.forEach(t => t.classList.remove('active'));
+      // 添加active类到当前点击的标签
+      this.classList.add('active');
+      
+      if (this.dataset.filter) {
+        currentFilter = this.dataset.filter;
+        currentRating = null;
+      } else if (this.dataset.rating) {
+        currentRating = parseInt(this.dataset.rating);
+        currentFilter = 'all';
+      }
+      
+      filterBooks();
+    });
+  });
+  
+  // 筛选书籍函数
+  function filterBooks() {
+    bookCards.forEach(card => {
+      const category = card.dataset.category;
+      const rating = parseInt(card.dataset.rating);
+      const title = card.dataset.title;
+      const author = card.dataset.author;
+      const tags = card.dataset.tags;
+      
+      let showCard = true;
+      
+      // 分类筛选
+      if (currentFilter !== 'all' && category !== currentFilter) {
+        showCard = false;
+      }
+      
+      // 评分筛选
+      if (currentRating && rating < currentRating) {
+        showCard = false;
+      }
+      
+      // 搜索筛选
+      if (searchKeyword) {
+        const matchesSearch = title.includes(searchKeyword) || 
+                            author.includes(searchKeyword) || 
+                            tags.includes(searchKeyword);
+        if (!matchesSearch) {
+          showCard = false;
+        }
+      }
+      
+      // 显示/隐藏卡片
+      card.style.display = showCard ? 'block' : 'none';
+    });
+    
+    // 更新滚动按钮状态
+    updateScrollButtons();
+  }
+  
+  // 横向滚动功能
+  let scrollPosition = 0;
+  const scrollStep = 300; // 每次滚动的距离
+  
+  scrollLeftBtn.addEventListener('click', function() {
+    scrollPosition = Math.max(0, scrollPosition - scrollStep);
+    booksScroll.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+    updateScrollButtons();
+  });
+  
+  scrollRightBtn.addEventListener('click', function() {
+    const maxScroll = booksScroll.scrollWidth - booksScroll.clientWidth;
+    scrollPosition = Math.min(maxScroll, scrollPosition + scrollStep);
+    booksScroll.scrollTo({
+      left: scrollPosition,
+      behavior: 'smooth'
+    });
+    updateScrollButtons();
+  });
+  
+  // 更新滚动按钮状态
+  function updateScrollButtons() {
+    const maxScroll = booksScroll.scrollWidth - booksScroll.clientWidth;
+    scrollLeftBtn.style.opacity = scrollPosition > 0 ? '1' : '0.5';
+    scrollRightBtn.style.opacity = scrollPosition < maxScroll ? '1' : '0.5';
+  }
+  
+  // 监听滚动事件
+  booksScroll.addEventListener('scroll', function() {
+    scrollPosition = this.scrollLeft;
+    updateScrollButtons();
+  });
+  
+  // 初始化
+  updateScrollButtons();
+});
+</script>
