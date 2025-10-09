@@ -501,14 +501,21 @@
 /* 响应式设计 */
 @media (max-width: 768px) {
   .writing-container {
-    grid-template-columns: 1fr; /* 移动端单列布局 */
-    gap: 2rem;
+    display: flex;
+    flex-direction: column; /* 移动端垂直布局 */
+    gap: 1rem;
     padding: 1rem; /* 移动端减少内边距 */
   }
 
+  .articles-container {
+    order: 2; /* 文章容器排在第二位 */
+  }
+
   .navigation-container {
+    order: 1; /* 导航容器排在第一位 */
     position: static; /* 移动端取消sticky */
-    margin-top: 2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
   }
 
   /* Screen1 移动端样式 */
