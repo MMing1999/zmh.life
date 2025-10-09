@@ -21,65 +21,60 @@
   flex-direction: column;
 }
 
-/* 文章项样式 - 无卡片效果，使用分隔线 */
+/* 文章项样式 */
 .article-item {
   padding: 0;
 }
 
-
-/* 卡片总容器 */
-.article-card-container {
-  display: flex;
-  flex-direction: column;
+/* ===== SCREEN1: 卡片视图样式 ===== */
+.screen1-view {
+  display: block;
   padding: 1.5rem 0;
 }
 
-/* 时间显示在图片上面 */
-.article-time-overlay {
+/* 顶部：日期和分类标签 */
+.article-header {
   display: flex;
   align-items: center;
   margin-bottom: 1rem;
 }
 
-/* 时间容器 */
-.article-time {
+.article-date {
   display: flex;
   align-items: center;
   font-size: 0.875rem;
   color: #4a5568;
-  width: 100%;
+  font-weight: 500;
+  flex: 1;
 }
 
-/* 时间右侧容器 */
-.article-time-right {
-  display: flex;
-  align-items: center;
-  font-size: 0.875rem;
-}
-
-.time-month {
+.date-day {
   font-weight: 500;
 }
 
-.time-separator-short {
+.date-separator {
   width: 12px;
   height: 1px;
   background-color: #d1d5db;
   margin: 0 0.5rem;
 }
 
-.time-day {
-  font-weight: 500;
-}
-
-.time-separator-medium {
+.date-separator-long {
   width: 76px;
   height: 1px;
   background-color: #d1d5db;
   margin: 0 0.5rem;
 }
 
-.time-separator-long {
+.date-month {
+  font-weight: 500;
+}
+
+.date-year {
+  color: #6b7280;
+}
+
+.date-meta-separator {
   flex: 1;
   height: 1px;
   background-color: #d1d5db;
@@ -87,91 +82,59 @@
   min-width: 20px;
 }
 
-.time-year {
-  color: #6b7280;
-}
-
-/* 右侧元数据容器 */
-.article-meta-right {
+.article-meta {
   display: flex;
   align-items: center;
   font-size: 0.875rem;
-  flex-wrap: nowrap;
-  white-space: nowrap;
-}
-
-/* 元数据左侧分隔符 */
-.article-meta-left-separator {
-  width: 20px;
-  height: 1px;
-  background-color: #d1d5db;
-  margin-right: 0.5rem;
-  display: none; /* 默认隐藏，在小屏幕时显示 */
-}
-
-.article-tags-divider {
-  margin: 0 0.5rem;
   color: #6b7280;
 }
 
-.article-tags-inline {
-  display: flex;
-  gap: 0.25rem;
-  flex-wrap: nowrap;
-  align-items: center;
-  white-space: nowrap;
-}
-
-/* 专栏分隔符 */
-.article-column-divider {
-  margin: 0 0.5rem;
-  color: #6b7280;
-}
-
-/* 专栏标签 */
-.article-column-tag {
+.article-column {
   color: #6b7280;
   font-size: 0.8rem;
   font-weight: 400;
 }
 
-/* 图片和标题+简介左右布局 */
-.article-main-layout {
+.meta-divider {
+  margin: 0 0.5rem;
+  color: #6b7280;
+}
+
+.article-category {
+  color: #6b7280;
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.article-tag {
+  color: #6b7280;
+}
+
+/* 主体：图片和文字内容 */
+.article-content {
   display: flex;
   gap: 1.5rem;
   align-items: flex-start;
-  margin-bottom: 1rem;
 }
 
-/* 封面容器（左边） */
-.article-cover-container {
+.article-image-container {
   flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.article-cover-image {
-  height: 8rem; /* 固定高度为6rem */
-  width: 11rem; /* 4:3 比例：6rem × 4/3 = 8rem */
-  overflow: hidden; /* 确保图片不会超出容器 */
+.article-image {
+  height: 8rem;
+  width: 11rem;
   border-radius: 6px;
-  position: relative;
-  background-color: #f5f5f5; /* 添加背景色以便调试 */
+  object-fit: cover;
+  object-position: center;
+  background-color: #f5f5f5;
 }
 
-.article-cover-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* crop显示方式：保持比例裁剪 */
-  object-position: center; /* 居中裁剪 */
-  display: block; /* 移除默认的inline间距 */
-  margin: 0;
-  padding: 0;
-}
-
-/* 文字容器（右边） */
-.article-text-container {
+.article-text {
   flex: 1;
   min-width: 0;
 }
@@ -194,35 +157,39 @@
   color: #667eea;
 }
 
-.article-summary {
+.article-description {
   margin: 0;
   font-size: 1rem;
   color: #4b5563;
   line-height: 1.6;
 }
 
-/* 最下面一行：分类与标签 */
-.article-footer-layout {
+/* ===== SCREEN2: 列表视图样式 ===== */
+.screen2-view {
+  display: none;
+  padding: 0.5rem 0;
+}
+
+.hidden-meta-info {
+  display: none;
+}
+
+.article-list-row {
   display: flex;
   align-items: center;
-  font-size: 0.85rem;
+  width: 100%;
 }
 
-.article-categories {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+.article-title-simple {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  font-family: 'Fusion Pixel', monospace;
+  flex-shrink: 0;
 }
 
-.article-category {
-  color: #6b7280;
-  padding: 0.2rem 0;
-  border-radius: 0;
-  background-color: transparent;
-}
-
-/* 分隔线 */
-.article-footer-separator {
+.title-date-separator {
   flex: 1;
   height: 1px;
   background-color: #d1d5db;
@@ -230,25 +197,53 @@
   min-width: 20px;
 }
 
-.article-tags {
+.article-title-simple a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-title-simple a:hover {
+  color: #667eea;
+}
+
+.article-date-simple {
   display: flex;
-  gap: 0.25rem;
-  flex-wrap: wrap;
   align-items: center;
+  font-size: 0.875rem;
+  color: #4a5568;
+  font-family: 'Fusion Pixel', monospace;
+  flex-shrink: 0;
 }
 
-.article-tag {
-  color: #6b7280;
-  padding: 0.2rem 0;
-  border-radius: 0;
-  background-color: transparent;
-  white-space: nowrap;
+.date-separator-short {
+  width: 12px;
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.5rem;
 }
 
-.article-tag:not(:last-child)::after {
-  content: " ";
-  color: #6b7280;
+.date-separator-medium {
+  width: 76px;
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.5rem;
 }
+
+/* 视图切换控制 */
+.articles-list.list-view .screen1-view {
+  display: none;
+}
+
+.articles-list.list-view .screen2-view {
+  display: block;
+}
+
+/* 调整list-view模式下的顶部间距，使文章标题与右侧"看板/列表"文本对齐 */
+.articles-list.list-view {
+  padding-top: 1rem;
+}
+
 
 /* 右侧：导航容器 */
 .navigation-container {
@@ -256,8 +251,11 @@
   border-radius: 8px;
   padding: 1.5rem;
   position: sticky;
-  top: 2rem;
+  top: 10%;
   align-self: start;
+  height: fit-content;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
 }
 
 .navigation-container h3 {
@@ -278,7 +276,6 @@
 .view-toggle-item {
   color: #6b7280;
   text-decoration: none;
-  padding: 0.2rem 0;
   transition: all 0.2s ease;
   position: relative;
   font-size: 0.9rem;
@@ -298,113 +295,6 @@
   font-size: 0.9rem;
 }
 
-/* 列表视图样式 */
-.article-list.list-view {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-.article-list.list-view .article-item {
-  display: flex;
-  align-items: center;
-  padding: 0.5rem 0;
-  border: none;
-  box-shadow: none;
-  background: transparent;
-}
-
-.article-list.list-view .article-item:hover {
-  background-color: #f9fafb;
-}
-
-.article-list.list-view .article-main-layout {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 0.5rem;
-}
-
-.article-list.list-view .article-title {
-  font-size: 0.9rem;
-  margin: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 200px;
-}
-
-.article-list.list-view .article-title a {
-  color: #374151;
-  text-decoration: none;
-}
-
-.article-list.list-view .article-title a:hover {
-  color: #1f2937;
-}
-
-.article-list.list-view .article-flex-separator {
-  flex: 1;
-  height: 1px;
-  background-color: #d1d5db;
-  margin: 0 0.5rem;
-  min-width: 20px;
-}
-
-.article-list.list-view .article-time-overlay {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  margin: 0;
-  padding: 0;
-}
-
-.article-list.list-view .article-time {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-}
-
-.article-list.list-view .time-month,
-.article-list.list-view .time-day,
-.article-list.list-view .time-year {
-  font-size: 0.8rem;
-  color: #6b7280;
-}
-
-.article-list.list-view .time-separator-short {
-  width: 8px;
-  height: 1px;
-  background-color: #d1d5db;
-}
-
-.article-list.list-view .time-separator-medium {
-  width: 20px;
-  height: 1px;
-  background-color: #d1d5db;
-}
-
-/* 列表视图专用布局 */
-.article-list.list-view .article-list-layout {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 0.5rem;
-}
-
-/* 隐藏列表视图中不需要的元素 */
-.article-list.list-view .article-main-layout,
-.article-list.list-view .article-cover-container,
-.article-list.list-view .article-summary,
-.article-list.list-view .article-meta-right,
-.article-list.list-view .article-footer-layout {
-  display: none;
-}
-
-/* 看板视图隐藏列表布局 */
-.article-list:not(.list-view) .article-list-layout {
-  display: none;
-}
 
 .search-box {
   margin-bottom: 1.5rem;
@@ -621,58 +511,40 @@
     margin-top: 2rem;
   }
 
-  .article-main-layout {
+  /* Screen1 移动端样式 */
+  .article-content {
     flex-direction: column;
     gap: 1rem;
   }
 
-  .article-cover-container {
+  .article-image-container {
     align-self: stretch;
-    margin: 0;
   }
 
-  .article-cover-image {
+  .article-image {
     width: 100%;
     height: calc((100vw - 2rem) * 3 / 4); /* 移动端保持4:3比例，考虑padding */
-    max-height: 12rem; /* 增加最大高度 */
-    min-height: 6rem; /* 增加最小高度 */
+    max-height: 12rem;
+    min-height: 6rem;
   }
 
-  .article-time-overlay {
+  .article-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
 
-  .article-time {
-    flex-direction: row;
-    align-items: center;
+  .article-date {
     width: 100%;
   }
 
-  .time-separator-medium {
-    width: 20px;
+  .date-meta-separator {
+    display: none; /* 移动端隐藏长横线 */
   }
 
-  .time-separator-long {
-    flex: 1;
-  }
-
-  .article-meta-right {
+  .article-meta {
     width: 100%;
-    justify-content: flex-end;
-  }
-
-  .article-meta-left-separator {
-    display: block;
-    flex: 1;
-    margin-right: 0.5rem;
-  }
-
-  .article-footer-layout {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+    justify-content: flex-start;
   }
 }
 
@@ -681,15 +553,15 @@
     padding: 0.5rem; /* 小屏幕进一步减少内边距 */
   }
   
-  .article-item {
-    padding: 1.5rem 0;
+  .screen1-view {
+    padding: 1rem 0;
   }
 
   .article-title {
     font-size: 1.2rem;
   }
   
-  .article-summary {
+  .article-description {
     font-size: 0.9rem;
   }
 
@@ -698,3 +570,4 @@
     gap: 0.5rem;
   }
 }
+

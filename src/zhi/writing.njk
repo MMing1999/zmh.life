@@ -24,37 +24,36 @@ pageCSS: "/assets/Css/writing.css"
     <div class="articles-list">
       {% for article in collections.writing %}
       <article class="article-item">
-        <!-- 卡片总容器 -->
-        <div class="article-card-container">
-          <!-- 时间显示在图片上面 -->
-          <div class="article-time-overlay">
-            <div class="article-time">
+        <!-- Screen1: 卡片视图 - 参考图1 -->
+        <div class="article-card-container screen1-view">
+          <!-- 顶部：日期和分类标签 -->
+          <div class="article-header">
+            <div class="article-date">
               {% set dateObj = article.date | formatDate %}
-              <span class="time-month">{{ dateObj.month }}</span>
-              <div class="time-separator-short"></div>
-              <span class="time-day">{{ dateObj.day }}</span>
-              <div class="time-separator-medium"></div>
-              <span class="time-year">{{ dateObj.year }}</span>
-              <div class="time-separator-long"></div>
+              <span class="date-day">{{ dateObj.day }}</span>
+              <div class="date-separator"></div>
+              <span class="date-month">{{ dateObj.month }}</span>
+              <div class="date-separator-long"></div>
+              <span class="date-year">{{ dateObj.year }}</span>
+              <div class="date-meta-separator"></div>
             </div>
-            <div class="article-meta-right">
-              <div class="article-meta-left-separator"></div>
+            <div class="article-meta">
               {% if article.data.column %}
-              <div class="article-column-tag">{{ article.data.column }}</div>
+              <span class="article-column">{{ article.data.column }}</span>
               {% endif %}
               {% if article.data.category %}
-              <div class="article-column-divider">/</div>
+              <span class="meta-divider">/</span>
               <span class="article-category">{{ article.data.category }}</span>
               {% endif %}
               {% if article.data.categories %}
                 {% for cat in article.data.categories %}
-                <div class="article-column-divider">/</div>
+                <span class="meta-divider">/</span>
                 <span class="article-category">{{ cat }}</span>
                 {% endfor %}
               {% endif %}
               {% if article.data.tags %}
-              <div class="article-tags-divider">/</div>
-              <div class="article-tags-inline">
+              <span class="meta-divider">/</span>
+              <div class="article-tags">
                 {% for tag in article.data.tags %}
                 <span class="article-tag">#{{ tag }}</span>
                 {% endfor %}
@@ -63,42 +62,61 @@ pageCSS: "/assets/Css/writing.css"
             </div>
           </div>
           
-          <!-- 图片和标题+简介左右布局 -->
-          <div class="article-main-layout">
-            <!-- 封面容器（左边） -->
+          <!-- 主体：图片和文字内容 -->
+          <div class="article-content">
+            <!-- 图片容器（左边） -->
             {% if article.data.coverImage %}
-            <div class="article-cover-container">
-              <div class="article-cover-image">
-                <img src="{{ article.data.coverImage }}" alt="{{ article.data.title }}">
-              </div>
+            <div class="article-image-container">
+              <img src="{{ article.data.coverImage }}" alt="{{ article.data.title }}" class="article-image">
             </div>
             {% endif %}
             
             <!-- 文字容器（右边） -->
-            <div class="article-text-container">
+            <div class="article-text">
               <h3 class="article-title">
                 <a href="{{ article.url }}">{{ article.data.title }}</a>
               </h3>
               {% if article.data.summary %}
-              <p class="article-summary">{{ article.data.summary }}</p>
+              <p class="article-description">{{ article.data.summary }}</p>
               {% endif %}
             </div>
           </div>
+        </div>
+        
+        <!-- Screen2: 列表视图 - 参考图2 -->
+        <div class="article-list-container screen2-view">
+          <!-- 隐藏的分类、专栏、标签信息，用于过滤功能 -->
+          <div class="hidden-meta-info">
+            {% if article.data.column %}
+            <span class="article-column">{{ article.data.column }}</span>
+            {% endif %}
+            {% if article.data.category %}
+            <span class="article-category">{{ article.data.category }}</span>
+            {% endif %}
+            {% if article.data.categories %}
+              {% for cat in article.data.categories %}
+              <span class="article-category">{{ cat }}</span>
+              {% endfor %}
+            {% endif %}
+            {% if article.data.tags %}
+              {% for tag in article.data.tags %}
+              <span class="article-tag">#{{ tag }}</span>
+              {% endfor %}
+            {% endif %}
+          </div>
           
-          <!-- 列表视图专用布局 -->
-          <div class="article-list-layout">
-            <h3 class="article-title">
+          <div class="article-list-row">
+            <h3 class="article-title-simple">
               <a href="{{ article.url }}">{{ article.data.title }}</a>
             </h3>
-            <div class="article-flex-separator"></div>
-            <div class="article-time-overlay">
-              <div class="article-time">
-                <span class="time-month">{{ dateObj.month }}</span>
-                <div class="time-separator-short"></div>
-                <span class="time-day">{{ dateObj.day }}</span>
-                <div class="time-separator-medium"></div>
-                <span class="time-year">{{ dateObj.year }}</span>
-              </div>
+            <div class="title-date-separator"></div>
+            <div class="article-date-simple">
+              {% set dateObj = article.date | formatDate %}
+              <span class="date-day">{{ dateObj.day }}</span>
+              <div class="date-separator-short"></div>
+              <span class="date-month">{{ dateObj.month }}</span>
+              <div class="date-separator-medium"></div>
+              <span class="date-year">{{ dateObj.year }}</span>
             </div>
           </div>
         </div>
@@ -145,6 +163,16 @@ pageCSS: "/assets/Css/writing.css"
     
     <div class="nav-divider"></div>
     
+    <!-- Columns -->
+    <div class="nav-section">
+      <div class="column-list">
+        <a href="#" class="column-item" data-column="ai-thinking">AI思考专栏</a>
+        <a href="#" class="column-item" data-column="design-thinking">设计思考专栏</a>
+        <a href="#" class="column-item" data-column="fullstack-dev">全栈开发专栏</a>
+      </div>
+      <div class="divider"></div>
+    </div>
+    
     <!-- Categories -->
     <div class="nav-section">
       <div class="category-list">
@@ -158,16 +186,6 @@ pageCSS: "/assets/Css/writing.css"
           <span class="category-divider">/</span>
           <a href="#" class="category-item" data-category="notes">笔记</a>
         </div>
-      </div>
-      <div class="divider"></div>
-    </div>
-    
-    <!-- Columns -->
-    <div class="nav-section">
-      <div class="column-list">
-        <a href="#" class="column-item" data-column="ai-thinking">AI思考专栏</a>
-        <a href="#" class="column-item" data-column="design-thinking">设计思考专栏</a>
-        <a href="#" class="column-item" data-column="fullstack-dev">全栈开发专栏</a>
       </div>
       <div class="divider"></div>
     </div>
@@ -232,10 +250,11 @@ document.addEventListener('DOMContentLoaded', function() {
   // 切换视图
   function switchView(view) {
     currentView = view;
+    const articlesList = document.querySelector('.articles-list');
     if (view === 'list') {
-      articleListContainer.classList.add('list-view');
+      articlesList.classList.add('list-view');
     } else {
-      articleListContainer.classList.remove('list-view');
+      articlesList.classList.remove('list-view');
     }
   }
   
@@ -245,12 +264,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let categoryMatch = true;
       if (selectedCategory !== null) {
         categoryMatch = false;
-        const articleCategory = article.querySelector('.article-category');
         const articleCategories = article.querySelectorAll('.article-category');
-        
-        if (articleCategory) {
-          categoryMatch = articleCategory.textContent === categoryMap[selectedCategory];
-        }
         
         articleCategories.forEach(cat => {
           if (cat.textContent === categoryMap[selectedCategory]) {
@@ -263,7 +277,7 @@ document.addEventListener('DOMContentLoaded', function() {
       let columnMatch = true;
       if (selectedColumn !== null) {
         columnMatch = false;
-        const articleColumn = article.querySelector('.article-column-tag');
+        const articleColumn = article.querySelector('.article-column');
         
         if (articleColumn) {
           columnMatch = articleColumn.textContent === columnMap[selectedColumn];
