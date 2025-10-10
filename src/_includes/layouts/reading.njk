@@ -16,64 +16,46 @@ layout: layouts/base.njk
 
 <article class="reading" itemscope itemtype="https://schema.org/Book">
 
-  {# 1) 书籍封面 #}
-  {% if cover %}
-    <figure class="reading-hero">
-      <img src="{{ cover | url }}" alt="{{ title }}" itemprop="image">
-    </figure>
-  {% endif %}
-
-  {# 2) 书籍信息 #}
-  <header class="reading-header">
-    {% if title %}
-      <h1 class="reading-title" itemprop="name">{{ title }}</h1>
-    {% endif %}
-
-    {% if author %}
-      <p class="reading-author" itemprop="author">{{ author }}</p>
-    {% endif %}
-
-    {% if rating %}
-      <div class="reading-rating">
-        {% for i in range(1, 6) %}
-          <span class="star">{{ "★" if i <= rating else "☆" }}</span>
-        {% endfor %}
-        <span class="rating-text">{{ rating }}/5</span>
+  {# 书籍信息区域 - 左右分栏布局 #}
+  <div class="reading-info-container">
+    {# 左侧：书籍封面 #}
+    {% if cover %}
+      <div class="reading-cover-section">
+        <figure class="reading-hero">
+          <img src="{{ cover | url }}" alt="{{ title }}" itemprop="image">
+        </figure>
       </div>
     {% endif %}
 
-    {# 3) 元信息：发布日期 / 分类 / 标签 #}
-    <div class="reading-meta">
-      {% if page.date %}
-        <div class="reading-line">
-          <span class="label">阅读日期：</span>
-          <time class="value" itemprop="datePublished">{{ page.date | fmtDate }}</time>
-        </div>
+    {# 右侧：书籍信息 #}
+    <div class="reading-info-section">
+      {# 书名 #}
+      {% if title %}
+        <h1 class="reading-title" itemprop="name">{{ title }}</h1>
       {% endif %}
 
+      {# 分类 #}
       {% if category %}
-        <div class="reading-line">
-          <span class="label">分类:</span>
-          <span class="value">
-            <span class="chip">{{ category }}</span>
-          </span>
+        <div class="reading-category">
+          <span class="chip">{{ category }}</span>
         </div>
       {% endif %}
 
-      {% if tags and tags.length %}
-        <div class="reading-line">
-          <span class="label">标签:</span>
-          <span class="value tag-list" itemprop="keywords">
-            {% for t in tags %}
-              <span class="tag">#{{ t }}</span>
-            {% endfor %}
-          </span>
+      {# 作者 #}
+      {% if author %}
+        <p class="reading-author" itemprop="author">{{ author }}</p>
+      {% endif %}
+
+      {# 简介 #}
+      {% if description %}
+        <div class="reading-description">
+          <p>{{ description }}</p>
         </div>
       {% endif %}
     </div>
+  </div>
 
-    <div class="reading-divider"></div>
-  </header>
+  <div class="reading-divider"></div>
 
   {# 4) 读书笔记内容 #}
   <section class="reading-body" itemprop="description">
@@ -85,3 +67,62 @@ layout: layouts/base.njk
     <a class="link-back" href="{{ '/zhi/reading/' | url }}">← 返回「知 · Reading」</a>
   </div>
 </article>
+
+<script>
+// 为标题添加ID属性并处理锚点跳转
+document.addEventListener('DOMContentLoaded', function() {
+  // 为所有h1标题添加ID
+  const h1Elements = document.querySelectorAll('.reading-body h1');
+  h1Elements.forEach(h1 => {
+    const title = h1.textContent.trim();
+    const slug = title.toLowerCase()
+      .replace(/[^\u4e00-\u9fa5\w\s-]/g, '') // 保留中文、英文、数字、空格、连字符
+      .replace(/\s+/g, '-') // 空格替换为连字符
+      .replace(/-+/g, '-') // 多个连字符合并为一个
+      .replace(/^-|-$/g, '') // 移除首尾连字符
+      .trim();
+    h1.id = slug;
+    console.log('为标题添加ID:', title, '->', slug);
+  });
+  
+  // 处理URL中的锚点
+  const hash = window.location.hash;
+  console.log('检测到锚点:', hash);
+  
+  if (hash) {
+    // 等待页面完全加载后滚动到目标位置
+    setTimeout(() => {
+      // 解码URL编码的锚点
+      const decodedHash = decodeURIComponent(hash);
+      console.log('解码后的锚点:', decodedHash);
+      
+      const targetElement = document.querySelector(decodedHash);
+      console.log('找到目标元素:', targetElement);
+      
+      if (targetElement) {
+        // 计算目标位置（navbar下方更多间距）
+        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+        const offset = navbarHeight; // navbar高度 + 额外400px间距，确保标题完全显示在navbar下方
+        
+        console.log('navbar高度:', navbarHeight);
+        console.log('计算偏移量:', offset);
+        console.log('目标元素位置:', targetElement.offsetTop);
+        
+        const targetPosition = targetElement.offsetTop - offset;
+        console.log('最终滚动位置:', targetPosition);
+        
+        window.scrollTo({
+          top: Math.max(0, targetPosition),
+          behavior: 'smooth'
+        });
+        
+        console.log('执行滚动完成');
+      } else {
+        console.log('未找到目标元素');
+      }
+    }, 100);
+  } else {
+    console.log('没有检测到锚点');
+  }
+});
+</script>

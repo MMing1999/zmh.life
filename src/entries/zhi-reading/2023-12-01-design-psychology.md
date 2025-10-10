@@ -6,6 +6,7 @@ category: "设计"
 tags: ["设计", "心理学", "用户体验", "交互设计"]
 rating: 5
 cover: "/assets/Pics/zhi-reading/抽象构成-010-cover.jpg"
+description: "这是一本关于设计心理学的经典著作，作者唐纳德·A·诺曼深入探讨了设计与人类心理的关系。"
 type: "reading"
 section: "zhi"
 ---

@@ -6,6 +6,7 @@ category: "设计"
 tags: ["用户体验", "设计", "产品设计", "交互设计"]
 rating: 4
 cover: "/assets/Pics/zhi-reading/色彩律动-005-cover.jpg"
+description: "这是一本关于用户体验设计的经典著作，作者Jesse James Garrett系统地介绍了用户体验设计的五个层面。"
 type: "reading"
 section: "zhi"
 ---
@@ -45,3 +46,4 @@ section: "zhi"
 这本书是用户体验设计师的必读之作。它不仅提供了理论框架，更重要的是教会了我们如何系统性地思考用户体验问题。
 
 通过阅读这本书，我学会了从战略到表现的全方位用户体验设计方法，这让我在产品设计中更加注重用户体验的整体性。
+

@@ -21,7 +21,7 @@
   
   
      
-      <link rel="stylesheet" href="/assets/Css/zhi.css">
+      <link rel="stylesheet" href="/assets/Css/reading.css">
     
   
 
@@ -55,36 +55,26 @@
 <!-- Main Content -->
 <section class="reading-main">
   
-  <!-- Container1: 搜索和分类标签 (固定) -->
+  <!-- Container1: 搜索、分类 (极简风格) -->
   <div class="reading-container1">
-    <div class="reading-search-section">
-      <div class="search-box">
+    <div class="reading-controls">
+      <!-- 搜索部分 -->
+      <div class="control-section search-section">
         <input type="text" id="readingSearch" placeholder="搜索书籍、作者或标签..." />
-        <button class="search-btn">🔍</button>
+      </div>
+      
+      <!-- 分类部分 -->
+      <div class="control-section category-section">
+        <button class="control-btn active" data-filter="all">全部</button>
+        <button class="control-btn" data-filter="设计">设计</button>
+        <button class="control-btn" data-filter="技术">技术</button>
+        <button class="control-btn" data-filter="商业">商业</button>
+        <button class="control-btn" data-filter="心理学">心理学</button>
       </div>
     </div>
     
-    <div class="reading-filters">
-      <div class="filter-group">
-        <h4>分类</h4>
-        <div class="filter-tags">
-          <button class="filter-tag active" data-filter="all">全部</button>
-          <button class="filter-tag" data-filter="设计">设计</button>
-          <button class="filter-tag" data-filter="技术">技术</button>
-          <button class="filter-tag" data-filter="商业">商业</button>
-          <button class="filter-tag" data-filter="心理学">心理学</button>
-        </div>
-      </div>
-      
-      <div class="filter-group">
-        <h4>评分</h4>
-        <div class="filter-tags">
-          <button class="filter-tag" data-rating="5">★★★★★</button>
-          <button class="filter-tag" data-rating="4">★★★★☆</button>
-          <button class="filter-tag" data-rating="3">★★★☆☆</button>
-        </div>
-      </div>
-    </div>
+    <!-- 分隔线 -->
+    <div class="reading-divider"></div>
   </div>
 
   <!-- Container2: 书籍卡片横向滚动 -->
@@ -101,26 +91,55 @@
              data-author="daniel kahneman"
              data-tags="心理学 认知科学 行为经济学 决策">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/掌中世界-007-cover.jpg" alt="思考，快与慢">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/thinking-fast-and-slow/">思考，快与慢</a>
-              </h3>
-              
-              <p class="book-author">Daniel Kahneman</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/掌中世界-007-cover.jpg" alt="思考，快与慢">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/thinking-fast-and-slow/">思考，快与慢</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">Daniel Kahneman</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  这是一本关于人类思维和决策的经典著作，作者Daniel Kahneman深入探讨了人类认知的两个系统。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;第一个标题&lt;/h1&gt;|&lt;p&gt;这是一本关于人类思维和决策的经典著作，作者Daniel Kahneman深入探讨了人类认知的两个系统。&lt;/p&gt;|&lt;h2&gt;核心理论&lt;/h2&gt;|&lt;h3&gt;1. 系统1：快思考&lt;/h3&gt;|&lt;p&gt;快速、直觉、情绪化的思考方式，负责日常的快速决策。&lt;/p&gt;|&lt;h3&gt;2. 系统2：慢思考&lt;/h3&gt;|&lt;p&gt;缓慢、理性、逻辑化的思考方式，负责复杂的分析和决策。&lt;/p&gt;|&lt;h3&gt;3. 认知偏差&lt;/h3&gt;|&lt;p&gt;人类在决策过程中容易受到各种认知偏差的影响。&lt;/p&gt;|&lt;h3&gt;4. 启发式思维&lt;/h3&gt;|&lt;p&gt;人类倾向于使用简单的启发式规则来做出复杂决策。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;|&lt;h1&gt;吃点喝的&lt;/h1&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我更好地理解自己的思维过程：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;决策质量&lt;/strong&gt;：学会了识别和避免认知偏差&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;自我认知&lt;/strong&gt;：理解了快思考和慢思考的不同特点&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;行为分析&lt;/strong&gt;：掌握了分析他人行为的方法&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;理性思考&lt;/strong&gt;：培养了更加理性的思维方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是心理学和行为经济学的经典之作。它不仅揭示了人类思维的奥秘，更重要的是教会了我们如何做出更好的决策。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用科学的眼光来审视自己的思维过程，这让我在日常生活和工作中都更加理性。&lt;/p&gt;|&lt;h1&gt;大屁股宝宝&lt;/h1&gt;|&lt;h1&gt;芜湖哈啊哈&lt;/h1&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -132,26 +151,55 @@
              data-author="clayton m. christensen"
              data-tags="创新 商业 管理 颠覆性技术">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/瞬间捕捉-006-cover.jpg" alt="创新者的窘境">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/innovators-dilemma/">创新者的窘境</a>
-              </h3>
-              
-              <p class="book-author">Clayton M. Christensen</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/瞬间捕捉-006-cover.jpg" alt="创新者的窘境">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/innovators-dilemma/">创新者的窘境</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">Clayton M. Christensen</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  这是一本关于创新和商业管理的经典著作，作者Clayton M. Christensen深入分析了为什么优秀的企业会失败。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;创新者的窘境读书笔记&lt;/h1&gt;|&lt;p&gt;这是一本关于创新和商业管理的经典著作，作者Clayton M. Christensen深入分析了为什么优秀的企业会失败。&lt;/p&gt;|&lt;h2&gt;核心观点&lt;/h2&gt;|&lt;h3&gt;1. 颠覆性创新&lt;/h3&gt;|&lt;p&gt;颠覆性创新往往从低端市场开始，逐步向上侵蚀主流市场。&lt;/p&gt;|&lt;h3&gt;2. 持续性创新 vs 颠覆性创新&lt;/h3&gt;|&lt;p&gt;持续性创新满足现有客户需求，而颠覆性创新创造新的市场。&lt;/p&gt;|&lt;h3&gt;3. 资源依赖理论&lt;/h3&gt;|&lt;p&gt;企业的资源配置往往倾向于支持持续性创新，而忽视颠覆性创新。&lt;/p&gt;|&lt;h3&gt;4. 价值网络&lt;/h3&gt;|&lt;p&gt;企业需要在不同的价值网络中运营，以应对不同类型的创新。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书对我理解商业创新产生了深远影响：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;市场分析&lt;/strong&gt;：学会了识别颠覆性创新的机会&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;战略规划&lt;/strong&gt;：理解了如何在创新和稳定之间平衡&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;组织管理&lt;/strong&gt;：掌握了管理创新的方法和技巧&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;风险控制&lt;/strong&gt;：学会了评估和管理创新风险&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是每个企业家和管理者都应该阅读的经典之作。它不仅解释了商业失败的原因，更重要的是提供了创新的方法论。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了用颠覆性创新的视角来思考商业问题，这让我在商业决策中更加具有前瞻性。&lt;/p&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -163,26 +211,55 @@
              data-author="thomas h. cormen"
              data-tags="算法 计算机科学 数据结构 编程">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/纹理之美-009-cover.jpg" alt="算法导论">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/introduction-to-algorithms/">算法导论</a>
-              </h3>
-              
-              <p class="book-author">Thomas H. Cormen</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/纹理之美-009-cover.jpg" alt="算法导论">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/introduction-to-algorithms/">算法导论</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">Thomas H. Cormen</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  这是一本计算机科学领域的经典教材，系统地介绍了算法设计与分析的基本原理。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;算法导论读书笔记&lt;/h1&gt;|&lt;p&gt;这是一本计算机科学领域的经典教材，系统地介绍了算法设计与分析的基本原理。&lt;/p&gt;|&lt;h2&gt;核心内容&lt;/h2&gt;|&lt;h3&gt;1. 算法基础&lt;/h3&gt;|&lt;p&gt;介绍了算法分析的基本方法，包括时间复杂度、空间复杂度等概念。&lt;/p&gt;|&lt;h3&gt;2. 排序算法&lt;/h3&gt;|&lt;p&gt;详细讲解了各种排序算法，包括插入排序、归并排序、快速排序等。&lt;/p&gt;|&lt;h3&gt;3. 数据结构&lt;/h3&gt;|&lt;p&gt;介绍了基本的数据结构，如堆、二叉搜索树、红黑树等。&lt;/p&gt;|&lt;h3&gt;4. 动态规划&lt;/h3&gt;|&lt;p&gt;讲解了动态规划的基本思想和应用，包括最优子结构、重叠子问题等概念。&lt;/p&gt;|&lt;h3&gt;5. 图算法&lt;/h3&gt;|&lt;p&gt;介绍了图的基本算法，包括最短路径、最小生成树等。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我建立了扎实的算法基础：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;算法思维&lt;/strong&gt;：学会了如何分析问题的算法复杂度&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;数据结构&lt;/strong&gt;：掌握了各种数据结构的特性和应用场景&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;编程技巧&lt;/strong&gt;：提升了编程能力和代码质量&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;问题解决&lt;/strong&gt;：学会了用算法思维解决实际问题&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是计算机科学领域的经典之作。内容全面，讲解深入，是学习算法和数据结构的重要参考书。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我不仅掌握了算法知识，更重要的是培养了算法思维，这让我在编程和问题解决中更加高效。&lt;/p&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -194,26 +271,55 @@
              data-author="jesse james garrett"
              data-tags="用户体验 设计 产品设计 交互设计">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/色彩律动-005-cover.jpg" alt="用户体验要素">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/user-experience-elements/">用户体验要素</a>
-              </h3>
-              
-              <p class="book-author">Jesse James Garrett</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/色彩律动-005-cover.jpg" alt="用户体验要素">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/user-experience-elements/">用户体验要素</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">Jesse James Garrett</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  这是一本关于用户体验设计的经典著作，作者Jesse James Garrett系统地介绍了用户体验设计的五个层面。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;用户体验要素读书笔记&lt;/h1&gt;|&lt;p&gt;这是一本关于用户体验设计的经典著作，作者Jesse James Garrett系统地介绍了用户体验设计的五个层面。&lt;/p&gt;|&lt;h2&gt;核心内容&lt;/h2&gt;|&lt;h3&gt;1. 战略层&lt;/h3&gt;|&lt;p&gt;明确产品目标和用户需求，这是用户体验设计的基础。&lt;/p&gt;|&lt;h3&gt;2. 范围层&lt;/h3&gt;|&lt;p&gt;定义功能规格和内容需求，确定产品应该包含什么功能。&lt;/p&gt;|&lt;h3&gt;3. 结构层&lt;/h3&gt;|&lt;p&gt;设计信息架构和交互设计，决定用户如何与产品互动。&lt;/p&gt;|&lt;h3&gt;4. 框架层&lt;/h3&gt;|&lt;p&gt;设计界面设计、导航设计和信息设计，提供具体的界面布局。&lt;/p&gt;|&lt;h3&gt;5. 表现层&lt;/h3&gt;|&lt;p&gt;关注视觉设计，包括颜色、字体、图片等视觉元素。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我建立了系统性的用户体验设计思维：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;用户研究&lt;/strong&gt;：更加重视用户需求分析&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;信息架构&lt;/strong&gt;：学会合理组织产品信息&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;交互设计&lt;/strong&gt;：掌握用户与产品的交互模式&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;视觉设计&lt;/strong&gt;：理解视觉元素对用户体验的影响&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是用户体验设计师的必读之作。它不仅提供了理论框架，更重要的是教会了我们如何系统性地思考用户体验问题。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了从战略到表现的全方位用户体验设计方法，这让我在产品设计中更加注重用户体验的整体性。&lt;/p&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -225,26 +331,55 @@
              data-author="唐纳德·a·诺曼"
              data-tags="设计 心理学 用户体验 交互设计">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/抽象构成-010-cover.jpg" alt="设计心理学">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/design-psychology/">设计心理学</a>
-              </h3>
-              
-              <p class="book-author">唐纳德·A·诺曼</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/抽象构成-010-cover.jpg" alt="设计心理学">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/design-psychology/">设计心理学</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">唐纳德·A·诺曼</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  这是一本关于设计心理学的经典著作，作者唐纳德·A·诺曼深入探讨了设计与人类心理的关系。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;设计心理学读书笔记&lt;/h1&gt;|&lt;p&gt;这是一本关于设计心理学的经典著作，作者唐纳德·A·诺曼深入探讨了设计与人类心理的关系。&lt;/p&gt;|&lt;h2&gt;核心观点&lt;/h2&gt;|&lt;h3&gt;1. 好的设计是看不见的&lt;/h3&gt;|&lt;p&gt;当设计做得足够好时，用户甚至不会注意到它的存在。设计应该让用户专注于任务本身，而不是界面。&lt;/p&gt;|&lt;h3&gt;2. 情感化设计的重要性&lt;/h3&gt;|&lt;p&gt;设计不仅要满足功能需求，还要考虑情感需求。好的设计能够激发用户的正向情感。&lt;/p&gt;|&lt;h3&gt;3. 错误是设计的问题&lt;/h3&gt;|&lt;p&gt;当用户犯错时，往往不是用户的问题，而是设计的问题。好的设计应该能够预防错误的发生。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书对我理解用户体验设计产生了深远影响：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;&lt;strong&gt;可用性测试&lt;/strong&gt;：更加重视用户的实际使用体验&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;错误处理&lt;/strong&gt;：设计更加宽容的错误处理机制&lt;/li&gt;|&lt;li&gt;&lt;strong&gt;情感设计&lt;/strong&gt;：在产品中加入更多情感化元素&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;这本书是每个设计师和产品经理都应该阅读的经典之作。它不仅提供了理论指导，更重要的是改变了我们对设计的认知方式。&lt;/p&gt;|&lt;p&gt;通过阅读这本书，我学会了从用户心理的角度来思考设计问题，这让我在设计工作中更加注重用户体验。&lt;/p&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -256,26 +391,55 @@
              data-author="nicholas c. zakas"
              data-tags="javascript 编程 前端 web开发">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/城市观察-001-cover.jpg" alt="JavaScript高级程序设计">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/javascript-advanced/">JavaScript高级程序设计</a>
-              </h3>
-              
-              <p class="book-author">Nicholas C. Zakas</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/城市观察-001-cover.jpg" alt="JavaScript高级程序设计">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/javascript-advanced/">JavaScript高级程序设计</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">Nicholas C. Zakas</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  这是一本JavaScript领域的经典著作，深入讲解了JavaScript的核心概念和高级特性。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;JavaScript高级程序设计读书笔记&lt;/h1&gt;|&lt;p&gt;这是一本JavaScript领域的经典著作，深入讲解了JavaScript的核心概念和高级特性。&lt;/p&gt;|&lt;h2&gt;核心内容&lt;/h2&gt;|&lt;h3&gt;1. 数据类型&lt;/h3&gt;|&lt;p&gt;JavaScript有6种基本数据类型：Undefined、Null、Boolean、Number、String和Symbol。&lt;/p&gt;|&lt;h3&gt;2. 函数&lt;/h3&gt;|&lt;p&gt;函数是JavaScript中的一等公民，支持闭包、高阶函数等高级特性。&lt;/p&gt;|&lt;h3&gt;3. 对象&lt;/h3&gt;|&lt;p&gt;JavaScript基于原型的继承机制，理解原型链是掌握JavaScript的关键。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书帮助我深入理解了：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;JavaScript的执行上下文和作用域&lt;/li&gt;|&lt;li&gt;闭包的工作原理和应用场景&lt;/li&gt;|&lt;li&gt;原型继承和ES6类语法的关系&lt;/li&gt;|&lt;li&gt;异步编程和Promise的使用&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;对于想要深入学习JavaScript的开发者来说，这是一本必读的经典之作。内容全面，讲解深入，是提升JavaScript技能的重要参考书。&lt;/p&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -287,26 +451,55 @@
              data-author="eric ries"
              data-tags="创业 精益 产品开发 商业模式">
           
-          <div class="book-cover">
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
             
-              <img src="/assets/Pics/zhi-reading/都市掠影-004-cover.jpg" alt="精益创业">
-            
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="/zhi/reading/lean-startup/">精益创业</a>
-              </h3>
-              
-              <p class="book-author">Eric Ries</p>
-              
-              <div class="book-summary">
-                暂无简介
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  
+                    <img src="/assets/Pics/zhi-reading/都市掠影-004-cover.jpg" alt="精益创业">
+                  
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="/zhi/reading/lean-startup/">精益创业</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">Eric Ries</span>
+                  
+                    <span class="book-year">2023</span>
+                  
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  《精益创业》是一本关于如何用科学方法进行创业的经典著作，提出了构建-测量-学习的循环。
+                </div>
               </div>
               
-              <div class="book-divider"></div>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  
+                    <div class="note-titles-container" data-content="&lt;h1&gt;精益创业读书笔记&lt;/h1&gt;|&lt;p&gt;《精益创业》是一本关于如何用科学方法进行创业的经典著作，提出了&amp;quot;构建-测量-学习&amp;quot;的循环。&lt;/p&gt;|&lt;h2&gt;核心理念&lt;/h2&gt;|&lt;h3&gt;1. 最小可行产品(MVP)&lt;/h3&gt;|&lt;p&gt;通过构建最小可行产品来快速验证假设，避免浪费资源。&lt;/p&gt;|&lt;h3&gt;2. 持续部署&lt;/h3&gt;|&lt;p&gt;快速迭代，持续改进产品，响应用户反馈。&lt;/p&gt;|&lt;h3&gt;3. 验证式学习&lt;/h3&gt;|&lt;p&gt;用数据驱动决策，而不是凭直觉或假设。&lt;/p&gt;|&lt;h2&gt;实践应用&lt;/h2&gt;|&lt;p&gt;这本书的理念可以应用到：&lt;/p&gt;|&lt;ul&gt;|&lt;li&gt;产品开发流程优化&lt;/li&gt;|&lt;li&gt;用户需求验证&lt;/li&gt;|&lt;li&gt;商业模式设计&lt;/li&gt;|&lt;li&gt;团队协作方式&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;关键收获&lt;/h2&gt;|&lt;ul&gt;|&lt;li&gt;学会用科学方法验证商业假设&lt;/li&gt;|&lt;li&gt;理解快速迭代的重要性&lt;/li&gt;|&lt;li&gt;掌握用户反馈的收集和分析方法&lt;/li&gt;|&lt;li&gt;建立数据驱动的决策文化&lt;/li&gt;|&lt;/ul&gt;|&lt;h2&gt;推荐理由&lt;/h2&gt;|&lt;p&gt;无论是创业者还是产品经理，都能从这本书中获得宝贵的实践指导。它改变了我们对产品开发和商业模式的传统认知。&lt;/p&gt;">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -326,14 +519,13 @@
 document.addEventListener('DOMContentLoaded', function() {
   // 获取DOM元素
   const searchInput = document.getElementById('readingSearch');
-  const filterTags = document.querySelectorAll('.filter-tag');
+  const controlBtns = document.querySelectorAll('.control-btn');
   const bookCards = document.querySelectorAll('.book-card');
   const booksScroll = document.getElementById('booksScroll');
   const scrollLeftBtn = document.getElementById('scrollLeft');
   const scrollRightBtn = document.getElementById('scrollRight');
   
   let currentFilter = 'all';
-  let currentRating = null;
   let searchKeyword = '';
   
   // 搜索功能
@@ -343,21 +535,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // 分类筛选
-  filterTags.forEach(tag => {
-    tag.addEventListener('click', function() {
+  controlBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
       // 移除所有active类
-      filterTags.forEach(t => t.classList.remove('active'));
-      // 添加active类到当前点击的标签
+      controlBtns.forEach(b => b.classList.remove('active'));
+      // 添加active类到当前点击的按钮
       this.classList.add('active');
       
-      if (this.dataset.filter) {
-        currentFilter = this.dataset.filter;
-        currentRating = null;
-      } else if (this.dataset.rating) {
-        currentRating = parseInt(this.dataset.rating);
-        currentFilter = 'all';
-      }
-      
+      currentFilter = this.dataset.filter;
       filterBooks();
     });
   });
@@ -366,7 +551,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function filterBooks() {
     bookCards.forEach(card => {
       const category = card.dataset.category;
-      const rating = parseInt(card.dataset.rating);
       const title = card.dataset.title;
       const author = card.dataset.author;
       const tags = card.dataset.tags;
@@ -375,11 +559,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 分类筛选
       if (currentFilter !== 'all' && category !== currentFilter) {
-        showCard = false;
-      }
-      
-      // 评分筛选
-      if (currentRating && rating < currentRating) {
         showCard = false;
       }
       
@@ -439,7 +618,102 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 初始化
   updateScrollButtons();
+  
+  // 处理一级标题显示
+  function processH1Titles() {
+    console.log('开始处理一级标题...');
+    const titleContainers = document.querySelectorAll('.note-titles-container');
+    console.log('找到标题容器数量:', titleContainers.length);
+    
+    titleContainers.forEach((container, index) => {
+      const content = container.dataset.content;
+      console.log(`容器 ${index} 的内容:`, content ? '有内容' : '无内容');
+      
+      if (!content) return;
+      
+      // 将内容按|分割成行
+      const lines = content.split('|');
+      const h1Titles = [];
+      
+      // 提取一级标题
+      lines.forEach(line => {
+        const trimmedLine = line.trim();
+        // 匹配 <h1>标题</h1> 格式
+        const h1Match = trimmedLine.match(/<h1>(.*?)<\/h1>/);
+        if (h1Match) {
+          const title = h1Match[1].trim();
+          if (title) {
+            h1Titles.push(title);
+            console.log('找到标题:', title);
+          }
+        }
+      });
+      
+      // 生成HTML
+      if (h1Titles.length > 0) {
+        const bookCard = container.closest('.book-card');
+        const bookUrl = bookCard.querySelector('.book-title a').href;
+        console.log('书籍URL:', bookUrl);
+        
+        let html = '';
+        const maxTitles = 20; // 最多显示20个标题
+        const showMore = h1Titles.length > maxTitles;
+        
+        console.log('标题总数:', h1Titles.length, '最大显示数:', maxTitles, '需要显示更多按钮:', showMore);
+        
+        // 显示前20个标题
+        const titlesToShow = showMore ? h1Titles.slice(0, maxTitles) : h1Titles;
+        
+        console.log('实际显示标题数:', titlesToShow.length);
+        
+        titlesToShow.forEach(title => {
+          // 修复slug生成逻辑
+          const slug = title.toLowerCase()
+            .replace(/[^\u4e00-\u9fa5\w\s-]/g, '') // 保留中文、英文、数字、空格、连字符
+            .replace(/\s+/g, '-') // 空格替换为连字符
+            .replace(/-+/g, '-') // 多个连字符合并为一个
+            .replace(/^-|-$/g, '') // 移除首尾连字符
+            .trim();
+          html += `<div class="note-title-item">
+            <a href="${bookUrl}#${slug}" class="note-title-link">${title}</a>
+          </div>`;
+          console.log('生成链接:', `${bookUrl}#${slug}`);
+        });
+        
+             // 如果有更多标题，添加【更多】按钮
+             if (showMore) {
+               console.log('添加【更多】按钮，总标题数:', h1Titles.length, '显示数:', maxTitles);
+
+               // 获取第21个标题的slug
+               const title21 = h1Titles[20]; // 第21个标题（索引20）
+               const slug21 = title21.toLowerCase()
+                 .replace(/[^\u4e00-\u9fa5\w\s-]/g, '')
+                 .replace(/\s+/g, '-')
+                 .replace(/-+/g, '-')
+                 .replace(/^-|-$/g, '')
+                 .trim();
+
+               html += `<div class="more-button-container">
+                 <a href="${bookUrl}#${slug21}" class="more-button">更多...</a>
+               </div>`;
+
+               console.log('【更多】按钮HTML已添加，跳转到第21个标题:', title21);
+             }
+        
+        container.innerHTML = html;
+        console.log('更新容器内容完成');
+      } else {
+        container.innerHTML = '<div class="note-placeholder">暂无笔记内容</div>';
+        console.log('没有找到标题，显示占位符');
+      }
+    });
+  }
+  
+  // 页面加载完成后处理标题
+  processH1Titles();
 });
+
+// 注意：toggleMoreTitles函数已删除，因为【更多...】按钮现在直接跳转到第21个标题
 </script>
 
   </main>

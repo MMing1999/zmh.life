@@ -1,229 +1,810 @@
 /* =========================================
-   reading.css — 阅读详情页样式
+   reading.css — 阅读页面样式
    命名空间：.reading*
-   只作用于 layouts/reading.njk 渲染的详情页
-   高优先级：使用 body[data-section="zhi"] 提高特异性
+   作用于 reading.njk 渲染的阅读列表页
+   高特异性：使用 body 选择器提高优先级
    ========================================= */
 
+/* 强制重置样式 */
+body .reading-container1 * {
+  box-sizing: border-box;
+}
+
+body .reading-container1 input,
+body .reading-container1 button {
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
 /* -------- 1) 页面结构 -------- */
-body[data-section="zhi"] .reading {
-  max-width: 900px !important;       /* 版心宽度 */
-  margin: 32px auto !important;
-  padding: 0 16px !important;
+body .reading-main {
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%; /* 使用100%宽度，突破page-wrap限制 */
+  max-width: none; /* 移除最大宽度限制 */
+}
+
+/* -------- 2) Container1: 搜索和分类控制区域 -------- */
+body .reading-container1 {
+  padding: 16px 0;
+  margin-bottom: 24px;
+  position: static;
+  background: transparent;
+}
+
+body .reading-controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+}
+
+body .control-section {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+body .reading-divider {
+  height: 1px !important;
+  background: #ddd !important;
+  margin: 0 !important;
+  width: 100% !important;
   display: block !important;
 }
 
-/* -------- 2) 顶部封面 -------- */
-body[data-section="zhi"] .reading-hero {
-  margin: 0 0 20px !important;
-  position: relative !important;
-  width: 100% !important;
-  max-width: 300px !important;       /* 书籍封面较小 */
-  aspect-ratio: 3 / 4 !important;   /* 3:4 纵向比例 */
-  overflow: hidden !important;
-  border-radius: 8px !important;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
-}
-body[data-section="zhi"] .reading-hero img {
-  position: absolute !important;
-  inset: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  object-fit: cover !important;
-  display: block !important;
+/* 搜索框样式 */
+body .search-section input {
+  border: none !important;
+  background: transparent !important;
+  padding: 8px 0 !important;
+  font-size: 16px !important;
+  font-family: 'Fusion Pixel', monospace !important;
+  outline: none !important;
+  transition: border-color 0.3s ease !important;
+  min-width: 200px !important;
 }
 
-/* -------- 3) 标题与基础信息 -------- */
-body[data-section="zhi"] .reading-header {
-  margin: 0 0 24px !important;
-}
-body[data-section="zhi"] .reading-title {
-  margin: 0 0 8px !important;
-  font-size: 36px !important;
-  line-height: 1.2 !important;
-  font-weight: 600 !important;
+body .search-section input:focus {
+  border-bottom-color: #000 !important;
 }
 
-/* 作者信息 */
-body[data-section="zhi"] .reading-author {
-  margin: 0 0 12px !important;
-  font-size: 18px !important;
+body .search-section input::placeholder {
+  color: #999 !important;
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
+/* 控制按钮样式 */
+body .control-btn {
+  border: none !important;
+  background: none !important;
+  padding: 4px 8px !important;
+  font-size: 14px !important;
+  font-family: 'Fusion Pixel', monospace !important;
   color: #666 !important;
-  font-style: italic !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+}
+
+body .control-btn:hover {
+  color: #000 !important;
+  text-decoration: underline !important;
+}
+
+body .control-btn.active {
+  color: #000 !important;
+  font-weight: 600 !important;
+  text-decoration: underline !important;
+}
+
+/* -------- 3) Container2: 书籍卡片横向滚动 -------- */
+.reading-container2 {
+  position: relative;
+  background: #fff;
+  overflow: hidden;
+  min-height: 500px; /* 增加最小高度，让整个容器更高 */
+}
+
+.books-scroll-container {
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.books-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
+.books-scroll-track {
+  display: flex;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+/* 书籍卡片 */
+.book-card {
+  flex: 0 0 320px; /* 增加宽度以容纳新结构 */
+  background: #fff;
+  border-radius: 0; /* 去掉圆角 */
+  overflow: visible; /* 改为可见，让【更多】按钮显示出来 */
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: none; /* 去掉阴影 */
+  height: auto; /* 改为自适应高度 */
+  min-height: 200px; /* 设置最小高度保持基本布局 */
+}
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: none; /* hover时也不显示阴影 */
+}
+
+/* 新的book-content结构 */
+.book-content {
+  display: flex;
+  height: auto; /* 改为自适应高度 */
+  min-height: 100%; /* 确保至少占满卡片高度 */
+}
+
+.book-line {
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0; /* 防止分隔线区域被压缩 */
+}
+
+.book-divider-vertical {
+  width: 1px;
+  height: 100%;
+  background: #ddd;
+}
+
+.book-main {
+  flex: 1;
+  padding: 12px 16px 12px 0; /* 右侧添加一些padding */
+  display: flex;
+  flex-direction: column;
+  min-width: 0; /* 允许内容收缩 */
+}
+
+.book-intro {
+  flex: none; /* 改为不拉伸，自适应内容 */
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-height: 0; /* 允许内容收缩 */
+}
+
+.book-cover {
+  width: 100%; /* 宽度充满父容器 */
+  height: auto; /* 高度自适应 */
+  aspect-ratio: 3/4; /* 4:3竖向比例 */
+  overflow: hidden;
+  border-radius: 0; /* 去掉封面圆角 */
+  align-self: flex-start;
+  flex-shrink: 0; /* 防止封面被压缩 */
+  box-shadow: none; /* 去掉封面阴影 */
+}
+
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.book-card:hover .book-cover img {
+  transform: scale(1.05);
+}
+
+.book-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f5f5f5, #e0e0e0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  font-weight: bold;
+  color: #999;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.book-title {
+  margin: 0;
+  font-size: 22px; /* 从18px增大到22px */
+  font-weight: 600;
+  line-height: 1.3;
+  font-family: 'Fusion Pixel', monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-title a {
+  color: #000;
+  text-decoration: none;
+}
+
+.book-title a:hover {
+  text-decoration: underline;
+}
+
+.book-meta {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  font-size: 14px; /* 从11px增大到14px */
+  color: #666;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.book-author {
+  font-style: italic;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.book-year {
+  color: #999;
+  flex-shrink: 0;
+}
+
+.book-summary {
+  font-size: 0.9rem; /* 从1rem减小到0.9rem */
+  line-height: 1.4;
+  color: #666;
+  margin-top: 2px;
+  font-family: 'Fusion Pixel', monospace;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* 显示4行 */
+  line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.book-divider-horizontal {
+  height: 1px;
+  background: #ddd;
+  margin: 6px 0;
+  flex-shrink: 0;
+}
+
+.book-note {
+  flex: none; /* 改为不拉伸，自适应内容 */
+  padding-top: 4px;
+  min-height: 0; /* 允许内容收缩 */
+}
+
+.note-content {
+  font-size: 10px;
+  line-height: 1.4;
+  font-family: 'Fusion Pixel', monospace;
+  /* 移除max-height限制，让内容完全显示 */
+  overflow: visible; /* 改为可见 */
+}
+
+.note-title-item {
+  margin-bottom: 4px;
+}
+
+.note-title-item:last-child {
+  margin-bottom: 0;
+}
+
+.note-title-link {
+  display: block;
+  font-size: 0.9rem; /* 与书籍简介字体大小一致 */
+  font-weight: 500;
+  color: #333; /* 比简介的#666更深 */
+  text-decoration: none;
+  padding: 2px 0;
+  transition: color 0.3s ease;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.note-title-link:hover {
+  color: #000;
+  text-decoration: underline;
+}
+
+.note-text {
+  color: #666;
+  font-size: 9px;
+  line-height: 1.3;
+  margin-top: 2px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.note-placeholder {
+  color: #999;
+  font-style: italic;
+  font-size: 10px;
+}
+
+/* 更多按钮样式 */
+.more-button-container {
+  margin-top: 8px;
+  text-align: right; /* 右对齐 */
+}
+
+.more-button {
+  background: none; /* 去掉背景 */
+  border: none; /* 去掉边框 */
+  padding: 0; /* 去掉内边距 */
+  font-size: 0.9rem; /* 与章节标题字号保持一致 */
+  color: #333; /* 与章节标题颜色一致 */
+  cursor: pointer;
+  font-family: 'Fusion Pixel', monospace;
+  transition: color 0.3s ease;
+  text-decoration: none; /* 去掉下划线 */
+}
+
+.more-button:hover {
+  color: #000; /* hover时颜色更深 */
+}
+
+.more-titles {
+  margin-top: 4px;
+}
+
+/* 滚动按钮 */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  color: #666;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.scroll-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #000;
+}
+
+.scroll-left {
+  left: 10px;
+}
+
+.scroll-right {
+  right: 10px;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+}
+
+.empty-state h3 {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.empty-state a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.empty-state a:hover {
+  text-decoration: underline;
+}
+
+/* -------- 4) 响应式设计 -------- */
+@media (max-width: 768px) {
+  .reading-main {
+    width: 100%; /* 移动设备上也使用100%宽度 */
+    padding: 0 16px;
+  }
+  
+  .reading-container1 {
+    padding: 12px 0;
+    position: static;
+  }
+  
+  .reading-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .control-section {
+    border-right: none;
+    padding-right: 0;
+    width: 100%;
+  }
+  
+  .search-section input {
+    min-width: 100%;
+  }
+  
+  .reading-container2 {
+    padding: 20px 60px;
+  }
+  
+  .book-card {
+    flex: 0 0 280px;
+    height: 180px;
+  }
+  
+  .book-cover {
+    width: 45px;
+    height: 60px;
+  }
+  
+  .book-title {
+    font-size: 18px; /* 从16px增大到18px */
+  }
+  
+  .book-meta {
+    font-size: 12px; /* 从10px增大到12px */
+  }
+  
+  .book-summary {
+    font-size: 0.8rem; /* 从10px调整为0.8rem */
+  }
+  
+  .note-content {
+    font-size: 9px;
+    max-height: 50px;
+  }
+  
+  .note-title-link {
+    font-size: 0.8rem; /* 中等屏幕字体大小，与简介的0.8rem一致 */
+  }
+  
+  .scroll-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+  
+  .scroll-left {
+    left: 5px;
+  }
+  
+  .scroll-right {
+    right: 5px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reading-main {
+    width: 100%; /* 小屏幕设备上也使用100%宽度 */
+    padding: 0 12px;
+  }
+  
+  .reading-container1 {
+    padding: 8px 0;
+  }
+  
+  .reading-controls {
+    gap: 12px;
+  }
+  
+  .control-section {
+    gap: 8px;
+    padding-bottom: 8px;
+  }
+  
+  .control-btn {
+    font-size: 13px;
+    font-family: 'Fusion Pixel', monospace;
+    padding: 2px 6px;
+  }
+  
+  .search-section input {
+    font-size: 14px;
+    font-family: 'Fusion Pixel', monospace;
+  }
+  
+  .search-section input::placeholder {
+    font-family: 'Fusion Pixel', monospace;
+  }
+  
+  .book-card {
+    flex: 0 0 240px;
+    height: 160px;
+  }
+  
+  .book-cover {
+    width: 35px;
+    height: 50px;
+  }
+  
+  .book-title {
+    font-size: 16px; /* 从14px增大到16px */
+  }
+  
+  .book-meta {
+    font-size: 11px; /* 从9px增大到11px */
+  }
+  
+  .book-summary {
+    font-size: 0.75rem; /* 从9px调整为0.75rem */
+  }
+  
+  .note-content {
+    font-size: 8px;
+    max-height: 40px;
+  }
+  
+  .note-title-link {
+    font-size: 0.75rem; /* 移动端字体大小，与简介的0.75rem一致 */
+  }
+}
+
+/* =========================================
+   读书笔记详情页面样式
+   ========================================= */
+
+/* 读书笔记详情页面容器 */
+.reading {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* 书籍信息容器 - 左右分栏布局 */
+.reading-info-container {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 40px;
+  align-items: flex-start;
+}
+
+/* 左侧：书籍封面区域 */
+.reading-cover-section {
+  flex: 0 0 250px;
+}
+
+.reading-hero {
+  margin: 0;
+  text-align: center;
+}
+
+.reading-hero img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 右侧：书籍信息区域 */
+.reading-info-section {
+  flex: 1;
+  min-width: 0;
+}
+
+.reading-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 0 0 20px 0;
+  font-family: 'Fusion Pixel', monospace;
+  line-height: 1.2;
+}
+
+/* 分类样式 */
+.reading-category {
+  margin-bottom: 16px;
+}
+
+.reading-category .chip {
+  background: #f0f0f0;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-family: 'Fusion Pixel', monospace;
+  color: #333;
+}
+
+.reading-author {
+  font-size: 1.2rem;
+  color: #666;
+  margin: 0 0 20px 0;
+  font-family: 'Fusion Pixel', monospace;
+  font-style: italic;
+}
+
+/* 简介样式 */
+.reading-description {
+  margin-bottom: 20px;
+}
+
+.reading-description p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin: 0;
+  font-family: 'Fusion Pixel', monospace;
 }
 
 /* 评分 */
-body[data-section="zhi"] .reading-rating {
-  display: flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-  margin: 8px 0 16px !important;
-}
-body[data-section="zhi"] .reading-rating .star {
-  color: #ffd700 !important;
-  font-size: 18px !important;
-}
-body[data-section="zhi"] .reading-rating .rating-text {
-  font-size: 14px !important;
-  color: #666 !important;
-  margin-left: 4px !important;
-}
-
-/* 信息行（发布日期 / 分类 / 标签） */
-body[data-section="zhi"] .reading-line {
-  display: flex !important;
-  gap: 12px !important;
-  align-items: baseline !important;
-  margin: 6px 0 !important;
-}
-body[data-section="zhi"] .reading-line .label {
-  flex: none !important;
-  min-width: 80px !important;
-  color: #666 !important;
-  font-size: 14px !important;
-}
-body[data-section="zhi"] .reading-line .value {
-  flex: 1 !important;
-  display: inline-flex !important;
-  gap: 8px !important;
-  flex-wrap: wrap !important;
-  font-size: 14px !important;
-}
-
-/* 元信息容器：日期/分类/标签 同排（可换行） */
-body[data-section="zhi"] .reading-meta {
-  display: flex !important;
-  gap: 24px !important;
-  flex-wrap: wrap !important;
-  align-items: baseline !important;
-  margin: 12px 0 !important;
-}
-body[data-section="zhi"] .reading-meta .reading-line {
-  margin: 0 !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 8px !important;
-}
-body[data-section="zhi"] .reading-meta .reading-line .label {
-  min-width: auto !important;
-  font-size: 14px !important;
-  color: #666 !important;
-}
-body[data-section="zhi"] .reading-meta .reading-line .value {
-  flex: initial !important;
-  display: inline-flex !important;
-  align-items: center !important;
-  gap: 4px !important;
-}
-
-/* 分类 chip */
-body[data-section="zhi"] .chip {
-  display: inline-block;
-  padding: 2px 8px;
-  border: 1px solid #ddd;
-  border-radius: 999px;
-  font-size: 12px;
-  line-height: 1.4;
-  background: #fff;
-}
-
-/* 标签 #tag */
-body[data-section="zhi"] .tag-list {
-  display: inline-flex;
-  flex-wrap: wrap;
+.reading-rating {
+  display: flex;
+  align-items: center;
   gap: 8px;
-}
-body[data-section="zhi"] .tag-list .tag {
-  display: inline-block !important;
-  text-decoration: none !important;
-  color: #000 !important;
-  border: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-  font-size: 14px !important;
+  margin-bottom: 24px;
 }
 
-/* -------- 4) 正文内容 -------- */
-body[data-section="zhi"] .reading-body {
-  margin: 24px 0 !important;
+.star {
+  font-size: 1.2rem;
+  color: #ffd700;
 }
-body[data-section="zhi"] .reading-body p {
-  margin: 16px 0 !important;
-  line-height: 1.8 !important;
+
+.rating-text {
+  font-size: 0.9rem;
+  color: #666;
+  font-family: 'Fusion Pixel', monospace;
 }
-body[data-section="zhi"] .reading-body h2 {
-  margin: 28px 0 8px !important;
-  font-size: 28px !important;
+
+/* 元信息 */
+.reading-meta {
+  margin-bottom: 20px;
 }
-body[data-section="zhi"] .reading-body h3 {
-  margin: 22px 0 6px !important;
-  font-size: 22px !important;
+
+.reading-line {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.reading-line .label {
+  font-weight: 600;
+  color: #333;
+  min-width: 80px;
+}
+
+.reading-line .value {
+  color: #666;
+}
+
+.chip {
+  background: #f0f0f0;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.tag-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  color: #667eea;
+  font-size: 0.9rem;
 }
 
 /* 分隔线 */
-body[data-section="zhi"] .reading-divider {
-  height: 1px !important;
-  background: #eaeaea !important;
-  margin: 20px 0 !important;
+.reading-divider {
+  height: 1px;
+  background: #ddd;
+  margin: 20px 0;
 }
 
-/* 图片与图注 */
-body[data-section="zhi"] .reading-body img {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-  display: block;
-  margin: 12px 0;
-}
-body[data-section="zhi"] .reading-body figure { 
-  margin: 16px 0; 
-}
-body[data-section="zhi"] .reading-body figcaption {
-  font-size: 12px;
-  color: #666;
-  margin-top: 6px;
+/* 正文内容 */
+.reading-body {
+  line-height: 1.7;
+  font-size: 1rem;
+  color: #333;
 }
 
-/* 代码块 & 引用 */
-body[data-section="zhi"] .reading-body pre {
-  background: #0f0f0f;
-  color: #eaeaea;
-  padding: 14px;
-  border-radius: 8px;
-  overflow: auto;
-  font-size: 13px;
-}
-body[data-section="zhi"] .reading-body blockquote {
-  margin: 16px 0;
-  padding: 10px 14px;
-  border-left: 3px solid #000;
-  background: #fafafa;
-  border-radius: 4px;
+.reading-body h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 40px 0 20px 0;
+  padding-top: 20px;
+  font-family: 'Fusion Pixel', monospace;
+  border-top: 1px solid #eee;
 }
 
-/* -------- 5) 返回链接 -------- */
-body[data-section="zhi"] .reading-back {
-  margin: 28px 0 12px;
+.reading-body h1:first-child {
+  border-top: none;
+  margin-top: 0;
 }
-body[data-section="zhi"] .link-back {
-  color: #000;
+
+.reading-body h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 30px 0 16px 0;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.reading-body h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 24px 0 12px 0;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.reading-body p {
+  margin: 0 0 16px 0;
+}
+
+.reading-body ul, .reading-body ol {
+  margin: 0 0 16px 0;
+  padding-left: 24px;
+}
+
+.reading-body li {
+  margin-bottom: 8px;
+}
+
+.reading-body strong {
+  font-weight: 600;
+}
+
+/* 返回链接 */
+.reading-back {
+  margin-top: 60px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+}
+
+.link-back {
+  color: #667eea;
   text-decoration: none;
-  border-bottom: 1px solid #000;
-  padding-bottom: 2px;
-}
-body[data-section="zhi"] .link-back:hover {
-  opacity: .8;
+  font-family: 'Fusion Pixel', monospace;
+  font-size: 0.9rem;
 }
 
-/* -------- 6) 响应式 -------- */
-@media (max-width: 640px) {
-  body[data-section="zhi"] .reading { 
-    padding: 0 12px; 
+.link-back:hover {
+  text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .reading {
+    padding: 15px;
   }
-  body[data-section="zhi"] .reading-title { 
-    font-size: 28px; 
+  
+  .reading-info-container {
+    flex-direction: column;
+    gap: 20px;
   }
-  body[data-section="zhi"] .reading-hero {
-    max-width: 200px !important;
+  
+  .reading-cover-section {
+    flex: none;
+    text-align: center;
+  }
+  
+  .reading-hero img {
+    max-width: 200px;
+  }
+  
+  .reading-title {
+    font-size: 2rem;
   }
 }

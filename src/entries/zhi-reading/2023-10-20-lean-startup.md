@@ -6,6 +6,7 @@ category: "商业"
 tags: ["创业", "精益", "产品开发", "商业模式"]
 rating: 5
 cover: "/assets/Pics/zhi-reading/都市掠影-004-cover.jpg"
+description: "《精益创业》是一本关于如何用科学方法进行创业的经典著作，提出了构建-测量-学习的循环。"
 type: "reading"
 section: "zhi"
 ---

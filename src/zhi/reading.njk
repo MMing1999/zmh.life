@@ -4,42 +4,32 @@ title: "Reading · 阅读"
 description: "读书卡片与短评。记录阅读过程中的思考和收获，分享有价值的书籍和文章，建立个人的阅读体系。"
 section: "zhi"
 pageName: "reading"
-pageCSS: "/assets/Css/zhi.css"
+pageCSS: "/assets/Css/reading.css"
 ---
 
 <!-- Main Content -->
 <section class="reading-main">
   
-  <!-- Container1: 搜索和分类标签 (固定) -->
+  <!-- Container1: 搜索、分类 (极简风格) -->
   <div class="reading-container1">
-    <div class="reading-search-section">
-      <div class="search-box">
+    <div class="reading-controls">
+      <!-- 搜索部分 -->
+      <div class="control-section search-section">
         <input type="text" id="readingSearch" placeholder="搜索书籍、作者或标签..." />
-        <button class="search-btn">🔍</button>
+      </div>
+      
+      <!-- 分类部分 -->
+      <div class="control-section category-section">
+        <button class="control-btn active" data-filter="all">全部</button>
+        <button class="control-btn" data-filter="设计">设计</button>
+        <button class="control-btn" data-filter="技术">技术</button>
+        <button class="control-btn" data-filter="商业">商业</button>
+        <button class="control-btn" data-filter="心理学">心理学</button>
       </div>
     </div>
     
-    <div class="reading-filters">
-      <div class="filter-group">
-        <h4>分类</h4>
-        <div class="filter-tags">
-          <button class="filter-tag active" data-filter="all">全部</button>
-          <button class="filter-tag" data-filter="设计">设计</button>
-          <button class="filter-tag" data-filter="技术">技术</button>
-          <button class="filter-tag" data-filter="商业">商业</button>
-          <button class="filter-tag" data-filter="心理学">心理学</button>
-        </div>
-      </div>
-      
-      <div class="filter-group">
-        <h4>评分</h4>
-        <div class="filter-tags">
-          <button class="filter-tag" data-rating="5">★★★★★</button>
-          <button class="filter-tag" data-rating="4">★★★★☆</button>
-          <button class="filter-tag" data-rating="3">★★★☆☆</button>
-        </div>
-      </div>
-    </div>
+    <!-- 分隔线 -->
+    <div class="reading-divider"></div>
   </div>
 
   <!-- Container2: 书籍卡片横向滚动 -->
@@ -56,30 +46,63 @@ pageCSS: "/assets/Css/zhi.css"
              data-author="{{ book.data.author | lower }}"
              data-tags="{{ book.data.tags | join(' ') | lower }}">
           
-          <div class="book-cover">
-            {% if book.data.cover %}
-              <img src="{{ book.data.cover }}" alt="{{ book.data.title }}">
-            {% else %}
-              <div class="book-placeholder">
-                <span>{{ book.data.title | slice(0, 2) }}</span>
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
+            
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  {% if book.data.cover %}
+                    <img src="{{ book.data.cover }}" alt="{{ book.data.title }}">
+                  {% else %}
+                    <div class="book-placeholder">
+                      <span>{{ book.data.title | slice(0, 2) }}</span>
+                    </div>
+                  {% endif %}
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="{{ book.url }}">{{ book.data.title }}</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">{{ book.data.author or "未知作者" }}</span>
+                  {% if book.data.date %}
+                    <span class="book-year">{{ book.data.date.getFullYear() }}</span>
+                  {% else %}
+                    <span class="book-year">2024</span>
+                  {% endif %}
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  {{ book.data.description or "暂无简介" }}
+                </div>
               </div>
-            {% endif %}
-          </div>
-          
-          <div class="book-info">
-            <div class="book-divider-vertical"></div>
-            <div class="book-content">
-              <h3 class="book-title">
-                <a href="{{ book.url }}">{{ book.data.title }}</a>
-              </h3>
               
-              <p class="book-author">{{ book.data.author or "未知作者" }}</p>
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
               
-              <div class="book-summary">
-                {{ book.data.description or "暂无简介" }}
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  {% if book.templateContent %}
+                    <div class="note-titles-container" data-content="{{ book.templateContent | trim | replace('\n', '|') }}">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  {% else %}
+                    <div class="note-placeholder">暂无笔记内容</div>
+                  {% endif %}
+                </div>
               </div>
-              
-              <div class="book-divider"></div>
             </div>
           </div>
         </div>
@@ -104,14 +127,13 @@ pageCSS: "/assets/Css/zhi.css"
 document.addEventListener('DOMContentLoaded', function() {
   // 获取DOM元素
   const searchInput = document.getElementById('readingSearch');
-  const filterTags = document.querySelectorAll('.filter-tag');
+  const controlBtns = document.querySelectorAll('.control-btn');
   const bookCards = document.querySelectorAll('.book-card');
   const booksScroll = document.getElementById('booksScroll');
   const scrollLeftBtn = document.getElementById('scrollLeft');
   const scrollRightBtn = document.getElementById('scrollRight');
   
   let currentFilter = 'all';
-  let currentRating = null;
   let searchKeyword = '';
   
   // 搜索功能
@@ -121,21 +143,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
   
   // 分类筛选
-  filterTags.forEach(tag => {
-    tag.addEventListener('click', function() {
+  controlBtns.forEach(btn => {
+    btn.addEventListener('click', function() {
       // 移除所有active类
-      filterTags.forEach(t => t.classList.remove('active'));
-      // 添加active类到当前点击的标签
+      controlBtns.forEach(b => b.classList.remove('active'));
+      // 添加active类到当前点击的按钮
       this.classList.add('active');
       
-      if (this.dataset.filter) {
-        currentFilter = this.dataset.filter;
-        currentRating = null;
-      } else if (this.dataset.rating) {
-        currentRating = parseInt(this.dataset.rating);
-        currentFilter = 'all';
-      }
-      
+      currentFilter = this.dataset.filter;
       filterBooks();
     });
   });
@@ -144,7 +159,6 @@ document.addEventListener('DOMContentLoaded', function() {
   function filterBooks() {
     bookCards.forEach(card => {
       const category = card.dataset.category;
-      const rating = parseInt(card.dataset.rating);
       const title = card.dataset.title;
       const author = card.dataset.author;
       const tags = card.dataset.tags;
@@ -153,11 +167,6 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 分类筛选
       if (currentFilter !== 'all' && category !== currentFilter) {
-        showCard = false;
-      }
-      
-      // 评分筛选
-      if (currentRating && rating < currentRating) {
         showCard = false;
       }
       
@@ -217,5 +226,100 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 初始化
   updateScrollButtons();
+  
+  // 处理一级标题显示
+  function processH1Titles() {
+    console.log('开始处理一级标题...');
+    const titleContainers = document.querySelectorAll('.note-titles-container');
+    console.log('找到标题容器数量:', titleContainers.length);
+    
+    titleContainers.forEach((container, index) => {
+      const content = container.dataset.content;
+      console.log(`容器 ${index} 的内容:`, content ? '有内容' : '无内容');
+      
+      if (!content) return;
+      
+      // 将内容按|分割成行
+      const lines = content.split('|');
+      const h1Titles = [];
+      
+      // 提取一级标题
+      lines.forEach(line => {
+        const trimmedLine = line.trim();
+        // 匹配 <h1>标题</h1> 格式
+        const h1Match = trimmedLine.match(/<h1>(.*?)<\/h1>/);
+        if (h1Match) {
+          const title = h1Match[1].trim();
+          if (title) {
+            h1Titles.push(title);
+            console.log('找到标题:', title);
+          }
+        }
+      });
+      
+      // 生成HTML
+      if (h1Titles.length > 0) {
+        const bookCard = container.closest('.book-card');
+        const bookUrl = bookCard.querySelector('.book-title a').href;
+        console.log('书籍URL:', bookUrl);
+        
+        let html = '';
+        const maxTitles = 20; // 最多显示20个标题
+        const showMore = h1Titles.length > maxTitles;
+        
+        console.log('标题总数:', h1Titles.length, '最大显示数:', maxTitles, '需要显示更多按钮:', showMore);
+        
+        // 显示前20个标题
+        const titlesToShow = showMore ? h1Titles.slice(0, maxTitles) : h1Titles;
+        
+        console.log('实际显示标题数:', titlesToShow.length);
+        
+        titlesToShow.forEach(title => {
+          // 修复slug生成逻辑
+          const slug = title.toLowerCase()
+            .replace(/[^\u4e00-\u9fa5\w\s-]/g, '') // 保留中文、英文、数字、空格、连字符
+            .replace(/\s+/g, '-') // 空格替换为连字符
+            .replace(/-+/g, '-') // 多个连字符合并为一个
+            .replace(/^-|-$/g, '') // 移除首尾连字符
+            .trim();
+          html += `<div class="note-title-item">
+            <a href="${bookUrl}#${slug}" class="note-title-link">${title}</a>
+          </div>`;
+          console.log('生成链接:', `${bookUrl}#${slug}`);
+        });
+        
+             // 如果有更多标题，添加【更多】按钮
+             if (showMore) {
+               console.log('添加【更多】按钮，总标题数:', h1Titles.length, '显示数:', maxTitles);
+
+               // 获取第21个标题的slug
+               const title21 = h1Titles[20]; // 第21个标题（索引20）
+               const slug21 = title21.toLowerCase()
+                 .replace(/[^\u4e00-\u9fa5\w\s-]/g, '')
+                 .replace(/\s+/g, '-')
+                 .replace(/-+/g, '-')
+                 .replace(/^-|-$/g, '')
+                 .trim();
+
+               html += `<div class="more-button-container">
+                 <a href="${bookUrl}#${slug21}" class="more-button">更多...</a>
+               </div>`;
+
+               console.log('【更多】按钮HTML已添加，跳转到第21个标题:', title21);
+             }
+        
+        container.innerHTML = html;
+        console.log('更新容器内容完成');
+      } else {
+        container.innerHTML = '<div class="note-placeholder">暂无笔记内容</div>';
+        console.log('没有找到标题，显示占位符');
+      }
+    });
+  }
+  
+  // 页面加载完成后处理标题
+  processH1Titles();
 });
+
+// 注意：toggleMoreTitles函数已删除，因为【更多...】按钮现在直接跳转到第21个标题
 </script>

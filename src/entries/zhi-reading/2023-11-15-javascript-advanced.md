@@ -6,6 +6,7 @@ category: "技术"
 tags: ["JavaScript", "编程", "前端", "Web开发"]
 rating: 4
 cover: "/assets/Pics/zhi-reading/城市观察-001-cover.jpg"
+description: "这是一本JavaScript领域的经典著作，深入讲解了JavaScript的核心概念和高级特性。"
 type: "reading"
 section: "zhi"
 ---

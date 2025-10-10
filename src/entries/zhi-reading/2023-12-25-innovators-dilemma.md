@@ -6,6 +6,7 @@ category: "商业"
 tags: ["创新", "商业", "管理", "颠覆性技术"]
 rating: 5
 cover: "/assets/Pics/zhi-reading/瞬间捕捉-006-cover.jpg"
+description: "这是一本关于创新和商业管理的经典著作，作者Clayton M. Christensen深入分析了为什么优秀的企业会失败。"
 type: "reading"
 section: "zhi"
 ---
@@ -42,3 +43,5 @@ section: "zhi"
 这本书是每个企业家和管理者都应该阅读的经典之作。它不仅解释了商业失败的原因，更重要的是提供了创新的方法论。
 
 通过阅读这本书，我学会了用颠覆性创新的视角来思考商业问题，这让我在商业决策中更加具有前瞻性。
+
+
