@@ -122,6 +122,15 @@ module.exports = function(eleventyConfig) {
     dataTemplateEngine: "njk",
     serverOptions: {
       port: 8080
-    }
+    },
+    // 性能优化设置
+    watchIgnores: [
+      "postEditor/**/*",
+      "node_modules/**/*",
+      "dist/**/*",
+      ".git/**/*"
+    ],
+    // 减少文件监听
+    watchJavaScriptDependencies: false
   };
 };

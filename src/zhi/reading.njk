@@ -34,7 +34,9 @@ pageCSS: "/assets/Css/reading.css"
 
   <!-- Container2: 书籍卡片横向滚动 -->
   <div class="reading-container2">
-    <button class="scroll-btn scroll-left" id="scrollLeft">←</button>
+    <button class="scroll-btn scroll-left" id="scrollLeft">
+      <img src="/assets/Icons/left.svg" alt="向左滚动" />
+    </button>
     
     <div class="books-scroll-container" id="booksScroll">
       <div class="books-scroll-track">
@@ -42,9 +44,9 @@ pageCSS: "/assets/Css/reading.css"
         <div class="book-card" 
              data-category="{{ book.data.category or '未分类' }}"
              data-rating="{{ book.data.rating or 0 }}"
-             data-title="{{ book.data.title | lower }}"
-             data-author="{{ book.data.author | lower }}"
-             data-tags="{{ book.data.tags | join(' ') | lower }}">
+             data-title="{{ (book.data.title or '') | lower }}"
+             data-author="{{ (book.data.author or '') | lower }}"
+             data-tags="{{ (book.data.tags or []) | join(' ') | lower }}">
           
           <div class="book-content">
             <!-- 左侧分隔线容器 -->
@@ -62,7 +64,79 @@ pageCSS: "/assets/Css/reading.css"
                     <img src="{{ book.data.cover }}" alt="{{ book.data.title }}">
                   {% else %}
                     <div class="book-placeholder">
-                      <span>{{ book.data.title | slice(0, 2) }}</span>
+                      <span>{{ (book.data.title or '') | slice(0, 2) }}</span>
+                    </div>
+                  {% endif %}
+                </div>
+                
+                <!-- 书名 -->
+                <h3 class="book-title">
+                  <a href="{{ book.url }}">{{ book.data.title }}</a>
+                </h3>
+                
+                <!-- 作者+年份 -->
+                <div class="book-meta">
+                  <span class="book-author">{{ book.data.author or "未知作者" }}</span>
+                  {% if book.data.date %}
+                    <span class="book-year">{{ book.data.date.getFullYear() }}</span>
+                  {% else %}
+                    <span class="book-year">2024</span>
+                  {% endif %}
+                </div>
+                
+                <!-- 简介 -->
+                <div class="book-summary">
+                  {{ book.data.description or "暂无简介" }}
+                </div>
+              </div>
+              
+              <!-- 分隔线 -->
+              <div class="book-divider-horizontal"></div>
+              
+              <!-- 下方：读书笔记内容 -->
+              <div class="book-note">
+                <div class="note-content">
+                  {% if book.templateContent %}
+                    <div class="note-titles-container" data-content="{{ book.templateContent | trim | replace('\n', '|') }}">
+                      <div class="note-placeholder">正在加载章节...</div>
+                    </div>
+                  {% else %}
+                    <div class="note-placeholder">暂无笔记内容</div>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        
+        <!-- 重复的书籍列表（用于循环效果） -->
+        {% for book in collections.reading %}
+        <div class="book-card duplicate-book" 
+             data-category="{{ book.data.category or '未分类' }}"
+             data-rating="{{ book.data.rating or 0 }}"
+             data-title="{{ (book.data.title or '') | lower }}"
+             data-author="{{ (book.data.author or '') | lower }}"
+             data-tags="{{ (book.data.tags or []) | join(' ') | lower }}"
+             style="display: none;">
+          
+          <div class="book-content">
+            <!-- 左侧分隔线容器 -->
+            <div class="book-line">
+              <div class="book-divider-vertical"></div>
+            </div>
+            
+            <!-- 右侧主要内容容器 -->
+            <div class="book-main">
+              <!-- 上方：书籍基本信息 -->
+              <div class="book-intro">
+                <!-- 封面 -->
+                <div class="book-cover">
+                  {% if book.data.cover %}
+                    <img src="{{ book.data.cover }}" alt="{{ book.data.title }}">
+                  {% else %}
+                    <div class="book-placeholder">
+                      <span>{{ (book.data.title or '') | slice(0, 2) }}</span>
                     </div>
                   {% endif %}
                 </div>
@@ -118,7 +192,9 @@ pageCSS: "/assets/Css/reading.css"
       </div>
     </div>
     
-    <button class="scroll-btn scroll-right" id="scrollRight">→</button>
+    <button class="scroll-btn scroll-right" id="scrollRight">
+      <img src="/assets/Icons/right.svg" alt="向右滚动" />
+    </button>
   </div>
 
 </section>
@@ -157,7 +233,10 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // 筛选书籍函数
   function filterBooks() {
-    bookCards.forEach(card => {
+    // 只处理原始书籍卡片，不处理重复的
+    const originalCards = document.querySelectorAll('.book-card:not(.duplicate-book)');
+    
+    originalCards.forEach((card, index) => {
       const category = card.dataset.category;
       const title = card.dataset.title;
       const author = card.dataset.author;
@@ -180,42 +259,126 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       }
       
-      // 显示/隐藏卡片
+      // 显示/隐藏原始卡片
       card.style.display = showCard ? 'block' : 'none';
+      
+      // 同步更新对应的重复卡片（如果存在）
+      const duplicateCard = document.querySelector(`.duplicate-book:nth-child(${index + originalCards.length + 1})`);
+      if (duplicateCard) {
+        duplicateCard.style.display = 'none'; // 重复卡片始终隐藏，只在滚动时显示
+      }
     });
+    
+    // 确保重复书籍在筛选后保持隐藏
+    hideDuplicateBooks();
     
     // 更新滚动按钮状态
     updateScrollButtons();
   }
   
-  // 横向滚动功能
+  // 横向滚动功能 - 无限循环
   let scrollPosition = 0;
   const scrollStep = 300; // 每次滚动的距离
+  let isScrolling = false; // 防止重复触发
+  
+  // 计算单个书籍列表的宽度
+  function getSingleListWidth() {
+    const originalCards = document.querySelectorAll('.book-card:not(.duplicate-book)');
+    const cardWidth = 256; // 根据CSS中的book-card宽度
+    const gap = 20; // 根据CSS中的gap
+    return originalCards.length * (cardWidth + gap);
+  }
+  
+  // 显示重复书籍（用于循环滚动）
+  function showDuplicateBooks() {
+    const duplicateBooks = document.querySelectorAll('.duplicate-book');
+    duplicateBooks.forEach(book => {
+      book.style.display = 'block';
+    });
+  }
+  
+  // 隐藏重复书籍
+  function hideDuplicateBooks() {
+    const duplicateBooks = document.querySelectorAll('.duplicate-book');
+    duplicateBooks.forEach(book => {
+      book.style.display = 'none';
+    });
+  }
   
   scrollLeftBtn.addEventListener('click', function() {
+    if (isScrolling) return;
+    isScrolling = true;
+    
+    const singleListWidth = getSingleListWidth();
+    
+    // 如果即将滚动到最左边，先显示重复书籍
+    if (scrollPosition - scrollStep <= 0) {
+      showDuplicateBooks();
+    }
+    
+    // 正常向左滚动
     scrollPosition = Math.max(0, scrollPosition - scrollStep);
     booksScroll.scrollTo({
       left: scrollPosition,
       behavior: 'smooth'
     });
+    
+    // 如果滚动到最左边，无缝跳转到重复部分的末尾
+    setTimeout(() => {
+      if (scrollPosition <= 0) {
+        scrollPosition = singleListWidth; // 跳转到重复部分的开始位置
+        booksScroll.scrollTo({
+          left: scrollPosition,
+          behavior: 'instant' // 瞬间跳转，用户感觉不到
+        });
+      }
+      isScrolling = false;
+    }, 300);
+    
     updateScrollButtons();
   });
   
   scrollRightBtn.addEventListener('click', function() {
+    if (isScrolling) return;
+    isScrolling = true;
+    
+    const singleListWidth = getSingleListWidth();
     const maxScroll = booksScroll.scrollWidth - booksScroll.clientWidth;
+    
+    // 如果即将滚动到最右边，先显示重复书籍
+    if (scrollPosition + scrollStep >= maxScroll) {
+      showDuplicateBooks();
+    }
+    
+    // 正常向右滚动
     scrollPosition = Math.min(maxScroll, scrollPosition + scrollStep);
     booksScroll.scrollTo({
       left: scrollPosition,
       behavior: 'smooth'
     });
+    
+    // 如果滚动到重复部分，无缝跳转到原始部分
+    setTimeout(() => {
+      if (scrollPosition >= singleListWidth) {
+        scrollPosition = scrollPosition - singleListWidth;
+        booksScroll.scrollTo({
+          left: scrollPosition,
+          behavior: 'instant' // 瞬间跳转，用户感觉不到
+        });
+        // 跳转后隐藏重复书籍
+        hideDuplicateBooks();
+      }
+      isScrolling = false;
+    }, 300);
+    
     updateScrollButtons();
   });
   
-  // 更新滚动按钮状态
+  // 更新滚动按钮状态 - 循环滚动时按钮始终可用
   function updateScrollButtons() {
-    const maxScroll = booksScroll.scrollWidth - booksScroll.clientWidth;
-    scrollLeftBtn.style.opacity = scrollPosition > 0 ? '1' : '0.5';
-    scrollRightBtn.style.opacity = scrollPosition < maxScroll ? '1' : '0.5';
+    // 循环滚动模式下，按钮始终可用，不需要显示禁用状态
+    scrollLeftBtn.style.opacity = '1';
+    scrollRightBtn.style.opacity = '1';
   }
   
   // 监听滚动事件
@@ -233,7 +396,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const titleContainers = document.querySelectorAll('.note-titles-container');
     console.log('找到标题容器数量:', titleContainers.length);
     
-    titleContainers.forEach((container, index) => {
+    // 只处理前一半的容器（原始列表），避免重复处理
+    const originalContainers = Array.from(titleContainers).slice(0, titleContainers.length / 2);
+    console.log('处理原始容器数量:', originalContainers.length);
+    
+    originalContainers.forEach((container, index) => {
       const content = container.dataset.content;
       console.log(`容器 ${index} 的内容:`, content ? '有内容' : '无内容');
       
@@ -310,9 +477,25 @@ document.addEventListener('DOMContentLoaded', function() {
         
         container.innerHTML = html;
         console.log('更新容器内容完成');
+        
+        // 同步更新对应的重复容器
+        const duplicateIndex = index + originalContainers.length;
+        if (duplicateIndex < titleContainers.length) {
+          const duplicateContainer = titleContainers[duplicateIndex];
+          duplicateContainer.innerHTML = html;
+          console.log('同步更新重复容器:', duplicateIndex);
+        }
       } else {
         container.innerHTML = '<div class="note-placeholder">暂无笔记内容</div>';
         console.log('没有找到标题，显示占位符');
+        
+        // 同步更新对应的重复容器
+        const duplicateIndex = index + originalContainers.length;
+        if (duplicateIndex < titleContainers.length) {
+          const duplicateContainer = titleContainers[duplicateIndex];
+          duplicateContainer.innerHTML = '<div class="note-placeholder">暂无笔记内容</div>';
+          console.log('同步更新重复容器占位符:', duplicateIndex);
+        }
       }
     });
   }

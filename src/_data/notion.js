@@ -277,4 +277,5 @@ module.exports = async function() {
   return await getNotionData();
 };
 
-if (!process.env.NOTION_API_TOKEN) { throw new Error('Missing NOTION_API_TOKEN (check .env.local / CI / Vercel).'); }
+// 如果没有 API token，使用示例数据而不是抛出错误
+// if (!process.env.NOTION_API_TOKEN) { throw new Error('Missing NOTION_API_TOKEN (check .env.local / CI / Vercel).'); }

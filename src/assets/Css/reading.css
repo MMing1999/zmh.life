@@ -103,8 +103,8 @@ body .control-btn.active {
 .reading-container2 {
   position: relative;
   background: #fff;
-  overflow: hidden;
-  min-height: 500px; /* 增加最小高度，让整个容器更高 */
+  overflow: visible; /* 改为可见，避免裁剪内容 */
+  min-height: auto; /* 改为自适应高度 */
 }
 
 .books-scroll-container {
@@ -126,7 +126,7 @@ body .control-btn.active {
 
 /* 书籍卡片 */
 .book-card {
-  flex: 0 0 320px; /* 增加宽度以容纳新结构 */
+  flex: 0 0 256px; /* 缩小20%：320px * 0.8 = 256px */
   background: #fff;
   border-radius: 0; /* 去掉圆角 */
   overflow: visible; /* 改为可见，让【更多】按钮显示出来 */
@@ -298,7 +298,7 @@ body .control-btn.active {
 
 .note-title-link {
   display: block;
-  font-size: 0.9rem; /* 与书籍简介字体大小一致 */
+  font-size: 1rem; /* 从0.9rem增大到1rem */
   font-weight: 500;
   color: #333; /* 比简介的#666更深 */
   text-decoration: none;
@@ -336,6 +336,7 @@ body .control-btn.active {
 .more-button-container {
   margin-top: 8px;
   text-align: right; /* 右对齐 */
+  /* 移除边框 */
 }
 
 .more-button {
@@ -358,38 +359,189 @@ body .control-btn.active {
   margin-top: 4px;
 }
 
-/* 滚动按钮 */
+/* 滚动按钮 - 默认隐藏，hover时显示 */
 .scroll-btn {
-  position: absolute;
+  position: fixed; /* 改为fixed定位，相对于视口 */
   top: 50%;
   transform: translateY(-50%);
+  width: 6rem; /* 竖向矩形宽度 */
+  height: 40rem; /* 竖向矩形高度 */
+  background: transparent; /* 透明背景 */
+  border: none; /* 去掉边框 */
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 1000; /* 提高层级 */
+  opacity: 0; /* 默认隐藏 */
+  /* 移除visibility: hidden，让按钮可以响应hover */
+}
+
+/* SVG图标样式 - 默认透明，hover时显示 */
+.scroll-btn img {
+  width: 2rem; /* SVG图标宽度 */
+  height: auto; /* 保持比例 */
+  opacity: 0; /* 默认透明 */
+  transition: opacity 0.3s ease; /* 添加过渡效果 */
+}
+
+.scroll-btn:hover {
+  opacity: 1; /* hover时显示按钮 */
+  transform: translateY(-50%) scale(1.05); /* hover时稍微放大 */
+}
+
+.scroll-btn:hover img {
+  opacity: 1; /* hover时显示SVG图标 */
+}
+
+.scroll-left {
+  left: 2%; /* 距离左边缘20px */
+}
+
+.scroll-right {
+  right: 2%; /* 距离右边缘20px */
+}
+
+/* 移除页面hover效果，只保留按钮自身hover */
+
+/* ===== 章节选择目录按钮 ===== */
+.chapter-toc {
+  position: fixed;
+  bottom: 20px; /* 与回到顶部按钮对称 */
+  left: 20px; /* 移动到左下角 */
   width: 50px;
   height: 50px;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid #ddd;
+  background: #000;
+  border: none;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
-  color: #666;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
-  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 1000;
 }
 
-.scroll-btn:hover {
+.chapter-toc.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.chapter-toc:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.chapter-toc img {
+  width: 24px;
+  height: auto;
+  filter: brightness(0) invert(1); /* 将黑色SVG转为白色 */
+}
+
+/* ===== 章节目录弹窗样式 ===== */
+.chapter-toc-modal {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.chapter-toc-content {
   background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 300px;
+  height: 500px;
+  overflow-y: auto;
+  box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
+  animation: slideUpFromBottom 0.3s ease;
+  margin-left: 20px;
+  margin-bottom: 80px; /* 给按钮留出空间，避免覆盖 */
+}
+
+.chapter-toc-content h3 {
+  margin: 0 0 16px 0;
+  font-size: 18px;
+  font-weight: 600;
   color: #000;
-  border-color: #000;
+  font-family: 'Fusion Pixel', monospace;
 }
 
-.scroll-left {
-  left: 10px;
+.chapter-toc-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px 0;
 }
 
-.scroll-right {
-  right: 10px;
+.chapter-toc-content li {
+  margin-bottom: 8px;
+}
+
+.chapter-link {
+  display: block;
+  padding: 8px 12px;
+  color: #333;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  font-family: 'Fusion Pixel', monospace;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.chapter-link:hover {
+  background-color: #f5f5f5;
+  color: #000;
+}
+
+.chapter-number {
+  color: #666;
+  font-weight: 600;
+  margin-right: 8px;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.close-toc {
+  background: #000;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: 'Fusion Pixel', monospace;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.close-toc:hover {
+  background: #333;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUpFromBottom {
+  from { 
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* 空状态 */
@@ -451,13 +603,15 @@ body .control-btn.active {
   }
   
   .book-card {
-    flex: 0 0 280px;
-    height: 180px;
+    flex: 0 0 224px; /* 缩小20%：280px * 0.8 = 224px */
+    height: auto; /* 改为自适应高度，跟随内容 */
+    min-height: 180px; /* 设置最小高度保持基本布局 */
   }
   
   .book-cover {
-    width: 45px;
-    height: 60px;
+    width: 100%; /* 全宽显示 */
+    height: auto; /* 高度自适应 */
+    aspect-ratio: 3/4; /* 保持3:4比例 */
   }
   
   .book-title {
@@ -474,25 +628,47 @@ body .control-btn.active {
   
   .note-content {
     font-size: 9px;
-    max-height: 50px;
+    /* 移除max-height限制，让章节标题完全显示 */
+    overflow: visible;
   }
   
   .note-title-link {
-    font-size: 0.8rem; /* 中等屏幕字体大小，与简介的0.8rem一致 */
+    font-size: 0.9rem; /* 中等屏幕字体大小，比简介的0.8rem稍大 */
   }
   
   .scroll-btn {
-    width: 40px;
-    height: 40px;
-    font-size: 16px;
+    width: 5rem; /* 中等屏幕竖向矩形宽度 */
+    height: 35rem; /* 中等屏幕竖向矩形高度 */
+  }
+  
+  .scroll-btn img {
+    width: 1.5rem; /* 中等屏幕SVG图标宽度 */
   }
   
   .scroll-left {
-    left: 5px;
+    left: 15px; /* 中等屏幕距离边缘15px */
   }
   
   .scroll-right {
-    right: 5px;
+    right: 15px; /* 中等屏幕距离边缘15px */
+  }
+  
+  .chapter-toc {
+    bottom: 15px; /* 中等屏幕调整位置 */
+    left: 15px; /* 左下角 */
+    width: 45px;
+    height: 45px;
+  }
+  
+  .chapter-toc img {
+    width: 20px;
+  }
+  
+  .chapter-toc-content {
+    margin-left: 15px;
+    margin-bottom: 70px; /* 给按钮留出空间 */
+    width: 300px;
+    height: 500px;
   }
 }
 
@@ -531,13 +707,15 @@ body .control-btn.active {
   }
   
   .book-card {
-    flex: 0 0 240px;
-    height: 160px;
+    flex: 0 0 192px; /* 缩小20%：240px * 0.8 = 192px */
+    height: auto; /* 改为自适应高度，跟随内容 */
+    min-height: 160px; /* 设置最小高度保持基本布局 */
   }
   
   .book-cover {
-    width: 35px;
-    height: 50px;
+    width: 100%; /* 全宽显示 */
+    height: auto; /* 高度自适应 */
+    aspect-ratio: 3/4; /* 保持3:4比例 */
   }
   
   .book-title {
@@ -554,11 +732,48 @@ body .control-btn.active {
   
   .note-content {
     font-size: 8px;
-    max-height: 40px;
+    /* 移除max-height限制，让章节标题完全显示 */
+    overflow: visible;
   }
   
   .note-title-link {
-    font-size: 0.75rem; /* 移动端字体大小，与简介的0.75rem一致 */
+    font-size: 0.85rem; /* 移动端字体大小，比简介的0.75rem稍大 */
+  }
+  
+  .scroll-btn {
+    width: 4rem; /* 移动端竖向矩形宽度 */
+    height: 30rem; /* 移动端竖向矩形高度 */
+  }
+  
+  .scroll-btn img {
+    width: 1.2rem; /* 移动端SVG图标宽度 */
+  }
+  
+  .scroll-left {
+    left: 10px; /* 移动端距离边缘10px */
+  }
+  
+  .scroll-right {
+    right: 10px; /* 移动端距离边缘10px */
+  }
+  
+  .chapter-toc {
+    bottom: 10px; /* 移动端调整位置 */
+    left: 10px; /* 左下角 */
+    width: 40px;
+    height: 40px;
+  }
+  
+  .chapter-toc img {
+    width: 18px;
+  }
+  
+  .chapter-toc-content {
+    margin-left: 10px;
+    margin-bottom: 60px; /* 给按钮留出空间 */
+    width: 300px;
+    height: 500px;
+    padding: 20px;
   }
 }
 

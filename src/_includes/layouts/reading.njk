@@ -68,6 +68,11 @@ layout: layouts/base.njk
   </div>
 </article>
 
+{# ===== 章节选择目录按钮 ===== #}
+<button id="chapterToc" class="chapter-toc" aria-label="章节目录" title="章节目录">
+  <img src="/assets/Icons/character.svg" alt="章节目录" />
+</button>
+
 <script>
 // 为标题添加ID属性并处理锚点跳转
 document.addEventListener('DOMContentLoaded', function() {
@@ -123,6 +128,86 @@ document.addEventListener('DOMContentLoaded', function() {
     }, 100);
   } else {
     console.log('没有检测到锚点');
+  }
+  
+  // ===== 章节选择目录按钮功能 =====
+  const chapterTocBtn = document.getElementById('chapterToc');
+  if (chapterTocBtn) {
+    // 显示/隐藏按钮
+    function updateChapterTocButton() {
+      const overThreshold = window.scrollY > 1000;
+      chapterTocBtn.classList.toggle('is-visible', overThreshold);
+    }
+    
+    // 点击按钮显示章节目录
+    chapterTocBtn.addEventListener('click', function() {
+      // 获取所有h1标题
+      const h1Elements = document.querySelectorAll('.reading-body h1');
+      
+      if (h1Elements.length === 0) {
+        alert('暂无章节内容');
+        return;
+      }
+      
+      // 创建章节目录
+      let tocHtml = '<div class="chapter-toc-modal"><div class="chapter-toc-content"><h3>章节目录</h3><ul>';
+      
+      h1Elements.forEach((h1, index) => {
+        const title = h1.textContent.trim();
+        const slug = h1.id;
+        const chapterNumber = index + 1; // 从1开始编号
+        tocHtml += `<li><a href="#${slug}" class="chapter-link"><span class="chapter-number">${chapterNumber}.</span> ${title}</a></li>`;
+      });
+      
+      tocHtml += '</ul><button class="close-toc">关闭</button></div></div>';
+      
+      // 添加到页面
+      const tocModal = document.createElement('div');
+      tocModal.innerHTML = tocHtml;
+      document.body.appendChild(tocModal.firstElementChild);
+      
+      // 添加关闭功能
+      const closeBtn = document.querySelector('.close-toc');
+      const modal = document.querySelector('.chapter-toc-modal');
+      
+      closeBtn.addEventListener('click', () => {
+        modal.remove();
+      });
+      
+      // 点击背景关闭
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.remove();
+        }
+      });
+      
+      // 章节链接点击事件
+      document.querySelectorAll('.chapter-link').forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const targetId = link.getAttribute('href').substring(1);
+          const targetElement = document.getElementById(targetId);
+          
+          if (targetElement) {
+            const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 0;
+            const offset = navbarHeight;
+            const targetPosition = targetElement.offsetTop - offset;
+            
+            window.scrollTo({
+              top: Math.max(0, targetPosition),
+              behavior: 'smooth'
+            });
+            
+            // 关闭目录
+            modal.remove();
+          }
+        });
+      });
+    });
+    
+    // 监听滚动事件
+    window.addEventListener('scroll', updateChapterTocButton, { passive: true });
+    updateChapterTocButton();
   }
 });
 </script>

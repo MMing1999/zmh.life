@@ -57,6 +57,18 @@
       <li><a class="navlink" href="{{ '/he/'   | url }}">合</a></li>
       <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
     </ul>
+    
+    {# ===== 二级导航栏（仅在zhi相关页面显示）===== #}
+    {% if section == "zhi" %}
+    <div class="secondary-nav">
+      <div class="secondary-nav-container">
+        <a href="/zhi/collection/" class="secondary-nav-link{% if pageName == 'collection' %} active{% endif %}">收集</a>
+        <a href="/zhi/observation/" class="secondary-nav-link{% if pageName == 'observation' %} active{% endif %}">观察</a>
+        <a href="/zhi/writing/" class="secondary-nav-link{% if pageName == 'writing' %} active{% endif %}">写作</a>
+        <a href="/zhi/reading/" class="secondary-nav-link{% if pageName == 'reading' %} active{% endif %}">阅读</a>
+      </div>
+    </div>
+    {% endif %}
   </nav>
 
   {# ===== 页面主体 ===== #}
@@ -117,7 +129,7 @@
       </div>
       
       <div class="footer-subscribe">
-        <input type="email" placeholder="输入邮箱" class="email-input">
+        <input type="email" placeholder="输入邮箱..." class="email-input">
         <button type="button" class="subscribe-btn">订阅更新</button>
       </div>
       
@@ -181,7 +193,21 @@
   </div>
 
   {# ===== 回到顶部悬浮按钮 ===== #}
-  <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">↑</button>
+  <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">
+    <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.62755 9.15745L1.62755 7.63745L0.0975482 7.63745L0.0975481 9.15745L1.62755 9.15745Z" fill="currentColor"/>
+      <path d="M3.14755 7.63745L3.14755 6.11745L1.62755 6.11745L1.62755 7.63745L3.14755 7.63745Z" fill="currentColor"/>
+      <path d="M4.67755 6.11745L4.67755 4.58745L3.14755 4.58745L3.14755 6.11745L4.67755 6.11745Z" fill="currentColor"/>
+      <path d="M6.19755 4.58745L6.19755 3.06745L4.67755 3.06745L4.67755 4.58745L6.19755 4.58745Z" fill="currentColor"/>
+      <path d="M7.71755 3.06745L7.71755 1.53745L6.19755 1.53745L6.19755 3.06745L7.71755 3.06745Z" fill="currentColor"/>
+      <path d="M9.24755 1.53745L9.24755 0.0174503L7.71755 0.0174503L7.71755 1.53745L9.24755 1.53745Z" fill="currentColor"/>
+      <path d="M10.7675 3.06745L10.7675 1.53745L9.24755 1.53745L9.24755 3.06745L10.7675 3.06745Z" fill="currentColor"/>
+      <path d="M12.2875 4.58745L12.2875 3.06745L10.7675 3.06745L10.7675 4.58745L12.2875 4.58745Z" fill="currentColor"/>
+      <path d="M13.8175 6.11745L13.8175 4.58745L12.2875 4.58745L12.2875 6.11745L13.8175 6.11745Z" fill="currentColor"/>
+      <path d="M15.3375 7.63745L15.3375 6.11745L13.8175 6.11745L13.8175 7.63745L15.3375 7.63745Z" fill="currentColor"/>
+      <path d="M16.8675 9.15745L16.8675 7.63745L15.3375 7.63745L15.3375 9.15745L16.8675 9.15745Z" fill="currentColor"/>
+    </svg>
+  </button>
 
   {# ===== 页面级脚本（可选；支持 string 或 array；defer）===== #}
   {% if pageJS %}
