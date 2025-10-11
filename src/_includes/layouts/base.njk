@@ -58,8 +58,8 @@
       <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
     </ul>
     
-    {# ===== 二级导航栏（仅在zhi相关页面显示）===== #}
-    {% if section == "zhi" %}
+    {# ===== 二级导航栏（仅在收集、观察、写作、阅读页面显示）===== #}
+    {% if section == "zhi" and pageName in ["collection", "observation", "writing", "reading"] %}
     <div class="secondary-nav">
       <div class="secondary-nav-container">
         <a href="/zhi/collection/" class="secondary-nav-link{% if pageName == 'collection' %} active{% endif %}">收集</a>

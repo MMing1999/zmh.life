@@ -12,6 +12,18 @@ module.exports = {
       if (t === "collection")  return "layouts/project.njk";
       return "layouts/base.njk";
     },
+    pageName: (data) => {
+      // 如果文件已经指定了pageName，则使用文件中的pageName
+      if (data.pageName) return data.pageName;
+      
+      // 根据type自动设置pageName
+      const t = data.type;
+      if (t === "observation") return "observation";
+      if (t === "reading")     return "reading";
+      if (t === "note")        return "writing";
+      if (t === "collection")  return "collection";
+      return null;
+    },
     permalink: (data) => {
       const slug    = data.page.fileSlug;
       const section = data.section || "misc";
