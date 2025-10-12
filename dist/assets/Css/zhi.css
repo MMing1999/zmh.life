@@ -8,24 +8,32 @@
 }
 
 /* =========================================
-   卡片区域布局
+   两栏布局
    ========================================= */
-.cards-section {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  padding-left: 0;
-  padding-right: 0;
-  background-color: #fff;
-  text-align: center;
+.two-column-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.left-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.right-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  padding-left: 0rem;
-  padding-right: 0rem;
-  margin: 0 auto;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
 }
 
 /* =========================================
@@ -67,6 +75,38 @@
   color: #888;
   margin: 0;
   line-height: 1.4;
+}
+
+/* =========================================
+   右侧内容框样式
+   ========================================= */
+.content-box {
+  border: 2px solid #000;
+  padding: 1.5rem;
+  background: #fff;
+  transition: all 0.3s ease;
+}
+
+.content-box:hover {
+  background: #f8f9fa;
+  transform: translateY(-2px);
+}
+
+.content-box h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 1rem 0;
+}
+
+.content-preview {
+  color: #666;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.content-preview p {
+  margin: 0;
 }
 
 /* =========================================
@@ -146,35 +186,38 @@
    响应式设计
    ========================================= */
 @media (max-width: 1024px) {
+  .two-column-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
   .cards-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
   }
 }
 
 @media (max-width: 768px) {
-  .cards-section {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    padding-left: 0;
-    padding-right: 0;
+  .two-column-section {
+    padding: 1rem;
+    gap: 1.5rem;
   }
   
   .cards-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
+  }
+  
+  .right-column {
+    gap: 1rem;
   }
   
   .zhi-card {
-    padding: 1.5rem;
+    padding: 1.2rem;
   }
   
-  .zhi-card h3 {
-    font-size: 1.3rem;
+  .content-box {
+    padding: 1.2rem;
   }
 }
 
@@ -182,24 +225,22 @@
   .cards-container {
     grid-template-columns: 1fr;
     gap: 1rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
   }
   
   .zhi-card {
-    padding: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .content-box {
+    padding: 1rem;
   }
   
   .zhi-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
   
-  .zhi-card p {
-    font-size: 0.9rem;
-  }
-  
-  .card-description {
-    font-size: 0.8rem;
+  .content-box h4 {
+    font-size: 1rem;
   }
 }
 
