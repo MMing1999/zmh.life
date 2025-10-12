@@ -34,7 +34,7 @@
 .zhi-card {
   border: 2px solid #000;
   padding: 2rem;
-  text-align: center;
+  text-align: left;
   transition: all 0.3s ease;
   background: #fff;
 }
@@ -48,19 +48,21 @@
   font-size: 1.5rem;
   font-weight: 600;
   color: #000;
-  margin: 0 0 0.5rem 0;
-}
-
-.zhi-card p {
-  font-size: 1rem;
-  color: #666;
   margin: 0 0 1rem 0;
 }
 
-.card-description {
+.card-line1 {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.4;
+}
+
+.card-line2 {
   font-size: 0.9rem;
   color: #888;
-  margin-bottom: 1.5rem !important;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.4;
 }
 
 .card-link {
