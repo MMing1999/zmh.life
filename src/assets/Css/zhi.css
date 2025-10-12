@@ -8,80 +8,66 @@
 }
 
 /* =========================================
-   页面布局
+   卡片区域布局
    ========================================= */
-.zhi-container {
+.cards-section {
+  padding: 4rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem;
 }
 
-/* =========================================
-   标题样式
-   ========================================= */
-.zhi-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #2d3748;
-  margin-bottom: 1rem;
-  text-align: center;
-}
-
-.zhi-subtitle {
-  font-size: 1.2rem;
-  color: #718096;
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
-/* =========================================
-   网格布局
-   ========================================= */
-.zhi-grid {
+.cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin: 2rem 0;
+  margin-top: 2rem;
 }
 
 /* =========================================
-   卡片样式
+   卡片样式 - 简单黑色边框
    ========================================= */
 .zhi-card {
+  border: 2px solid #000;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
   background: #fff;
-  border-radius: 12px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .zhi-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background: #f8f9fa;
+  transform: translateY(-2px);
 }
 
-.zhi-card-title {
-  font-size: 1.3rem;
+.zhi-card h3 {
+  font-size: 1.5rem;
   font-weight: 600;
-  color: #2d3748;
-  margin-bottom: 0.5rem;
+  color: #000;
+  margin: 0 0 0.5rem 0;
 }
 
-.zhi-card-description {
-  color: #718096;
-  line-height: 1.6;
-  margin-bottom: 1rem;
+.zhi-card p {
+  font-size: 1rem;
+  color: #666;
+  margin: 0 0 1rem 0;
 }
 
-.zhi-card-link {
-  color: #667eea;
+.card-description {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 1.5rem !important;
+}
+
+.card-link {
+  color: #000;
   text-decoration: none;
   font-weight: 500;
+  font-size: 0.9rem;
   transition: color 0.3s ease;
 }
 
-.zhi-card-link:hover {
-  color: #5a6fd8;
+.card-link:hover {
+  color: #666;
 }
 
 /* =========================================
@@ -160,36 +146,52 @@
 /* =========================================
    响应式设计
    ========================================= */
+@media (max-width: 1024px) {
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .zhi-container {
-    padding: 1rem;
+  .cards-section {
+    padding: 2rem 1rem;
   }
   
-  .zhi-title {
-    font-size: 2rem;
-  }
-  
-  .zhi-grid {
-    grid-template-columns: 1fr;
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
   
-  .book-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  .zhi-card {
+    padding: 1.5rem;
   }
   
-  .zhi-container {
-    padding: 1rem;
+  .zhi-card h3 {
+    font-size: 1.3rem;
   }
 }
 
 @media (max-width: 480px) {
-  .zhi-title {
-    font-size: 1.8rem;
+  .cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
   
-  .zhi-subtitle {
-    font-size: 1rem;
+  .zhi-card {
+    padding: 1.5rem;
+  }
+  
+  .zhi-card h3 {
+    font-size: 1.2rem;
+  }
+  
+  .zhi-card p {
+    font-size: 0.9rem;
+  }
+  
+  .card-description {
+    font-size: 0.8rem;
   }
 }
 
