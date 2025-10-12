@@ -11,8 +11,8 @@
    卡片区域布局
    ========================================= */
 .cards-section {
-  padding-top: 4rem;
-  padding-bottom: 4rem;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
   padding-left: 0;
   padding-right: 0;
   background-color: #fff;
@@ -23,8 +23,8 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding-left: 0rem;
+  padding-right: 0rem;
   margin: 0 auto;
 }
 
