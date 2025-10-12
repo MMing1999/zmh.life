@@ -11,16 +11,21 @@
    卡片区域布局
    ========================================= */
 .cards-section {
-  padding: 4rem 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: #fff;
+  text-align: center;
 }
 
 .cards-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
-  margin-top: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
+  margin: 0 auto;
 }
 
 /* =========================================
@@ -150,17 +155,24 @@
   .cards-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
 }
 
 @media (max-width: 768px) {
   .cards-section {
-    padding: 2rem 1rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-left: 0;
+    padding-right: 0;
   }
   
   .cards-container {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   
   .zhi-card {
@@ -176,6 +188,8 @@
   .cards-container {
     grid-template-columns: 1fr;
     gap: 1rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
   
   .zhi-card {
