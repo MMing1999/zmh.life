@@ -26,7 +26,7 @@ npm run build
 ### 📁 项目根目录结构
 
 ```
-/Users/zhangminghua/My_Projects/mywebsite/
+/Users/zhangminghua/My_Projects/zmh.life/
 ├── 📄 配置文件
 │   ├── package.json              # 主项目依赖配置
 │   ├── package-lock.json          # 依赖锁定文件

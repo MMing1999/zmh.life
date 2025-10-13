@@ -6,9 +6,9 @@
 
   {# ===== 标题（优先页面标题，后缀站点名） ===== #}
   {% if title %}
-    {% set _title = title ~ ' · My Studio' %}
+    {% set _title = title ~ ' · zmh.life' %}
   {% else %}
-    {% set _title = 'My Studio' %}
+    {% set _title = 'zmh.life' %}
   {% endif %}
   <title>{{ _title }}</title>
 
@@ -18,7 +18,7 @@
     <meta name="description" content="{{ _desc }}">
     <meta property="og:description" content="{{ _desc }}">
   {% endif %}
-  <meta property="og:title" content="{{ title or 'My Studio' }}">
+  <meta property="og:title" content="{{ title or 'zmh.life' }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ (page.url or '/') | url }}">
   <link rel="canonical" href="{{ (page.url or '/') | url }}">
