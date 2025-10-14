@@ -15,9 +15,9 @@ body[data-page="he"] .navbar {
 }
 
 .he-container {
-  max-width: 1400px;
   margin: 0 auto;
   padding: 0;
+  width: 80%; /* 左右各留10%边距，与页脚保持一致 */
   font-family: 'Fusion Pixel', monospace;
 }
 
@@ -33,7 +33,7 @@ body[data-page="he"] .navbar {
 .he-section:not(:last-child)::after {
   content: '';
   position: absolute;
-  bottom: -2rem;
+  bottom: -36px;
   left: 0;
   right: 0;
   height: 1px;
@@ -61,7 +61,7 @@ body[data-page="he"] .navbar {
 .fullscreen-section::after {
   content: '';
   position: absolute;
-  bottom: -2rem;
+  bottom: -36px;
   left: 0;
   right: 0;
   height: 1px;
@@ -138,12 +138,13 @@ body[data-page="he"] .navbar {
 .l3-right-container,
 .l4-left-container,
 .l4-right-container {
-  padding: 2rem;
+  margin-top: 4rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
 }
+
 
 .l2-left-container,
 .l3-left-container,
@@ -219,23 +220,24 @@ body[data-page="he"] .navbar {
 /* Profile Section 专用样式 */
 .profile-section {
   display: flex;
-  flex-direction: column;
-  gap: 3rem;
-  padding: 3rem 2rem;
-  background: #fafafa;
-  border-radius: 12px;
-  margin: 2rem 0;
+  flex-direction: row;
+  gap: 12px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  margin: 0;
 }
 
 /* (1) Identity & Tagline */
 .profile-identity {
-  text-align: center;
-  padding: 2rem 0;
-  border-bottom: 1px solid #e5e7eb;
+  text-align: left;
+  padding: 0;
+  border-bottom: none;
+  margin-bottom: 0;
 }
 
 .profile-name {
-  font-size: 3.5rem;
+  font-size: 2rem;
   font-weight: 300;
   color: #1f2937;
   margin: 0 0 1rem 0;
@@ -244,24 +246,24 @@ body[data-page="he"] .navbar {
 }
 
 .profile-title {
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-weight: 400;
   color: #374151;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 0.5rem 0;
   letter-spacing: 0.01em;
 }
 
 .profile-tagline {
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   line-height: 1.6;
   color: #6b7280;
-  margin: 0 0 2rem 0;
+  margin: 0 0 0.5rem 0;
   font-style: italic;
 }
 
 .profile-current {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
   margin-bottom: 1rem;
@@ -287,18 +289,39 @@ body[data-page="he"] .navbar {
   margin: 0;
 }
 
+/* Profile Description */
+.profile-description {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.description-chinese,
+.description-english {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin: 0 0 0.5rem 0;
+  text-align: left;
+}
+
+.description-english {
+  font-style: italic;
+  color: #6b7280;
+}
+
 /* Profile Modules */
 .profile-module {
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
 }
 
 .module-title {
   font-size: 1.3rem;
   font-weight: 600;
   color: #1f2937;
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 1rem 0;
   padding-bottom: 0.5rem;
-  border-bottom: 2px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
   text-transform: uppercase;
   letter-spacing: 0.05em;
 }
@@ -307,72 +330,67 @@ body[data-page="he"] .navbar {
 .experience-list {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.experience-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #d1d5db;
 }
 
 .experience-item {
-  padding: 1.5rem;
-  background: white;
-  border-radius: 8px;
-  border-left: 4px solid #3b82f6;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border-left: none;
+  box-shadow: none;
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .experience-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: none;
 }
 
-.exp-header {
+.exp-content {
+  padding-left: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
+  flex-direction: column;
+  gap: 0.2rem;
 }
 
-.exp-company {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #1f2937;
-}
-
-.exp-period {
-  font-size: 0.9rem;
-  color: #6b7280;
-  background: #f3f4f6;
-  padding: 0.2rem 0.6rem;
-  border-radius: 8px;
-}
-
-.exp-role {
+.exp-time {
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 600;
   color: #374151;
-  margin: 0 0 1rem 0;
-}
-
-.exp-description {
-  list-style: none;
-  padding: 0;
   margin: 0;
 }
 
-.exp-description li {
-  font-size: 0.95rem;
-  color: #4b5563;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
-  padding-left: 1rem;
-  position: relative;
+.exp-chinese {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.4;
 }
 
-.exp-description li::before {
-  content: "•";
-  position: absolute;
-  left: 0;
-  color: #3b82f6;
-  font-weight: bold;
+.exp-chinese:not(:first-of-type) {
+  margin-top: 0.3rem;
+}
+
+.exp-english {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+  font-style: italic;
+  line-height: 1.4;
 }
 
 /* (3) Education */
@@ -380,57 +398,164 @@ body[data-page="he"] .navbar {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  position: relative;
+}
+
+.education-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #d1d5db;
 }
 
 .education-item {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 1rem;
-  padding: 1rem;
-  background: white;
-  border-radius: 8px;
-  border-left: 4px solid #10b981;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border-left: none;
   transition: all 0.3s ease;
+  position: relative;
 }
 
-.education-item:hover {
-  transform: translateX(5px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+.edu-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.edu-period {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  min-width: 80px;
+  text-align: left;
 }
 
 .edu-degree {
   font-size: 0.9rem;
-  font-weight: 600;
-  color: #10b981;
-  background: #ecfdf5;
-  padding: 0.3rem 0.6rem;
-  border-radius: 6px;
-  min-width: 40px;
-  text-align: center;
-}
-
-.edu-field {
-  font-size: 1rem;
   font-weight: 500;
-  color: #1f2937;
-  flex: 1;
+  color: #6b7280;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+  min-width: 40px;
+  text-align: left;
 }
 
-.edu-school {
+.edu-content {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.edu-time {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+}
+
+.edu-chinese {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.edu-english {
   font-size: 0.95rem;
   color: #6b7280;
-  flex: 1;
+  margin: 0;
+  font-style: italic;
 }
 
-.edu-year {
-  font-size: 0.9rem;
-  color: #6b7280;
-  background: #f3f4f6;
-  padding: 0.2rem 0.6rem;
-  border-radius: 6px;
+/* (4) Contact */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
 }
 
-/* (4) Core Skills & Focus */
+.contact-list::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #d1d5db;
+}
+
+.contact-item {
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+  border-left: none;
+  box-shadow: none;
+  transition: none;
+  position: relative;
+}
+
+.contact-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  min-width: 140px;
+}
+
+.contact-value {
+  font-size: 1rem;
+  color: #1f2937;
+  text-decoration: underline;
+  text-decoration-color: #6b7280;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* 完全去掉contact-item的hover效果 */
+
+.contact-content {
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: row;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.contact-time {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #374151;
+  margin: 0;
+}
+
+.contact-chinese {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.4;
+  text-decoration: none;
+  cursor: default;
+  transition: none;
+}
+
+/* 完全去掉contact-chinese的hover效果 */
+
+/* (5) Core Skills & Focus */
 .skills-container {
   display: flex;
   flex-direction: column;
@@ -438,10 +563,10 @@ body[data-page="he"] .navbar {
 }
 
 .skill-group {
-  background: white;
+  background: transparent;
   padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .skill-group-title {
@@ -538,15 +663,15 @@ body[data-page="he"] .navbar {
   align-items: center;
   gap: 1rem;
   padding: 1rem;
-  background: white;
-  border-radius: 8px;
+  background: transparent;
+  border-radius: 0;
   border-left: 4px solid #f59e0b;
   transition: all 0.3s ease;
 }
 
 .recognition-item:hover {
   transform: translateX(5px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .recognition-type {
@@ -575,10 +700,10 @@ body[data-page="he"] .navbar {
 
 /* (6) Contact & Collaboration */
 .contact-module {
-  background: white;
+  background: transparent;
   padding: 2rem;
-  border-radius: 8px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .contact-container {
@@ -589,29 +714,14 @@ body[data-page="he"] .navbar {
 
 .contact-methods {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  justify-content: flex-start;
+  gap: 1rem;
   flex-wrap: wrap;
 }
 
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  background: #f9fafb;
-  border-radius: 8px;
-  text-decoration: none;
-  color: #374151;
-  transition: all 0.3s ease;
-  border: 1px solid #e5e7eb;
-}
+/* 删除重复的contact-item样式，避免卡片效果 */
 
-.contact-item:hover {
-  background: #f3f4f6;
-  transform: translateY(-1px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
+/* 去掉重复的contact-item hover效果 */
 
 .contact-icon {
   font-size: 1.2rem;
@@ -623,7 +733,7 @@ body[data-page="he"] .navbar {
 }
 
 .collaboration-signal {
-  text-align: center;
+  text-align: left;
 }
 
 .collaboration-text {
@@ -635,7 +745,7 @@ body[data-page="he"] .navbar {
 
 .subscribe-section {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 }
@@ -739,6 +849,9 @@ body[data-page="he"] .navbar {
 
 /* 响应式设计 */
 @media (max-width: 768px) {
+  .he-container {
+    width: 90%; /* 移动设备上减少边距到5% */
+  }
   .he-section {
     flex-direction: column;
     gap: 12px;
@@ -824,6 +937,7 @@ body[data-page="he"] .navbar {
   
   /* Profile Section 移动端样式 */
   .profile-section {
+    flex-direction: column;
     padding: 2rem 1rem;
     gap: 2rem;
   }
@@ -846,19 +960,41 @@ body[data-page="he"] .navbar {
   }
   
   .experience-item {
-    padding: 1rem;
+    padding: 0;
   }
   
-  .exp-header {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.5rem;
+  .exp-content {
+    padding-left: 0;
+  }
+  
+  .exp-subtitle {
+    padding-left: 0;
   }
   
   .education-item {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
+  }
+  
+  .edu-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .edu-content {
+    padding-left: 0;
+  }
+  
+  .contact-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+  }
+  
+  .contact-label {
+    min-width: auto;
   }
   
   .skill-group {
@@ -871,17 +1007,19 @@ body[data-page="he"] .navbar {
   }
   
   .contact-item {
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   .subscribe-section {
     flex-direction: column;
     gap: 0.5rem;
+    align-items: flex-start;
   }
 }
 
 @media (max-width: 480px) {
   .he-container {
+    width: 95%; /* 小屏幕设备上进一步减少边距 */
     padding: 0 1rem;
   }
   

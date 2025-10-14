@@ -1,0 +1,329 @@
+---
+layout: layouts/base.njk
+title: "404 - 页面未找到"
+description: "抱歉，您访问的页面不存在。"
+permalink: /404.html
+---
+
+<!-- 404 Error Page -->
+<section class="error-page">
+  <div class="error-container">
+    
+    <!-- Left Side: 404 Error -->
+    <div class="error-left">
+      <h1 class="error-code">404</h1>
+      <h2 class="error-title">页面未找到</h2>
+      <p class="error-description">
+        但你找到了「知行合一」的世界地图。<br>
+        从这里重新出发吧
+      </p>
+    </div>
+    
+    <!-- Right Side: Site Structure -->
+    <div class="error-right">
+      <div class="site-structure">
+        <h3>zmh.life</h3>
+        <div class="outline">
+          <div class="outline-item">
+            <a href="/">首页 Home</a> （生命历程与个人故事）
+            <div class="outline-desc">我的人生地图，从「一辈子都想搞创造的人」出发。</div>
+          </div>
+          
+          <div class="outline-item">
+            <a href="/zhi/">知 Knowing</a> （发现 · 认知 · 思考）
+            <div class="outline-subitems">
+              <div class="outline-subitem">
+                <a href="/zhi/collection/">收集 · Collection</a> —— 抓住脑海里一闪而过的念头。
+              </div>
+              <div class="outline-subitem">
+                <a href="/zhi/observation/">观察 · Observation</a> —— 我以外的世界在塑造我。
+              </div>
+              <div class="outline-subitem">
+                <a href="/zhi/writing/">写作 · Writing</a> —— 用文字将思考与时间储存成意义。
+              </div>
+              <div class="outline-subitem">
+                <a href="/zhi/reading/">阅读 · Reading</a> —— 这是我与他/她/它的对话。
+              </div>
+            </div>
+          </div>
+          
+          <div class="outline-item">
+            <a href="/xing/">行 Doing</a> （行动 · 创造 · 项目）
+            <div class="outline-desc">所有项目与实践的集合，从想法到落地。包含设计、艺术、开发与产品的作品记录。</div>
+          </div>
+          
+          <div class="outline-item">
+            <a href="/he/">合 Combo</a> （自我 · 原则 · 陈述）
+            <div class="outline-desc">个人介绍与履历——我是谁、来自哪里、正走向何方。</div>
+          </div>
+          
+          <div class="outline-item">
+            <a href="/yi/">一 One</a> （时间 · 记录 · 回顾）
+            <div class="outline-desc">年度电影—— 用影像回望时间，见证生命的流动。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+</section>
+
+<style>
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.error-container {
+  display: flex;
+  max-width: 1200px;
+  width: 100%;
+  gap: 3rem;
+  align-items: center;
+}
+
+.error-left {
+  flex: 1;
+  text-align: center;
+}
+
+.error-right {
+  flex: 1;
+}
+
+.error-code {
+  font-size: 6rem;
+  font-weight: 900;
+  color: #e74c3c;
+  margin: 0;
+  line-height: 1;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.error-title {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin: 1rem 0;
+  font-weight: 600;
+}
+
+.error-description {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.error-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.nav-link {
+  display: inline-block;
+  padding: 0.8rem 1.5rem;
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 25px;
+  font-weight: 500;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(52, 152, 219, 0.3);
+}
+
+.nav-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+}
+
+.home-link {
+  background: #e74c3c;
+  box-shadow: 0 4px 15px rgba(231, 76, 60, 0.3);
+}
+
+.home-link:hover {
+  box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.zhi-link {
+  background: #9b59b6;
+  box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+}
+
+.zhi-link:hover {
+  box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
+}
+
+.xing-link {
+  background: #f39c12;
+  box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+}
+
+.xing-link:hover {
+  box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+}
+
+.yi-link {
+  background: #27ae60;
+  box-shadow: 0 4px 15px rgba(39, 174, 96, 0.3);
+}
+
+.yi-link:hover {
+  box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+}
+
+.he-link {
+  background: #34495e;
+  box-shadow: 0 4px 15px rgba(52, 73, 94, 0.3);
+}
+
+.he-link:hover {
+  box-shadow: 0 6px 20px rgba(52, 73, 94, 0.4);
+}
+
+/* Site Structure Styles */
+.site-structure h3 {
+  color: #333;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.outline {
+  font-family: 'Fusion Pixel', monospace;
+  color: #333;
+  position: relative;
+  padding-left: 1rem;
+}
+
+.outline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #ccc;
+  z-index: 1;
+}
+
+.outline-item {
+  margin-bottom: 0.6rem;
+  position: relative;
+  padding-left: 0;
+}
+
+.outline-item::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 2;
+}
+
+.outline-item a {
+  color: #333;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.outline-desc {
+  color: #666;
+  font-size: 0.85rem;
+  line-height: 1.2;
+  margin-top: 0.2rem;
+  margin-left: 0.5rem;
+}
+
+.outline-subitems {
+  margin-top: 0.4rem;
+  margin-left: 1rem;
+  position: relative;
+}
+
+.outline-subitems::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: #ccc;
+  z-index: 1;
+}
+
+.outline-subitem {
+  margin-bottom: 0.3rem;
+  position: relative;
+  padding-left: 0;
+}
+
+.outline-subitem::before {
+  content: '';
+  position: absolute;
+  left: -1rem;
+  top: 0.5rem;
+  width: 0.5rem;
+  height: 1px;
+  background-color: #ccc;
+  z-index: 2;
+}
+
+.outline-subitem a {
+  color: #333;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .error-container {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .error-code {
+    font-size: 4rem;
+  }
+  
+  .error-title {
+    font-size: 1.2rem;
+  }
+  
+  .error-navigation {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav-link {
+    width: 200px;
+  }
+  
+  .outline-item {
+    margin-bottom: 1rem;
+    padding-left: 0.5rem;
+  }
+  
+  .outline-subitems {
+    margin-left: 0.8rem;
+  }
+  
+  .outline-subitem {
+    margin-bottom: 0.4rem;
+    padding-left: 0.5rem;
+  }
+}
+</style>
