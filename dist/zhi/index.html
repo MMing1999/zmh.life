@@ -228,45 +228,111 @@ document.addEventListener('DOMContentLoaded', function() {
   updateOldKnowledgeCategories();
 });
 
-async function updateNewKnowledgeDisplay() {
-  const allArticles = await getAllArticlesWithLatestUpdate();
-  const latest5Articles = allArticles
-    .sort((a, b) => new Date(b.latestUpdate) - new Date(a.latestUpdate))
-    .slice(0, 5);
+// 新的数据服务类
+class ArticleDataService {
+  constructor() {
+    this.cache = new Map();
+    this.cacheTTL = 5 * 60 * 1000; // 5分钟缓存
+  }
   
-  console.log('最新的5篇文章:', latest5Articles);
-  updatePageDisplay(latest5Articles);
+  async getUpdateLog() {
+    const cacheKey = 'update-log';
+    const cached = this.cache.get(cacheKey);
+    
+    if (cached && Date.now() - cached.timestamp < this.cacheTTL) {
+      console.log('📦 使用缓存数据');
+      return cached.data;
+    }
+    
+    try {
+      console.log('🌐 正在获取更新日志...');
+      const response = await fetch('/assets/data/update-log.json');
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+      }
+      const data = await response.json();
+      console.log('✅ 更新日志获取成功:', data.totalArticles, '篇文章');
+      
+      this.cache.set(cacheKey, {
+        data: data,
+        timestamp: Date.now()
+      });
+      
+      return data;
+    } catch (error) {
+      console.error('❌ 获取更新日志失败:', error);
+      return this.getFallbackData();
+    }
+  }
+  
+  async getLatestArticles(limit = 5) {
+    const logData = await this.getUpdateLog();
+    return logData.articles
+      .filter(article => article.status === 'published')
+      .sort((a, b) => new Date(b.publishDate) - new Date(a.publishDate))
+      .slice(0, limit);
+  }
+  
+  async getCategoriesAndTags() {
+    const logData = await this.getUpdateLog();
+    const publishedArticles = logData.articles.filter(a => a.status === 'published');
+    
+    return {
+      fields: [...new Set(publishedArticles.map(a => a.field).filter(Boolean))],
+      columns: [...new Set(publishedArticles.map(a => a.column).filter(Boolean))],
+      categories: [...new Set(publishedArticles.map(a => a.category).filter(Boolean))],
+      tags: [...new Set(publishedArticles.flatMap(a => a.tags || []))]
+    };
+  }
+  
+  getFallbackData() {
+    return {
+      articles: [],
+      statistics: { byType: {}, byCategory: {}, byColumn: {}, byField: {} }
+    };
+  }
+}
+
+// 使用新的数据服务
+const articleService = new ArticleDataService();
+
+async function updateNewKnowledgeDisplay() {
+  try {
+    const latestArticles = await articleService.getLatestArticles(5);
+    console.log('最新的5篇文章:', latestArticles);
+    updatePageDisplay(latestArticles);
+  } catch (error) {
+    console.error('更新新知部分失败:', error);
+  }
 }
 
 async function updateOldKnowledgeCategories() {
-  console.log('开始更新旧时分类内容...');
-  
   try {
-    const allCategories = await getAllCategoriesAndTags();
-    console.log('获取到的分类数据:', allCategories);
+    const categories = await articleService.getCategoriesAndTags();
+    console.log('获取到的分类数据:', categories);
     
-    const fields = [...new Set(allCategories.fields)];
-    const columns = [...new Set(allCategories.columns)];
-    const categories = [...new Set(allCategories.categories)];
-    const tags = [...new Set(allCategories.tags)];
+    const fields = categories.fields;
+    const columns = categories.columns;
+    const categories_list = categories.categories;
+    const tags = categories.tags;
     
-  let content = '';
-  
-  if (fields.length > 0) {
-    content += `${fields.join(' / ')} / `;
-  }
-  
-      if (columns.length > 0) {
-        content += `${columns.map(col => col.endsWith('专栏') ? col : col + '专栏').join(' / ')} / `;
-      }
-  
-  if (categories.length > 0) {
-    content += `${categories.join(' / ')} / `;
-  }
-  
-      if (tags.length > 0) {
-        content += `${tags.map(tag => tag.startsWith('#') ? tag : '#' + tag).join(' / ')}`;
-      }
+    let content = '';
+    
+    if (fields.length > 0) {
+      content += `领域：${fields.join('、')}。`;
+    }
+    
+    if (columns.length > 0) {
+      content += `专栏：${columns.join('、')}。`;
+    }
+    
+    if (categories_list.length > 0) {
+      content += `分类：${categories_list.join('、')}。`;
+    }
+    
+    if (tags.length > 0) {
+      content += `标签：${tags.join('、')}。`;
+    }
     
     console.log('生成的内容:', content);
     
@@ -275,7 +341,7 @@ async function updateOldKnowledgeCategories() {
     
     if (categoriesText) {
       // 将每个词条包装成可点击的span
-      const items = content.split(' / ');
+      const items = content.split(/[。、]/).filter(item => item.trim());
       const clickableItems = items.map(item => {
         const trimmedItem = item.trim();
         if (trimmedItem.includes('专栏')) {
@@ -326,229 +392,10 @@ async function updateOldKnowledgeCategories() {
       console.error('未找到 .categories-text 元素');
     }
     
-    console.log('分类内容:', { fields, columns, categories, tags });
+    console.log('分类内容:', { fields, columns, categories: categories_list, tags });
   } catch (error) {
     console.error('更新旧时分类内容时出错:', error);
   }
-}
-
-async function getAllCategoriesAndTags() {
-  console.log('开始获取分类和标签数据...');
-  
-  const result = {
-    fields: [],
-    columns: [],
-    categories: [],
-    tags: []
-  };
-  
-  const articleTypes = [
-    { type: 'observation', urlPattern: '/zhi/observation/', slugPattern: 'observation' },
-    { type: 'writing', urlPattern: '/zhi/writing/', slugPattern: 'writing' },
-    { type: 'reading', urlPattern: '/zhi/reading/', slugPattern: 'reading' }
-  ];
-  
-  for (const articleType of articleTypes) {
-    const commonSlugs = await getCommonSlugs(articleType.type);
-    console.log(`处理 ${articleType.type} 类型，共 ${commonSlugs.length} 篇文章`);
-    
-    for (const slug of commonSlugs) {
-      try {
-        const url = `${articleType.urlPattern}${slug}/index.html`;
-        console.log(`正在获取: ${url}`);
-        const response = await fetch(url);
-        
-        if (response.ok) {
-          const html = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          
-          // 从HTML中提取meta信息
-          const metaTags = doc.querySelectorAll('meta');
-          let field = '', column = '', category = '', tags = [];
-          
-          metaTags.forEach(meta => {
-            const name = meta.getAttribute('name') || meta.getAttribute('property');
-            const content = meta.getAttribute('content');
-            
-            if (name === 'field' && content) {
-              field = content;
-            } else if (name === 'column' && content) {
-              column = content;
-            } else if (name === 'category' && content) {
-              category = content;
-            } else if (name === 'tags' && content) {
-              try {
-                tags = JSON.parse(content);
-              } catch (e) {
-                tags = content.split(',').map(t => t.trim());
-              }
-            }
-          });
-          
-          // 只有在meta数据完全缺失时才使用fallback逻辑
-          if (!field && !column && !category && tags.length === 0) {
-            // 尝试从页面标题或内容中推断分类
-            const titleElement = doc.querySelector('h1, .page-title');
-            const title = titleElement ? titleElement.textContent.trim() : '';
-            
-            if (articleType.type === 'observation') {
-              // 观察类文章，从标题中提取领域
-              if (title.includes('城市')) field = '城市观察';
-              else if (title.includes('自然')) field = '自然观察';
-              else if (title.includes('抽象')) field = '抽象摄影';
-              else if (title.includes('都市')) field = '都市摄影';
-              else if (title.includes('生活')) field = '生活摄影';
-              else field = '摄影观察';
-              
-              category = 'observation';
-              tags = ['摄影', '观察', '艺术'];
-            } else if (articleType.type === 'writing') {
-              // 写作类文章，从标题中提取专栏
-              if (title.includes('前端') || title.includes('CSS') || title.includes('色彩')) {
-                column = 'AI思考专栏';
-                category = '技术文章';
-                tags = ['前端', 'CSS', '技术', '设计'];
-              } else if (title.includes('城市') || title.includes('都市')) {
-                column = '设计思考专栏';
-                category = '技术文章';
-                tags = ['城市', '观察', '技术'];
-              } else if (title.includes('抽象') || title.includes('设计')) {
-                column = '设计思考专栏';
-                category = '设计文章';
-                tags = ['抽象', '设计', '艺术'];
-              } else if (title.includes('光影') || title.includes('摄影')) {
-                column = '全栈开发专栏';
-                category = '摄影文章';
-                tags = ['光影', '摄影', '艺术'];
-              } else {
-                column = 'AI思考专栏';
-                category = '技术文章';
-                tags = ['技术', '分享'];
-              }
-            } else if (articleType.type === 'reading') {
-              // 阅读类文章，从标题中提取分类
-              if (title.includes('思考') || title.includes('心理学')) {
-                category = '心理学';
-                tags = ['心理学', '认知科学', '行为经济学', '决策'];
-              } else if (title.includes('创新') || title.includes('创业')) {
-                category = '商业管理';
-                tags = ['创新', '商业', '管理', '战略'];
-              } else if (title.includes('用户体验') || title.includes('设计')) {
-                category = '用户体验';
-                tags = ['用户体验', '设计', '交互', '可用性'];
-              } else if (title.includes('JavaScript') || title.includes('编程')) {
-                category = '技术书籍';
-                tags = ['JavaScript', '编程', '技术', '前端'];
-              } else {
-                category = '阅读笔记';
-                tags = ['阅读', '学习', '思考'];
-              }
-            }
-          }
-          
-          console.log(`提取到的信息 - ${slug}:`, { field, column, category, tags });
-          
-          // 添加到结果中
-          if (field) result.fields.push(field);
-          if (column) result.columns.push(column);
-          if (category) result.categories.push(category);
-          if (tags.length > 0) result.tags.push(...tags);
-        } else {
-          console.log(`无法访问 ${url}: ${response.status}`);
-        }
-      } catch (error) {
-        console.log(`获取 ${articleType.type}/${slug} 分类信息失败:`, error.message);
-      }
-    }
-  }
-  
-  console.log('最终提取的分类数据:', result);
-  return result;
-}
-
-async function getAllArticlesWithLatestUpdate() {
-  const articles = [];
-  
-  const articleTypes = [
-    { type: 'observation', urlPattern: '/zhi/observation/', slugPattern: 'observation' },
-    { type: 'writing', urlPattern: '/zhi/writing/', slugPattern: 'writing' },
-    { type: 'reading', urlPattern: '/zhi/reading/', slugPattern: 'reading' }
-  ];
-  
-  for (const articleType of articleTypes) {
-    const commonSlugs = await getCommonSlugs(articleType.type);
-    
-    for (const slug of commonSlugs) {
-      try {
-        const url = `${articleType.urlPattern}${slug}/index.html`;
-        const response = await fetch(url);
-        
-        if (response.ok) {
-          const html = await response.text();
-          const parser = new DOMParser();
-          const doc = parser.parseFromString(html, 'text/html');
-          
-          const titleElement = doc.querySelector('h1.reading-title, h1.writing-title, h1.observation-title, .page-title');
-          const title = titleElement ? titleElement.textContent.trim() : slug;
-          
-          const dateElement = doc.querySelector('meta[property="article:published_time"], .article-date, .post-date');
-          const date = dateElement ? dateElement.getAttribute('content') || dateElement.textContent.trim() : '2024-01-01';
-          
-          const h1Elements = doc.querySelectorAll('.reading-body h1, .writing-body h1, .observation-body h1, article h1');
-          
-          if (h1Elements.length > 0) {
-            const latestChapter = h1Elements[h1Elements.length - 1].textContent.trim();
-            
-            articles.push({
-              slug: slug,
-              title: title,
-              date: date,
-              type: articleType.type,
-              latestChapter: latestChapter,
-              latestUpdate: date,
-              url: url
-            });
-          }
-        }
-      } catch (error) {
-        console.log(`尝试访问 ${articleType.type}/${slug} 失败:`, error.message);
-      }
-    }
-  }
-  
-  return articles;
-}
-
-async function getCommonSlugs(type) {
-  try {
-    const response = await fetch('/src/_data/articles.js');
-    if (response.ok) {
-      const configText = await response.text();
-      const config = JSON.parse(configText.replace(/module\.exports\s*=\s*/, ''));
-      return config[type] ? config[type].map(article => article.slug) : [];
-    }
-  } catch (error) {
-    console.log('无法加载配置文件，使用默认列表');
-  }
-  
-  const slugMap = {
-    observation: [
-      '抽象构成-010', '城市观察-001', '自然观察-003', '都市掠影-004', 
-      '生活记录-002', '光影之路-008', '瞬间捕捉-006', '纹理之美-009', 
-      '色彩律动-005', '掌中世界-007'
-    ],
-    writing: [
-      'city-observation', 'urban-snapshot', 'abstract-design', 
-      'color-rhythm-frontend', 'light-shadow-photography'
-    ],
-    reading: [
-      'thinking-fast-and-slow', 'innovators-dilemma', 'user-experience-elements',
-      'javascript-advanced', 'design-psychology', 'lean-startup'
-    ]
-  };
-  
-  return slugMap[type] || [];
 }
 
 function updatePageDisplay(articles) {
@@ -557,7 +404,7 @@ function updatePageDisplay(articles) {
     leftList.innerHTML = '';
     articles.forEach(article => {
       const li = document.createElement('li');
-      li.innerHTML = `<span class="article-date">${article.latestUpdate}</span><a href="${article.url}">${article.latestChapter || article.title}</a>`;
+      li.innerHTML = `<span class="article-date">${article.publishDate}</span><a href="${article.url}">${article.title}</a>`;
       leftList.appendChild(li);
     });
   }
@@ -572,15 +419,15 @@ function updatePageDisplay(articles) {
       
       let coverImage = '';
       if (article.type === 'observation') {
-        coverImage = `/assets/Pics/zhi-observation/${article.slug}-cover.jpg`;
+        coverImage = `/assets/Pics/zhi-observation/${article.slug.split('-').slice(0, -3).join('-')}-cover.jpg`;
       } else if (article.type === 'reading') {
-        coverImage = `/assets/Pics/zhi-reading/${article.slug}-cover.jpg`;
+        coverImage = `/assets/Pics/zhi-reading/${article.slug.split('-').slice(0, -3).join('-')}-cover.jpg`;
       } else if (article.type === 'writing') {
-        coverImage = `/assets/images/zhi-writing/${article.slug}-cover.jpg`;
+        coverImage = `/assets/images/zhi-writing/${article.slug.split('-').slice(0, -3).join('-')}-cover.jpg`;
       }
       
       coverItem.innerHTML = `
-        <img src="${coverImage}" alt="${article.latestChapter || article.title}" loading="lazy">
+        <img src="${coverImage}" alt="${article.title}" loading="lazy">
       `;
       
       coverGallery.appendChild(coverItem);

@@ -1,15 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": true,
-  "functions": {
-    "api/*.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
-  "env": {
-    "NOTION_API_TOKEN": "@notion_api_token",
-    "IDEAS_DATABASE_ID": "@ideas_database_id",
-    "QUESTIONS_DATABASE_ID": "@questions_database_id"
-  }
+  "cleanUrls": true
 }
