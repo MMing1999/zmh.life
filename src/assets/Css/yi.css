@@ -100,13 +100,19 @@
   }
   
   .video-section {
-    height: 56.25vw; /* 16:9 比例 */
+    height: calc(100vh - var(--nav-h, 80px)); /* 减去导航栏高度 */
+    min-height: calc(100vh - var(--nav-h, 80px)); /* 确保最小高度 */
   }
 }
 
 @media (max-width: 480px) {
   .bili-lite__play {
     font-size: 8rem;
+  }
+  
+  .video-section {
+    height: calc(100vh - var(--nav-h, 80px)); /* 减去导航栏高度 */
+    min-height: calc(100vh - var(--nav-h, 80px)); /* 确保最小高度 */
   }
 }
 

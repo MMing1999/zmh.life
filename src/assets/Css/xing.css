@@ -242,20 +242,36 @@ html, body {
   }
   
   .hero-images {
-    flex-direction: column;
-    gap: 12px;
+    flex-direction: column; /* 改为垂直排列 */
+    gap: 12px; /* 垂直间距 */
     width: 100%;
     flex: none; /* 移动端取消flex: 1 */
     padding: 0 12px; /* 保持左右12px间距 */
   }
   
-  .hero-pic-1,
-  .hero-pic-2,
-  .hero-pic-3,
+  /* 垂直排列，宽度全宽，高度按2:3:5:2比例 */
+  .hero-pic-1 {
+    flex: none;
+    width: 100%;
+    height: 180px; /* 基础高度单位 × 2 × 1.5 */
+  }
+  
+  .hero-pic-2 {
+    flex: none;
+    width: 100%;
+    height: 270px; /* 基础高度单位 × 3 × 1.5 */
+  }
+  
+  .hero-pic-3 {
+    flex: none;
+    width: 100%;
+    height: 450px; /* 基础高度单位 × 5 × 1.5 */
+  }
+  
   .hero-pic-4 {
     flex: none;
     width: 100%;
-    height: 300px; /* 增加移动端图片高度 */
+    height: 180px; /* 基础高度单位 × 2 × 1.5 */
   }
   
   .hero-intro {
@@ -450,31 +466,50 @@ html, body {
 }
 
 @media (max-width: 480px) {
-  .xing-controls__container {
-    padding: 0 12px;
+  .xing-hero {
+    padding: 8px 10px 12px 10px; /* 进一步减少内边距 */
   }
   
-  .xing-filter__list {
-    gap: 8px;
+  .hero-images {
+    gap: 8px; /* 减少垂直间距 */
+    padding: 0 8px; /* 减少左右间距 */
   }
   
-  .xing-filter__btn {
-    padding: 4px 8px;
-    font-size: 14px;
+  /* 超小屏幕下保持垂直排列和2:3:5:2比例，但减小高度 */
+  .hero-pic-1 {
+    flex: none;
+    width: 100%;
+    height: 120px; /* 基础高度单位 × 2 × 1.5，超小屏幕 */
   }
   
-  /* 移动端日期分隔线调整 */
-  .xing-card__date-separator {
-    margin: 0 4px;
+  .hero-pic-2 {
+    flex: none;
+    width: 100%;
+    height: 180px; /* 基础高度单位 × 3 × 1.5 */
   }
   
-  .xing-card__date-day-separator {
-    width: 8px;
-    margin: 0 2px;
+  .hero-pic-3 {
+    flex: none;
+    width: 100%;
+    height: 300px; /* 基础高度单位 × 5 × 1.5 */
   }
   
-  .xing-card__date {
-    font-size: 11px;
+  .hero-pic-4 {
+    flex: none;
+    width: 100%;
+    height: 120px; /* 基础高度单位 × 2 × 1.5 */
+  }
+  
+  .hero-intro {
+    padding: 16px 0; /* 进一步减小padding */
+  }
+  
+  .hero-intro h1 {
+    font-size: 20px; /* 超小屏幕进一步减小标题字号 */
+  }
+  
+  .hero-intro p {
+    font-size: 12px; /* 超小屏幕进一步减小描述字号 */
   }
 }
 
@@ -506,10 +541,38 @@ html, body {
 }
 @media (max-width: 520px) { 
   .xing-card-grid { 
-    grid-template-columns: 1fr; 
-    padding: 0 12px;
-    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr)); /* 保持两列布局 */
+    padding: 0 8px; /* 减少左右间距 */
+    gap: 8px; /* 减少卡片间距 */
   } 
+  
+  /* 小屏幕卡片内容优化 */
+  .xing-card {
+    min-height: 320px; /* 减少最小高度 */
+  }
+  
+  .xing-card__title {
+    font-size: 16px; /* 减小标题字号 */
+    margin-bottom: 24px; /* 减少底部间距 */
+  }
+  
+  .xing-card__summary {
+    font-size: 12px; /* 减小简介字号 */
+    -webkit-line-clamp: 2; /* 减少显示行数 */
+  }
+  
+  .xing-card__date {
+    font-size: 11px; /* 减小日期字号 */
+    margin-bottom: 16px; /* 减少底部间距 */
+  }
+  
+  .xing-card__category {
+    font-size: 12px; /* 减小分类标签字号 */
+  }
+  
+  .xing-card__tag {
+    font-size: 12px; /* 减小标签字号 */
+  }
 }
 
 /* ==========================================

@@ -700,7 +700,7 @@ main.page-wrap {
   width: 100%;
 
   /* 背景图：居中，自适应铺满 */
-  background-image: url('/assets/Pics/Frame12.png');
+  background-image: url('/assets/Pics/navbar.svg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
