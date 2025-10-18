@@ -382,7 +382,7 @@ body .control-btn.active {
 .scroll-btn img {
   width: 2rem; /* SVG图标宽度 */
   height: auto; /* 保持比例 */
-  opacity: 0; /* 默认透明 */
+  opacity: 0.05; /* 默认显示，但很透明 */
   transition: opacity 0.3s ease; /* 添加过渡效果 */
 }
 
@@ -408,10 +408,10 @@ body .control-btn.active {
 /* ===== 章节选择目录按钮 ===== */
 .chapter-toc {
   position: fixed;
-  bottom: 20px; /* 与回到顶部按钮对称 */
-  left: 20px; /* 移动到左下角 */
-  width: 50px;
-  height: 50px;
+  bottom: 70px; /* 在返回按钮正上方 */
+  right: 16px; /* 与返回按钮右对齐 */
+  width: 44px; /* 与返回按钮保持一致 */
+  height: 44px; /* 与返回按钮保持一致 */
   background: #000;
   border: none;
   border-radius: 50%;
@@ -419,7 +419,7 @@ body .control-btn.active {
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: none; /* 去掉阴影效果 */
   transition: all 0.3s ease;
   opacity: 0;
   visibility: hidden;
@@ -433,7 +433,7 @@ body .control-btn.active {
 
 .chapter-toc:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+  box-shadow: none; /* 去掉hover时的阴影效果 */
 }
 
 .chapter-toc img {
@@ -452,7 +452,7 @@ body .control-btn.active {
   background: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: flex-end;
-  justify-content: flex-start;
+  justify-content: flex-end; /* 改为右对齐 */
   z-index: 2000;
   animation: fadeIn 0.3s ease;
 }
@@ -461,13 +461,13 @@ body .control-btn.active {
   background: #fff;
   border-radius: 12px;
   padding: 24px;
-  width: 300px;
+  width: 240px;
   height: 500px;
   overflow-y: auto;
   box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.3);
   animation: slideUpFromBottom 0.3s ease;
-  margin-left: 20px;
-  margin-bottom: 80px; /* 给按钮留出空间，避免覆盖 */
+  margin-right: 20px; /* 改为右边距 */
+  margin-bottom: 140px; /* 往上移动20px：80px + 20px = 100px */
 }
 
 .chapter-toc-content h3 {
@@ -574,7 +574,7 @@ body .control-btn.active {
 @media (max-width: 768px) {
   .reading-main {
     width: 100%; /* 移动设备上也使用100%宽度 */
-    padding: 0 16px;
+    padding: 0 8px; /* 缩小整个内容区域的左右边距 */
   }
   
   .reading-container1 {
@@ -639,10 +639,13 @@ body .control-btn.active {
   .scroll-btn {
     width: 5rem; /* 中等屏幕竖向矩形宽度 */
     height: 35rem; /* 中等屏幕竖向矩形高度 */
+    opacity: 0.5; /* 默认显示，但稍微透明 */
   }
   
   .scroll-btn img {
     width: 1.5rem; /* 中等屏幕SVG图标宽度 */
+    opacity: 0.1; /* 默认显示图标，60%透明度 */
+    filter: brightness(0.7) grayscale(0.3); /* 使图标颜色变浅 */
   }
   
   .scroll-left {
@@ -654,8 +657,8 @@ body .control-btn.active {
   }
   
   .chapter-toc {
-    bottom: 15px; /* 中等屏幕调整位置 */
-    left: 15px; /* 左下角 */
+    bottom: 65px; /* 中等屏幕在返回按钮正上方 */
+    right: 15px; /* 与返回按钮右对齐 */
     width: 45px;
     height: 45px;
   }
@@ -665,9 +668,9 @@ body .control-btn.active {
   }
   
   .chapter-toc-content {
-    margin-left: 15px;
-    margin-bottom: 70px; /* 给按钮留出空间 */
-    width: 300px;
+    margin-right: 15px; /* 改为右边距 */
+    margin-bottom: 130px; /* 往上移动20px：70px + 20px = 90px */
+    width: 240px;
     height: 500px;
   }
 }
@@ -675,7 +678,7 @@ body .control-btn.active {
 @media (max-width: 480px) {
   .reading-main {
     width: 100%; /* 小屏幕设备上也使用100%宽度 */
-    padding: 0 12px;
+    padding: 0 4px; /* 进一步缩小整个内容区域的左右边距 */
   }
   
   .reading-container1 {
@@ -743,10 +746,13 @@ body .control-btn.active {
   .scroll-btn {
     width: 4rem; /* 移动端竖向矩形宽度 */
     height: 30rem; /* 移动端竖向矩形高度 */
+    opacity: 0.6; /* 默认显示，但稍微透明 */
   }
   
   .scroll-btn img {
     width: 1.2rem; /* 移动端SVG图标宽度 */
+    opacity: 0.1; /* 默认显示图标，很透明 */
+    filter: brightness(0.7) grayscale(0.3); /* 使图标颜色变浅 */
   }
   
   .scroll-left {
@@ -758,8 +764,8 @@ body .control-btn.active {
   }
   
   .chapter-toc {
-    bottom: 10px; /* 移动端调整位置 */
-    left: 10px; /* 左下角 */
+    bottom: 60px; /* 小屏幕在返回按钮正上方 */
+    right: 10px; /* 与返回按钮右对齐 */
     width: 40px;
     height: 40px;
   }
@@ -769,9 +775,9 @@ body .control-btn.active {
   }
   
   .chapter-toc-content {
-    margin-left: 10px;
-    margin-bottom: 60px; /* 给按钮留出空间 */
-    width: 300px;
+    margin-right: 10px; /* 改为右边距 */
+    margin-bottom: 80px; /* 往上移动20px：60px + 20px = 80px */
+    width: 240px;
     height: 500px;
     padding: 20px;
   }

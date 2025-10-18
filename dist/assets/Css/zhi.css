@@ -176,6 +176,14 @@
   max-height: 280px;
 }
 
+/* 小屏幕下移除高度限制 */
+@media (max-width: 768px) {
+  .knowledge-layout {
+    max-height: none;
+    min-height: auto;
+  }
+}
+
 .knowledge-left {
   width: 30%;
   display: flex;
@@ -223,12 +231,9 @@
   text-decoration: none;
   font-size: 0.9rem;
   line-height: 1.4;
-  transition: color 0.3s ease;
 }
 
-.article-list a:hover {
-  color: #000;
-}
+/* 移除文章链接的hover效果 */
 
 .knowledge-right {
   width: 70%;
@@ -255,12 +260,9 @@
   align-items: center;
   text-decoration: none;
   color: inherit;
-  transition: transform 0.3s ease;
 }
 
-.cover-item:hover {
-  transform: translateY(-2px);
-}
+/* 移除封面图片的hover效果 */
 
 .cover-item img {
   width: 100%;
@@ -491,11 +493,14 @@
   .knowledge-layout {
     flex-direction: column;
     gap: 1.5rem;
+    max-height: none;
+    min-height: auto;
   }
   
   .knowledge-left,
   .knowledge-right {
     width: 100%;
+    overflow: visible;
   }
   
   .knowledge-left {
@@ -506,9 +511,15 @@
     text-align: left;
   }
   
+  .article-list {
+    align-items: flex-start;
+  }
+  
   .cover-gallery {
     flex-direction: column;
     gap: 1.5rem;
+    max-height: none;
+    overflow: visible;
   }
   
   .cover-item {
@@ -546,6 +557,18 @@
   
   .section-title {
     font-size: 1.6rem;
+  }
+  
+  .knowledge-layout {
+    gap: 1rem;
+  }
+  
+  .cover-gallery {
+    gap: 1rem;
+  }
+  
+  .cover-item {
+    max-width: 250px;
   }
   
   .knowledge-item {
