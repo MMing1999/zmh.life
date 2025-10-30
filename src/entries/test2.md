@@ -5,7 +5,7 @@ title: "tessssssst"
 summary: 这个文件是project的模版文件，用于以后所有项目的基础版式格式。
 date: 2025-09-27
 pageCSS: /assets/Css/project.css
-cover: /assets/Pics/xing-portfolo-02-temp.jpg
+cover: https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/xing/xing-portfolo-02-temp.jpg
 
 categories:
   - design
@@ -44,7 +44,7 @@ links:
 
 模块：图文段落
 这是一个普通段落，支持 斜体、加粗、行内代码 等。
-cover: /assets/Pics/xing-portfolo-02-temp.jpg
+cover: https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/xing/xing-portfolo-02-temp.jpg
 模块：图片（带图注）
 概览图
 图注：概览图/页面截图/关键视觉。

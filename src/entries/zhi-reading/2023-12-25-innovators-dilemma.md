@@ -5,7 +5,7 @@ date: 2023-12-25
 category: "商业"
 tags: ["创新", "商业", "管理", "颠覆性技术"]
 rating: 5
-cover: "/assets/Pics/zhi-reading/瞬间捕捉-006-cover.jpg"
+cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/瞬间捕捉-006-cover.jpg"
 description: "这是一本关于创新和商业管理的经典著作，作者Clayton M. Christensen深入分析了为什么优秀的企业会失败。"
 type: "reading"
 section: "zhi"

@@ -6,7 +6,7 @@ title: "t-project预览"
 summary: 这个文件是project的模版文件，用于以后所有项目的基础版式格式。这个文件是project的模版文件，用于以后所有项目的基础版式格式。这个文件是project的模版文件，用于以后所有项目的基础版式格式。
 date: 2025-09-27
 
-cover: /assets/Pics/xing-portfolo-03-temp.jpg
+cover: https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/xing/xing-portfolo-03-temp.jpg
 
 categories:
   - design
@@ -49,7 +49,7 @@ links:
 
 ## 模块：图片（带图注）
 <figure class="media">
-  <img src="/assets/Pics/xing-portfolo-01-temp.jpg" alt="概览图">
+  <img src="https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/xing/xing-portfolo-01-temp.jpg" alt="概览图">
   <figcaption>图注：概览图/页面截图/关键视觉。</figcaption>
 </figure>
 

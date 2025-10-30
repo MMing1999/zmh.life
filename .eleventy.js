@@ -8,23 +8,32 @@ module.exports = function(eleventyConfig) {
   // 添加图片处理插件
   const Image = require("@11ty/eleventy-img");
   
-  // 图片短代码
+  // 图片短代码（本地文件走 @11ty/eleventy-img；远程URL直接输出 <img>）
   eleventyConfig.addShortcode("image", async function(src, alt, sizes) {
-    let metadata = await Image(src, {
-      widths: [300, 400, 600, 800],
-      formats: ["webp", "jpeg"],
-      outputDir: "./dist/assets/images/",
-      urlPath: "/assets/images/"
-    });
-    
-    let imageAttributes = {
-      alt,
-      sizes,
-      loading: "lazy",
-      decoding: "async",
-    };
-    
-    return Image.generateHTML(metadata, imageAttributes);
+    try {
+      if (typeof src === "string" && /^https?:\/\//i.test(src)) {
+        return `<img src="${src}" alt="${alt || ''}" loading="lazy" decoding="async" sizes="${sizes || ''}">`;
+      }
+
+      let metadata = await Image(src, {
+        widths: [300, 400, 600, 800],
+        formats: ["webp", "jpeg"],
+        outputDir: "./dist/assets/images/",
+        urlPath: "/assets/images/"
+      });
+      
+      let imageAttributes = {
+        alt,
+        sizes,
+        loading: "lazy",
+        decoding: "async",
+      };
+      
+      return Image.generateHTML(metadata, imageAttributes);
+    } catch (e) {
+      // 回退策略：出现异常时直接输出 <img>
+      return `<img src="${src}" alt="${alt || ''}" loading="lazy" decoding="async" sizes="${sizes || ''}">`;
+    }
   });
   
   // 添加过滤器

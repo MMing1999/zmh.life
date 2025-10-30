@@ -5,7 +5,7 @@ date: 2023-12-30
 category: "心理学"
 tags: ["心理学", "认知科学", "行为经济学", "决策"]
 rating: 5
-cover: "/assets/Pics/zhi-reading/掌中世界-007-cover.jpg"
+cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/掌中世界-007-cover.jpg"
 description: "这是一本关于人类思维和决策的经典著作，作者Daniel Kahneman深入探讨了人类认知的两个系统。"
 type: "reading"
 section: "zhi"

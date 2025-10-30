@@ -5,7 +5,7 @@ date: 2023-12-15
 category: "设计"
 tags: ["用户体验", "设计", "产品设计", "交互设计"]
 rating: 4
-cover: "/assets/Pics/zhi-reading/色彩律动-005-cover.jpg"
+cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/色彩律动-005-cover.jpg"
 description: "这是一本关于用户体验设计的经典著作，作者Jesse James Garrett系统地介绍了用户体验设计的五个层面。"
 type: "reading"
 section: "zhi"

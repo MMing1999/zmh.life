@@ -5,7 +5,7 @@ layout: layouts/project.njk         # ← 关键：用项目详情布局
 pageCSS: /assets/Css/project.css    # ← 关键：加载项目页样式
 
 #项目封面图
-cover: /assets/Pics/xing-portfolo-01-temp.jpg
+cover: https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/xing/xing-portfolo-01-temp.jpg
 
 #必要信息
 title: t-project预览
