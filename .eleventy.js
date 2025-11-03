@@ -15,21 +15,21 @@ module.exports = function(eleventyConfig) {
         return `<img src="${src}" alt="${alt || ''}" loading="lazy" decoding="async" sizes="${sizes || ''}">`;
       }
 
-      let metadata = await Image(src, {
-        widths: [300, 400, 600, 800],
-        formats: ["webp", "jpeg"],
-        outputDir: "./dist/assets/images/",
-        urlPath: "/assets/images/"
-      });
-      
-      let imageAttributes = {
-        alt,
-        sizes,
-        loading: "lazy",
-        decoding: "async",
-      };
-      
-      return Image.generateHTML(metadata, imageAttributes);
+    let metadata = await Image(src, {
+      widths: [300, 400, 600, 800],
+      formats: ["webp", "jpeg"],
+      outputDir: "./dist/assets/images/",
+      urlPath: "/assets/images/"
+    });
+    
+    let imageAttributes = {
+      alt,
+      sizes,
+      loading: "lazy",
+      decoding: "async",
+    };
+    
+    return Image.generateHTML(metadata, imageAttributes);
     } catch (e) {
       // 回退策略：出现异常时直接输出 <img>
       return `<img src="${src}" alt="${alt || ''}" loading="lazy" decoding="async" sizes="${sizes || ''}">`;
@@ -90,40 +90,92 @@ module.exports = function(eleventyConfig) {
   // 添加短代码
   eleventyConfig.addShortcode("year", () => `${new Date().getFullYear()}`);
 
-  // 定义collections
+  // 设置 permalink 过滤器，用于新目录结构
+  eleventyConfig.addFilter("setContentPermalink", function(inputPath, slug, section, type) {
+    // content-xing -> /xing/
+    if (inputPath.includes('content-xing')) {
+      return `/xing/${slug}/index.html`;
+    }
+    // content-observation -> /zhi/observation/
+    if (inputPath.includes('content-observation')) {
+      return `/zhi/observation/${slug}/index.html`;
+    }
+    // content-reading -> /zhi/reading/
+    if (inputPath.includes('content-reading')) {
+      return `/zhi/reading/${slug}/index.html`;
+    }
+    // content-writing -> /zhi/writing/
+    if (inputPath.includes('content-writing')) {
+      return `/zhi/writing/${slug}/index.html`;
+    }
+    return null;
+  });
+
+  // 定义collections - 使用新的 *content 目录结构
+  // 通过 src/content 符号链接访问 *content 目录
   eleventyConfig.addCollection("xing_all", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/entries/xing/*.md")
+    return collectionApi.getFilteredByGlob("content/content-xing/*.md")
       .filter(item => !item.data.isDraft);
   });
 
   eleventyConfig.addCollection("zhi-observation", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/entries/zhi-observation/*.md")
+    // 使用 fallback 方法，因为 glob 模式在处理符号链接时可能有问题
+    let items = collectionApi.getFilteredByGlob("content/content-observation/*.md");
+    if (items.length === 0) {
+      // 如果 glob 找不到，从所有文件中过滤
+      items = collectionApi.getAll().filter(item => {
+        const inputPath = item.inputPath || '';
+        return inputPath.includes('content-observation') && inputPath.endsWith('.md');
+      });
+    }
+    return items
       .filter(item => !item.data.isDraft)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   });
 
   eleventyConfig.addCollection("writing", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/entries/zhi-writing/*.md")
+    let items = collectionApi.getFilteredByGlob("content/content-writing/*.md");
+    if (items.length === 0) {
+      items = collectionApi.getAll().filter(item => {
+        const inputPath = item.inputPath || '';
+        return inputPath.includes('content-writing') && inputPath.endsWith('.md');
+      });
+    }
+    return items
       .filter(item => !item.data.isDraft)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   });
 
   eleventyConfig.addCollection("reading", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("src/entries/zhi-reading/*.md")
+    let items = collectionApi.getFilteredByGlob("content/content-reading/*.md");
+    if (items.length === 0) {
+      items = collectionApi.getAll().filter(item => {
+        const inputPath = item.inputPath || '';
+        return inputPath.includes('content-reading') && inputPath.endsWith('.md');
+      });
+    }
+    return items
       .filter(item => !item.data.isDraft)
       .sort((a, b) => new Date(b.date) - new Date(a.date));
   });
 
+
   // 复制静态资源
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("public");
+  // 复制 content-assets 到 dist 目录（通过符号链接）
+  eleventyConfig.addPassthroughCopy("content/content-assets");
+  
+  // 添加 content 目录到监听列表，确保符号链接中的文件能被 Eleventy 识别
+  eleventyConfig.addWatchTarget("content/");
 
   // 设置输入和输出目录
   return {
     dir: {
       input: "src",
       output: "dist",
-      includes: "_includes"
+      includes: "_includes/layouts",
+      data: "_data"
     },
     templateFormats: ["md", "njk", "html"],
     markdownTemplateEngine: "njk",

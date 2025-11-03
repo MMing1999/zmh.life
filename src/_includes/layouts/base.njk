@@ -33,10 +33,21 @@
     {% else %} {# string #}
       <link rel="stylesheet" href="{{ pageCSS | url }}">
     {% endif %}
+  {% elif layout %}
+    {# 如果 pageCSS 未设置，根据 layout 自动加载对应的 CSS #}
+    {% if layout.includes('observation.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/observation.css' | url }}">
+    {% elif layout.includes('reading.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/reading.css' | url }}">
+    {% elif layout.includes('writing.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/writing.css' | url }}">
+    {% elif layout.includes('project.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/project.css' | url }}">
+    {% endif %}
   {% endif %}
 
   {# ===== 全局样式（统一入口）===== #}
-  <link rel="stylesheet" href="{{ '/assets/site.css' | url }}">
+  <link rel="stylesheet" href="{{ '/assets/Css/site.css' | url }}">
 
   {# ===== Favicon（按需更换路径）===== #}
   <link rel="icon" href="{{ '/assets/favicon.ico' | url }}">
@@ -79,10 +90,10 @@
   {# ===== 页脚 ===== #}
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-welcome">欢迎来到我的人生游戏</div>
+      
       
       <div class="footer-copyright copyright-link">
-        <span class="copyright-text">© 2025 Zhang Minghua</span>
+        <span class="copyright-text"> ©2025 Zhang Minghua.</span>
         <div class="copyright-popup">
           <div class="copyright-popup-content">
             <p>本作品采用 Creative Commons 署名-非商业-相同方式共享 4.0 国际许可协议 (CC BY-NC-SA 4.0) 进行许可。</p>
@@ -135,6 +146,10 @@
       
         <div class="footer-contact">
           <button type="button" class="contact-btn">咨询/合作/委托</button>
+      </div>
+
+      <div class="message">
+        <a href="/message/" class="message-btn">留言</a>
         </div>
         
         <div class="footer-like">

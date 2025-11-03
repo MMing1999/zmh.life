@@ -337,22 +337,26 @@ main.page-wrap {
 
 .footer-contact {
   display: flex;
+  gap: 12px;
   align-items: center;
 }
 
-.contact-btn {
-  padding: 8px 0;
+.contact-btn,
+.message-btn {
+  padding: 0;
   border: none;
   background: transparent;
-  color: #000;
+  color: #666;
   font-family: 'Fusion Pixel', sans-serif;
   font-size: 14px;
   cursor: pointer;
   transition: all 0.2s ease;
+  text-decoration: none;
 }
 
-.contact-btn:hover {
-  color: #666;
+.contact-btn:hover,
+.message-btn:hover {
+  color: #000;
 }
 
 .footer-like {
