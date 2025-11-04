@@ -1,0 +1,210 @@
+/* =========================================
+   collection.css — 收集页面样式
+   命名空间：.collection*
+   作用于 collection.njk 渲染的收集页面
+   高特异性：使用 body 选择器提高优先级
+   ========================================= */
+
+/* 强制重置所有样式 */
+body .collection-content,
+body .collection-content * {
+  box-sizing: border-box !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+body .collection-content {
+  margin-top: 20vh !important;
+  padding: 0 !important;
+}
+
+/* 强制重置样式 */
+body .collection-content * {
+  box-sizing: border-box;
+}
+
+body .collection-content input,
+body .collection-content button {
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
+/* 标签按钮样式 */
+body .tab-button {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  color: #6c757d !important;
+  cursor: pointer !important;
+  transition: all 0.3s ease !important;
+  text-decoration: none !important;
+  position: relative !important;
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
+body .tab-button:hover {
+  color: #bbbbbb !important;
+}
+
+body .tab-button.active {
+  color: #585858 !important;
+}
+
+body .tab-button.active::after {
+  content: '' !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  height: 2px !important;
+  background: #3b3b3b !important;
+}
+
+body .tab-separator {
+  color: #6c757d !important;
+  font-weight: 300 !important;
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
+/* 内容区域 */
+body .content-area {
+  flex: 1;
+}
+
+/* 第二部分：内容区域 - 右侧栏 */
+body .tab-content {
+  display: none !important;
+  flex: 1;
+}
+
+body .tab-content.active {
+  display: block !important;
+}
+
+/* Notion 内容样式 */
+body .notion-content {
+  margin: 0;
+}
+
+body .notion-item {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s ease;
+}
+
+/* 主容器 - 两栏布局 */
+body .collection-content {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 2rem !important; /* 32px */
+  margin-top: 20vh !important; /* 添加顶部空白，约20%视口高度 */
+  align-items: flex-start !important;
+}
+
+/* 第一部分：全局按钮组 - 左侧栏 */
+body .part1-btn {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.75rem !important; /* 12px */
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+  flex: 0 0 auto !important;
+  min-width: 120px !important;
+}
+
+/* 第二部分：Notion内容 */
+body .part2-notion {
+  display: flex !important;
+  flex-direction: row !important;
+  gap: 0.75rem !important; /* 12px */
+  align-items: flex-start !important;
+  margin-bottom: 0.3rem !important;
+}
+
+/* 时间部分 */
+body .part2-notion-time {
+  font-size: 1rem !important;
+  color: #000000 !important;
+  text-align: left !important;
+  flex: 0 0 auto !important;
+  min-width: 120px !important;
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
+/* 文本内容部分 */
+body .part2-notion-text {
+  font-size: 1rem !important;
+  color: #cdcdcd !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  word-break: break-word !important;
+  flex: 1 !important;
+  min-width: 0 !important;
+  font-family: 'Fusion Pixel', monospace !important;
+}
+
+body .part2-notion-text:hover {
+  color: #000000 !important;
+}
+
+/* 空状态样式 */
+body .empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: #f8f9fa;
+  border-radius: 12px;
+  border: 2px dashed #dee2e6;
+}
+
+body .empty-state p {
+  margin: 0;
+  color: #6c757d;
+}
+
+body .empty-state a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+body .empty-state a:hover {
+  text-decoration: underline;
+}
+
+/* 移动端样式 */
+@media (max-width: 768px) {
+  body .tab-button {
+    padding: 0 !important;
+    font-size: 0.9rem !important;
+  }
+  
+  body .collection-content {
+    flex-direction: column !important;
+    gap: 1rem !important; /* 16px - 移动端间距稍小 */
+  }
+  
+  body .part1-btn {
+    gap: 0.5rem !important; /* 8px - 移动端间距稍小 */
+    font-size: 0.9rem !important;
+    min-width: auto !important;
+  }
+  
+  body .part2-notion {
+    gap: 0.5rem !important; /* 8px - 移动端间距稍小 */
+    padding: 0.3rem 0 !important;
+    margin-bottom: 0.2rem !important;
+  }
+  
+  body .part2-notion-time {
+    font-size: 0.9rem !important;
+    min-width: 100px !important;
+  }
+  
+  body .part2-notion-text {
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+  }
+}

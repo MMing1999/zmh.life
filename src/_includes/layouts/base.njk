@@ -6,9 +6,9 @@
 
   {# ===== 标题（优先页面标题，后缀站点名） ===== #}
   {% if title %}
-    {% set _title = title ~ ' · My Studio' %}
+    {% set _title = title ~ ' · zmh.life' %}
   {% else %}
-    {% set _title = 'My Studio' %}
+    {% set _title = 'zmh.life' %}
   {% endif %}
   <title>{{ _title }}</title>
 
@@ -18,7 +18,7 @@
     <meta name="description" content="{{ _desc }}">
     <meta property="og:description" content="{{ _desc }}">
   {% endif %}
-  <meta property="og:title" content="{{ title or 'My Studio' }}">
+  <meta property="og:title" content="{{ title or 'zmh.life' }}">
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ (page.url or '/') | url }}">
   <link rel="canonical" href="{{ (page.url or '/') | url }}">
@@ -33,10 +33,21 @@
     {% else %} {# string #}
       <link rel="stylesheet" href="{{ pageCSS | url }}">
     {% endif %}
+  {% elif layout %}
+    {# 如果 pageCSS 未设置，根据 layout 自动加载对应的 CSS #}
+    {% if layout.includes('observation.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/observation.css' | url }}">
+    {% elif layout.includes('reading.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/reading.css' | url }}">
+    {% elif layout.includes('writing.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/writing.css' | url }}">
+    {% elif layout.includes('project.njk') %}
+      <link rel="stylesheet" href="{{ '/assets/Css/project.css' | url }}">
+    {% endif %}
   {% endif %}
 
   {# ===== 全局样式（统一入口）===== #}
-  <link rel="stylesheet" href="{{ '/assets/site.css' | url }}">
+  <link rel="stylesheet" href="{{ '/assets/Css/site.css' | url }}">
 
   {# ===== Favicon（按需更换路径）===== #}
   <link rel="icon" href="{{ '/assets/favicon.ico' | url }}">
@@ -49,7 +60,7 @@
   {# ===== 顶部导航 ===== #}
   <nav class="navbar" role="navigation" aria-label="主导航">
     <a href="{{ '/' | url }}" id="navlogo" aria-label="首页">
-      <img src="{{ '/assets/Pics/Ellipse 1.png' | url }}" alt="Logo">
+      <img src="{{ 'https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/misc/Ellipse 1.png' | url }}" alt="Logo">
     </a>
     <ul class="nav-list">
       <li><a class="navlink" href="{{ '/zhi/'  | url }}">知</a></li>
@@ -57,6 +68,18 @@
       <li><a class="navlink" href="{{ '/he/'   | url }}">合</a></li>
       <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
     </ul>
+    
+    {# ===== 二级导航栏（仅在收集、观察、写作、阅读页面显示）===== #}
+    {% if section == "zhi" and pageName in ["collection", "observation", "writing", "reading"] %}
+    <div class="secondary-nav">
+      <div class="secondary-nav-container">
+        <a href="/zhi/collection/" class="secondary-nav-link{% if pageName == 'collection' %} active{% endif %}">收集</a>
+        <a href="/zhi/observation/" class="secondary-nav-link{% if pageName == 'observation' %} active{% endif %}">观察</a>
+        <a href="/zhi/writing/" class="secondary-nav-link{% if pageName == 'writing' %} active{% endif %}">写作</a>
+        <a href="/zhi/reading/" class="secondary-nav-link{% if pageName == 'reading' %} active{% endif %}">阅读</a>
+      </div>
+    </div>
+    {% endif %}
   </nav>
 
   {# ===== 页面主体 ===== #}
@@ -67,10 +90,10 @@
   {# ===== 页脚 ===== #}
   <footer class="footer">
     <div class="footer-content">
-      <div class="footer-welcome">欢迎来到我的人生游戏</div>
+      
       
       <div class="footer-copyright copyright-link">
-        <span class="copyright-text">© 2025 Zhang Minghua</span>
+        <span class="copyright-text"> ©2025 Zhang Minghua.</span>
         <div class="copyright-popup">
           <div class="copyright-popup-content">
             <p>本作品采用 Creative Commons 署名-非商业-相同方式共享 4.0 国际许可协议 (CC BY-NC-SA 4.0) 进行许可。</p>
@@ -117,12 +140,16 @@
       </div>
       
       <div class="footer-subscribe">
-        <input type="email" placeholder="输入邮箱" class="email-input">
+        <input type="email" placeholder="输入邮箱..." class="email-input">
         <button type="button" class="subscribe-btn">订阅更新</button>
       </div>
       
         <div class="footer-contact">
           <button type="button" class="contact-btn">咨询/合作/委托</button>
+      </div>
+
+      <div class="message">
+        <a href="/message/" class="message-btn">留言</a>
         </div>
         
         <div class="footer-like">
@@ -181,7 +208,21 @@
   </div>
 
   {# ===== 回到顶部悬浮按钮 ===== #}
-  <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">↑</button>
+  <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">
+    <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1.62755 9.15745L1.62755 7.63745L0.0975482 7.63745L0.0975481 9.15745L1.62755 9.15745Z" fill="currentColor"/>
+      <path d="M3.14755 7.63745L3.14755 6.11745L1.62755 6.11745L1.62755 7.63745L3.14755 7.63745Z" fill="currentColor"/>
+      <path d="M4.67755 6.11745L4.67755 4.58745L3.14755 4.58745L3.14755 6.11745L4.67755 6.11745Z" fill="currentColor"/>
+      <path d="M6.19755 4.58745L6.19755 3.06745L4.67755 3.06745L4.67755 4.58745L6.19755 4.58745Z" fill="currentColor"/>
+      <path d="M7.71755 3.06745L7.71755 1.53745L6.19755 1.53745L6.19755 3.06745L7.71755 3.06745Z" fill="currentColor"/>
+      <path d="M9.24755 1.53745L9.24755 0.0174503L7.71755 0.0174503L7.71755 1.53745L9.24755 1.53745Z" fill="currentColor"/>
+      <path d="M10.7675 3.06745L10.7675 1.53745L9.24755 1.53745L9.24755 3.06745L10.7675 3.06745Z" fill="currentColor"/>
+      <path d="M12.2875 4.58745L12.2875 3.06745L10.7675 3.06745L10.7675 4.58745L12.2875 4.58745Z" fill="currentColor"/>
+      <path d="M13.8175 6.11745L13.8175 4.58745L12.2875 4.58745L12.2875 6.11745L13.8175 6.11745Z" fill="currentColor"/>
+      <path d="M15.3375 7.63745L15.3375 6.11745L13.8175 6.11745L13.8175 7.63745L15.3375 7.63745Z" fill="currentColor"/>
+      <path d="M16.8675 9.15745L16.8675 7.63745L15.3375 7.63745L15.3375 9.15745L16.8675 9.15745Z" fill="currentColor"/>
+    </svg>
+  </button>
 
   {# ===== 页面级脚本（可选；支持 string 或 array；defer）===== #}
   {% if pageJS %}

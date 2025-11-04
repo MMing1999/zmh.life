@@ -1,0 +1,880 @@
+/* Writing页面专用样式 */
+
+/* Main Content Layout - 8:2 比例 */
+.writing-container {
+  display: grid;
+  grid-template-columns: 8fr 2fr; /* 8:2 比例 */
+  gap: 12px; /* 12px 间隔 */
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem 1rem; /* 增加顶部内边距 */
+}
+
+/* 左侧：文章容器 */
+.articles-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.articles-list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 文章项样式 */
+.article-item {
+  padding: 0;
+}
+
+/* ===== SCREEN1: 卡片视图样式 ===== */
+.screen1-view {
+  display: block;
+  padding: 1.5rem 0;
+}
+
+/* 顶部：日期和分类标签 */
+.article-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.article-date {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #4a5568;
+  font-weight: 500;
+  flex: 0 0 auto; /* 改为不占据剩余空间，只占据内容宽度 */
+}
+
+.date-day {
+  font-weight: 500;
+}
+
+.date-separator {
+  width: 12px;
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.5rem;
+}
+
+.date-separator-long {
+  width: 76px;
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.5rem;
+}
+
+.date-month {
+  font-weight: 500;
+}
+
+.date-year {
+  color: #6b7280;
+}
+
+.date-meta-separator {
+  display: none; /* 隐藏年份后的分隔线 */
+}
+
+.article-meta {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.article-column {
+  color: #6b7280;
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
+.meta-divider {
+  margin: 0 0.5rem;
+  color: #6b7280;
+}
+
+.article-category {
+  color: #6b7280;
+}
+
+.article-tags {
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.article-tag {
+  color: #6b7280;
+}
+
+/* 主体：图片和文字内容 */
+.article-content {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.article-image-container {
+  flex-shrink: 0;
+}
+
+.article-image-link {
+  display: block;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.article-image-link:hover {
+  transform: scale(1.02);
+  opacity: 0.9;
+}
+
+.article-image {
+  height: 8rem;
+  width: 11rem;
+  border-radius: 6px;
+  object-fit: cover;
+  object-position: center;
+  background-color: #f5f5f5;
+  display: block;
+}
+
+.article-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.article-title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.4rem; /* 稍微缩小字号从1.5rem到1.4rem */
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1f2937;
+}
+
+.article-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-title a:hover {
+  color: #667eea;
+}
+
+.article-description {
+  margin: 0;
+  font-size: 0.9rem; /* 缩小字号从1rem到0.9rem */
+  color: #4b5563;
+  line-height: 1.4; /* 缩小行间距从1.6到1.4 */
+}
+
+.article-description-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  cursor: pointer;
+}
+
+.article-description-link:hover {
+  color: #667eea;
+}
+
+/* ===== SCREEN2: 列表视图样式 ===== */
+.screen2-view {
+  display: none;
+  padding: 0.5rem 0;
+}
+
+.hidden-meta-info {
+  display: none;
+}
+
+.article-list-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between; /* 确保标题和日期两端对齐 */
+}
+
+.article-title-simple {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1f2937;
+  font-family: 'Fusion Pixel', monospace;
+  flex-shrink: 0;
+}
+
+.title-date-separator {
+  flex: 1; /* 动态跟随宽度变化 */
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.5rem;
+  min-width: 20px;
+  max-width: none; /* 确保可以充分伸展 */
+}
+
+.article-title-simple a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.article-title-simple a:hover {
+  color: #667eea;
+}
+
+.article-date-simple {
+  display: flex;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #4a5568;
+  font-family: 'Fusion Pixel', monospace;
+  flex-shrink: 0;
+  justify-content: flex-end; /* 让日期内容右对齐 */
+}
+
+.date-separator-short {
+  width: 12px; /* 缩短间隔从12px到8px */
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.2rem;
+}
+
+.date-separator-medium {
+  width: 32px;
+  height: 1px;
+  background-color: #d1d5db;
+  margin: 0 0.5rem;
+}
+
+/* 视图切换控制 */
+.articles-list.list-view .screen1-view {
+  display: none;
+}
+
+.articles-list.list-view .screen2-view {
+  display: block;
+}
+
+/* 列表视图下恢复单列布局 */
+.articles-list.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* 移动端列表视图也保持单列 */
+@media (max-width: 768px) {
+  .articles-list.list-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+
+/* 右侧：导航容器 */
+.navigation-container {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 1.5rem;
+  position: sticky;
+  top: 10%;
+  align-self: start;
+  height: fit-content;
+  max-height: calc(100vh - 4rem);
+  overflow-y: auto;
+}
+
+.navigation-container h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  color: #1f2937;
+}
+
+/* 视图切换样式 */
+.view-toggle-list {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.view-toggle-item {
+  color: #6b7280;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  position: relative;
+  font-size: 0.9rem;
+}
+
+.view-toggle-item:hover {
+  color: #1f2937;
+}
+
+.view-toggle-item.active {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+.view-toggle-divider {
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+
+
+.search-box {
+  margin-bottom: 1.5rem;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid #d1d5db;
+  border-radius: 0;
+  font-size: 1rem;
+  font-family: 'Fusion Pixel', monospace;
+  background-color: transparent;
+  color: #374151;
+  transition: border-color 0.2s ease;
+}
+
+.search-box input:focus {
+  border-bottom-color: #d1d5db;
+  outline: none;
+}
+
+.divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 1rem 0;
+}
+
+.category-list {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.category-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.category-item {
+  color: #374151;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.category-item:hover {
+  color: #1f2937;
+}
+
+.category-item.active {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+.column-list {
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.column-item {
+  color: #374151;
+  text-decoration: none;
+  padding: 0.2rem 0;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.column-item:hover {
+  color: #1f2937;
+}
+
+.column-item.active {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+.tags-list {
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.tags-list .tag-item {
+  color: #374151;
+  text-decoration: none;
+  margin-right: 0.5rem;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  display: inline-block; /* 使用 inline-block 允许设置 margin */
+  white-space: nowrap; /* 防止标签内部断行 */
+}
+
+.tags-list .tag-item:hover {
+  color: #1f2937;
+}
+
+.tags-list .tag-item.active {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+.tag-list .tag-item {
+  display: inline-block;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tag-list .tag-item a {
+  background-color: #f3f4f6;
+  color: #374151;
+  padding: 0.3rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.tag-list .tag-item a:hover {
+  background-color: #667eea;
+  color: white;
+}
+
+/* 分页样式 */
+.pagination-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.pagination-container.hidden {
+  display: none;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pagination-btn {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: transparent;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  color: #1f2937;
+}
+
+.pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pagination-numbers {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.pagination-number {
+  padding: 0.5rem 0.75rem;
+  border: none;
+  background-color: transparent;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  display: block;
+}
+
+.pagination-number:hover {
+  color: #1f2937;
+}
+
+.pagination-number.active {
+  color: #1f2937;
+  text-decoration: underline;
+}
+
+.empty-state p {
+  margin-bottom: 1rem;
+}
+
+.empty-state a {
+  color: #667eea;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.empty-state a:hover {
+  text-decoration: underline;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .writing-container {
+    display: flex;
+    flex-direction: column; /* 移动端垂直布局 */
+    gap: 1rem;
+    padding: 1rem; /* 移动端减少内边距 */
+  }
+
+  /* 移动端使用两栏布局 - 确保宽度完全相同 */
+  .articles-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 使用 fr 单位确保完全相等 */
+    gap: 1rem;
+    grid-auto-rows: min-content; /* 确保行高自适应内容 */
+  }
+
+  .articles-container {
+    order: 2; /* 文章容器排在第二位 */
+  }
+
+  .navigation-container {
+    order: 1; /* 导航容器排在第一位 */
+    position: static; /* 移动端取消sticky */
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  /* Screen1 移动端样式 - 两栏布局，调整内容顺序 */
+  .article-content {
+    display: contents; /* 让子元素直接参与父容器的flex布局 */
+  }
+
+  /* 移动端重新排列内容顺序 */
+  .screen1-view {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  /* 移动端：重新排列header内容 */
+  .article-header {
+    display: flex;
+    flex-direction: column;
+    order: 1;
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  /* 移动端：时间单独一行 */
+  .article-date {
+    order: 1;
+    width: 100%;
+    margin-bottom: 0.75rem; /* 增加时间和分类之间的间距 */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between; /* 让日期和年份两端对齐 */
+  }
+
+  /* 确保年份靠右对齐 */
+  .article-date .date-year {
+    margin-left: auto; /* 确保年份推到最右边 */
+  }
+
+  /* 移动端：专栏和分类一行（不包含标签） */
+  .article-meta {
+    order: 2;
+    width: 100%;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+  }
+
+  /* 移动端：标签单独一行 */
+  .article-meta .article-tags {
+    order: 3;
+    width: 100%;
+    margin-top: 0.1rem; /* 减少间距从0.5rem到0.25rem */
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    display: flex;
+  }
+
+  /* 移动端：标签分隔符隐藏 */
+  .article-meta .meta-divider:last-of-type {
+    display: none;
+  }
+
+  /* 移动端：封面图片在标签之后 */
+  .article-image-container {
+    order: 4;
+    align-self: stretch;
+  }
+
+  .article-image {
+    width: 100%;
+    height: 8rem; /* 固定高度适应两栏布局 */
+    border-radius: 4px;
+  }
+
+  /* 移动端标题和描述在图片之后 */
+  .article-text {
+    order: 5;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .writing-container {
+    padding: 0.5rem; /* 小屏幕进一步减少内边距 */
+  }
+  
+  .screen1-view {
+    padding: 1rem 0;
+  }
+
+  .article-title {
+    font-size: 0.95rem; /* 稍微缩小移动端字号从1rem到0.95rem */
+  }
+  
+  .article-description {
+    font-size: 0.75rem; /* 进一步缩小移动端字号 */
+    line-height: 1.3; /* 缩小移动端行间距 */
+  }
+
+  .article-meta {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+/* =========================================
+   writing.css — 写作详情页样式
+   命名空间：.writing*
+   只作用于 layouts/writing.njk 渲染的详情页
+   高优先级：使用 body[data-section="zhi"] 提高特异性
+   ========================================= */
+
+/* -------- 1) 页面结构 -------- */
+body[data-section="zhi"] main.page-wrap {
+  max-width: 900px !important;       /* 版心宽度 */
+  width: 100% !important;
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+}
+
+body[data-section="zhi"] .writing {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+}
+
+/* -------- 2) 顶部封面 -------- */
+body[data-section="zhi"] .writing-hero {
+  margin: 0 0 20px !important;
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 4 / 3 !important;  /* 4:3 横向比例 */
+  overflow: hidden !important;
+  border-radius: 4px !important;
+}
+body[data-section="zhi"] .writing-hero img {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+/* -------- 3) 标题与基础信息 -------- */
+body[data-section="zhi"] .writing-header {
+  margin: 0 0 24px !important;
+}
+body[data-section="zhi"] .writing-title {
+  margin: 0 0 12px !important;
+  font-size: 40px !important;
+  line-height: 1.2 !important;
+}
+
+/* 摘要（标题下方） */
+body[data-section="zhi"] .writing-summary {
+  margin: 8px 0 12px !important;
+  color: #444 !important;
+  line-height: 1.8 !important;
+}
+
+/* 信息行（发布日期 / 专栏 / 分类 / 标签） */
+body[data-section="zhi"] .writing-line {
+  display: flex !important;
+  gap: 12px !important;
+  align-items: baseline !important;
+  margin: 6px 0 !important;
+}
+body[data-section="zhi"] .writing-line .label {
+  flex: none !important;
+  min-width: 66px !important;
+  color: #666 !important;
+  font-size: 14px !important;
+}
+body[data-section="zhi"] .writing-line .value {
+  flex: 1 !important;
+  display: inline-flex !important;
+  gap: 8px !important;
+  flex-wrap: wrap !important;
+  font-size: 14px !important;
+}
+
+/* 元信息容器：日期/专栏/分类/标签 同排（可换行） */
+body[data-section="zhi"] .writing-meta {
+  display: flex !important;
+  gap: 24px !important;
+  flex-wrap: wrap !important;
+  align-items: baseline !important;
+  margin: 12px 0 !important;
+}
+body[data-section="zhi"] .writing-meta .writing-line { 
+  margin: 0 !important; 
+  display: inline-flex !important; 
+  align-items: center !important;
+  gap: 8px !important;
+}
+body[data-section="zhi"] .writing-meta .writing-line .label { 
+  min-width: auto !important; 
+  font-size: 14px !important;
+  color: #666 !important;
+}
+body[data-section="zhi"] .writing-meta .writing-line .value { 
+  flex: initial !important; 
+  display: inline-flex !important; 
+  align-items: center !important;
+  gap: 4px !important;
+}
+
+/* 分类 chip */
+body[data-section="zhi"] .chip {
+  display: inline-block;
+  padding: 2px 8px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  font-size: 12px;
+  line-height: 1.4;
+  background: #fff;
+}
+
+/* 标签 #tag */
+body[data-section="zhi"] .tag-list {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+/* 标签（#tag）：纯文本，无边框按钮样式 */
+body[data-section="zhi"] .tag-list .tag {
+  display: inline-block !important;
+  text-decoration: none !important;
+  color: #000 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+}
+
+/* -------- 4) 正文内容 -------- */
+body[data-section="zhi"] .writing-body {
+  margin: 24px 0 !important;
+}
+body[data-section="zhi"] .writing-body p {
+  margin: 16px 0 !important;
+  line-height: 1.8 !important;
+}
+body[data-section="zhi"] .writing-body h2 { 
+  margin: 28px 0 8px !important; 
+  font-size: 28px !important; 
+}
+body[data-section="zhi"] .writing-body h3 { 
+  margin: 22px 0 6px !important; 
+  font-size: 22px !important; 
+}
+
+/* 分隔线 */
+body[data-section="zhi"] .writing-divider {
+  height: 1px !important;
+  background: #eaeaea !important;
+  margin: 20px 0 !important;
+}
+
+/* 标题下方的分隔线 */
+body[data-section="zhi"] .writing-divider--title {
+  margin: 16px 0 20px 0 !important;
+}
+
+/* 元信息下方的分隔线 */
+body[data-section="zhi"] .writing-divider--meta {
+  margin: 20px 0 24px 0 !important;
+}
+
+/* 图片与图注 */
+body[data-section="zhi"] .writing-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  display: block;
+  margin: 12px 0;
+}
+body[data-section="zhi"] .writing-body figure { margin: 16px 0; }
+body[data-section="zhi"] .writing-body figcaption {
+  font-size: 12px;
+  color: #666;
+  margin-top: 6px;
+}
+
+/* 代码块 & 引用 */
+body[data-section="zhi"] .writing-body pre {
+  background: #0f0f0f;
+  color: #eaeaea;
+  padding: 14px;
+  border-radius: 10px;
+  overflow: auto;
+  font-size: 13px;
+}
+body[data-section="zhi"] .writing-body blockquote {
+  margin: 16px 0;
+  padding: 10px 14px;
+  border-left: 3px solid #000;
+  background: #fafafa;
+}
+
+/* -------- 5) 返回链接 -------- */
+body[data-section="zhi"] .writing-back {
+  margin: 28px 0 12px;
+}
+body[data-section="zhi"] .link-back {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid #000;
+  padding-bottom: 2px;
+}
+body[data-section="zhi"] .link-back:hover {
+  opacity: .8;
+}
+
+/* -------- 6) 响应式 -------- */
+@media (max-width: 640px) {
+  body[data-section="zhi"] .writing { padding: 0 12px; }
+  body[data-section="zhi"] .writing-title { font-size: 32px; }
+}
+
