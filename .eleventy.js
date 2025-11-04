@@ -114,8 +114,23 @@ module.exports = function(eleventyConfig) {
   // 定义collections - 使用新的 *content 目录结构
   // 通过 src/content 符号链接访问 *content 目录
   eleventyConfig.addCollection("xing_all", function(collectionApi) {
-    return collectionApi.getFilteredByGlob("content/content-xing/*.md")
-      .filter(item => !item.data.isDraft);
+    // 使用 fallback 方法，因为 glob 模式在处理符号链接时可能有问题
+    let items = collectionApi.getFilteredByGlob("content/content-xing/*.md");
+    if (items.length === 0) {
+      // 如果 glob 找不到，从所有文件中过滤
+      items = collectionApi.getAll().filter(item => {
+        const inputPath = item.inputPath || '';
+        return inputPath.includes('content-xing') && inputPath.endsWith('.md');
+      });
+    }
+    return items
+      .filter(item => !item.data.isDraft && !item.data.isHidden)
+      .sort((a, b) => {
+        // 按日期降序排列，如果没有日期则排到最后
+        const dateA = a.date ? new Date(a.date) : new Date(0);
+        const dateB = b.date ? new Date(b.date) : new Date(0);
+        return dateB - dateA;
+      });
   });
 
   eleventyConfig.addCollection("zhi-observation", function(collectionApi) {
@@ -168,6 +183,32 @@ module.exports = function(eleventyConfig) {
   
   // 添加 content 目录到监听列表，确保符号链接中的文件能被 Eleventy 识别
   eleventyConfig.addWatchTarget("content/");
+
+  // 使用 eleventyComputed 来设置 permalink
+  eleventyConfig.addGlobalData("eleventyComputed", {
+    permalink: function(data) {
+      // 如果文件已经指定了permalink，则使用文件中的permalink
+      if (data.permalink) {
+        return data.permalink;
+      }
+      
+      // 跳过 entries 目录中的文件（使用旧目录结构）
+      const inputPath = data.page?.inputPath || '';
+      if (inputPath.includes('entries/')) {
+        return false; // 让默认 permalink 生效
+      }
+      
+      const section = data.section || "misc";
+      const slug = data.page?.fileSlug || '';
+      
+      // 优先使用 section 字段
+      if (section === "xing") {
+        return `/xing/${slug}/index.html`;
+      }
+      
+      return false; // 返回 false 让其他 permalink 逻辑生效
+    }
+  });
 
   // 设置输入和输出目录
   return {

@@ -787,11 +787,26 @@ body .control-btn.active {
    读书笔记详情页面样式
    ========================================= */
 
+/* =========================================
+   reading.css — 阅读详情页样式
+   命名空间：.reading*
+   只作用于 layouts/reading.njk 渲染的详情页
+   高优先级：使用 body[data-section="zhi"] 提高特异性
+   ========================================= */
+
+/* -------- 1) 页面结构 -------- */
+body[data-section="zhi"] main.page-wrap {
+  max-width: 1000px !important;
+  width: 100% !important;
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+}
+
 /* 读书笔记详情页面容器 */
-.reading {
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 20px;
+body[data-section="zhi"] .reading {
+  max-width: 100% !important;
+  margin: 0 !important;
+  padding: 20px 0 !important;
 }
 
 /* 书籍信息容器 - 左右分栏布局 */
@@ -995,7 +1010,7 @@ body .control-btn.active {
 }
 
 .link-back {
-  color: #667eea;
+  color: #000;
   text-decoration: none;
   font-family: 'Fusion Pixel', monospace;
   font-size: 0.9rem;
