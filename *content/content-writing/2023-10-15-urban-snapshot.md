@@ -9,6 +9,8 @@ column: "全栈开发专栏"
 layout: "writing.njk"
 pageCSS: "/assets/Css/writing.css"
 section: "zhi"
+permalink: /zhi/writing/2023-10-15-urban-snapshot/index.html
+pageName: "writing"
 ---
 
 ## 都市掠影：捕捉瞬间的艺术

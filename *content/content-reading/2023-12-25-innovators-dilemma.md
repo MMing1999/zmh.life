@@ -9,6 +9,9 @@ cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/�
 description: "这是一本关于创新和商业管理的经典著作，作者Clayton M. Christensen深入分析了为什么优秀的企业会失败。"
 type: "reading"
 section: "zhi"
+layout: "reading.njk"
+pageName: "reading"
+permalink: /zhi/reading/2023-12-25-innovators-dilemma/index.html
 pageCSS: "/assets/Css/reading.css"
 ---
 

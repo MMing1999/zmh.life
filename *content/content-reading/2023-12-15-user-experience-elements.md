@@ -9,6 +9,9 @@ cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/�
 description: "这是一本关于用户体验设计的经典著作，作者Jesse James Garrett系统地介绍了用户体验设计的五个层面。"
 type: "reading"
 section: "zhi"
+layout: "reading.njk"
+pageName: "reading"
+permalink: /zhi/reading/2023-12-15-user-experience-elements/index.html
 pageCSS: "/assets/Css/reading.css"
 ---
 

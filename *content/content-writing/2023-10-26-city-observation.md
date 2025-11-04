@@ -9,6 +9,8 @@ column: "设计思考专栏"
 layout: "writing.njk"
 pageCSS: "/assets/Css/writing.css"
 section: "zhi"
+permalink: /zhi/writing/2023-10-26-city-observation/index.html
+pageName: "writing"
 ---
 
 ## 城市观察：光影与节奏

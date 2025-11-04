@@ -8,6 +8,7 @@ module.exports = {
         if (layout.startsWith("layouts/")) {
           layout = layout.replace("layouts/", "");
         }
+        // 确保返回的是相对于 includes 目录的路径
         return layout;
       }
       
@@ -45,34 +46,44 @@ module.exports = {
       return null;
     },
     permalink: (data) => {
-      const slug    = data.page.fileSlug;
+      // 如果文件已经指定了permalink，则使用文件中的permalink
+      if (data.permalink) {
+        return data.permalink;
+      }
+      
+      const slug    = data.page?.fileSlug || data.page?.filePathStem?.split('/').pop() || '';
       const section = data.section || "misc";
       const type    = data.type || "note";
       
-      // 根据目录结构设置正确的 permalink
-      // 使用 inputPath 来检测目录（在 Eleventy 中，inputPath 是相对于 input 目录的路径）
-      const inputPath = data.page.inputPath || '';
+      // 优先使用 section 字段（最可靠）
+      if (section === "xing") {
+        return `/xing/${slug}/index.html`;
+      }
       
+      // 根据目录结构设置正确的 permalink（备用方案）
+      // 使用 inputPath 来检测目录（在 Eleventy 中，inputPath 是相对于 input 目录的路径）
+      const inputPath = data.page?.inputPath || '';
+      const filePathStem = data.page?.filePathStem || '';
+      const pathToCheck = inputPath || filePathStem;
       
       // content-xing -> /xing/
-      if (inputPath.indexOf('content-xing') !== -1) {
+      if (pathToCheck.includes('content-xing')) {
         return `/xing/${slug}/index.html`;
       }
       // content-observation -> /zhi/observation/
-      if (inputPath.indexOf('content-observation') !== -1) {
+      if (pathToCheck.includes('content-observation')) {
         return `/zhi/observation/${slug}/index.html`;
       }
       // content-reading -> /zhi/reading/
-      if (inputPath.indexOf('content-reading') !== -1) {
+      if (pathToCheck.includes('content-reading')) {
         return `/zhi/reading/${slug}/index.html`;
       }
       // content-writing -> /zhi/writing/
-      if (inputPath.indexOf('content-writing') !== -1) {
+      if (pathToCheck.includes('content-writing')) {
         return `/zhi/writing/${slug}/index.html`;
       }
       
       // 默认规则（根据 frontmatter）
-      if (section === "xing" && (type === "work" || !type)) return `/xing/${slug}/index.html`;
       if (section === "zhi" && type === "note")        return `/zhi/writing/${slug}/index.html`;
       if (section === "zhi" && type === "observation") return `/zhi/observation/${slug}/index.html`;
       if (section === "zhi" && type === "reading")     return `/zhi/reading/${slug}/index.html`;
