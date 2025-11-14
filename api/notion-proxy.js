@@ -27,10 +27,38 @@ export default async function handler(req, res) {
 
     // 验证必需的环境变量
     if (!NOTION_API_TOKEN) {
-      console.error('NOTION_API_TOKEN environment variable is not set');
-      return res.status(500).json({
-        error: 'Server configuration error',
-        message: 'API token not configured'
+      console.warn('⚠️  NOTION_API_TOKEN environment variable is not set, returning sample data');
+      // 返回示例数据而不是错误，允许网站在没有配置时也能预览
+      return res.status(200).json({
+        success: true,
+        data: {
+          ideas: [
+            {
+              id: 'sample-1',
+              properties: {
+                name: { title: [{ plain_text: '示例想法' }] },
+                content: { rich_text: [{ plain_text: '这是一个示例想法，用于演示页面功能。请设置 Notion API 密钥以获取真实数据。' }] }
+              },
+              created_time: new Date().toISOString()
+            }
+          ],
+          questions: [
+            {
+              id: 'sample-2',
+              properties: {
+                name: { title: [{ plain_text: '示例问题' }] },
+                content: { rich_text: [{ plain_text: '这是一个示例问题，用于演示页面功能。请设置 Notion API 密钥以获取真实数据。' }] }
+              },
+              created_time: new Date().toISOString()
+            }
+          ]
+        },
+        meta: {
+          ideas_count: 1,
+          questions_count: 1,
+          page_size: limitPageSize,
+          note: 'Using sample data - Notion API not configured'
+        }
       });
     }
 
