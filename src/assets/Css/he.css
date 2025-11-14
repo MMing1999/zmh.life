@@ -40,6 +40,24 @@ body[data-page="he"] .navbar {
   background-color: #e0e0e0;
 }
 
+/* 上下布局样式 */
+.section-vertical {
+  flex-direction: column;
+  gap: 0;
+}
+
+.section-vertical-item {
+  width: 100%;
+  margin-bottom: 0;
+}
+
+.section-vertical-divider {
+  width: 100%;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 2rem 0;
+}
+
 /* Section 1 全屏高度样式 */
 .fullscreen-section {
   min-height: calc(100vh - 80px);
@@ -258,7 +276,7 @@ body[data-page="he"] .navbar {
 .profile-tagline {
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #6b7280;
+  color: #C0C0C0;
   margin: 0 0 0.5rem 0;
   font-style: italic;
 }
@@ -305,11 +323,13 @@ body[data-page="he"] .navbar {
   color: #4b5563;
   margin: 0 0 0.5rem 0;
   text-align: left;
+  font-weight: 400;
 }
 
 .description-english {
   font-style: italic;
-  color: #6b7280;
+  color: #C0C0C0;
+  line-height: 1.2;
 }
 
 /* Profile Modules */
@@ -343,7 +363,7 @@ body[data-page="he"] .navbar {
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: #d1d5db;
+  background-color: #e5e7eb;
 }
 
 .experience-item {
@@ -371,10 +391,11 @@ body[data-page="he"] .navbar {
 .exp-time {
   font-size: 1rem;
   font-weight: 600;
-  color: #374151;
+  color: #C0C0C0;
   margin: 0;
   position: relative;
   padding-left: 1.5rem; /* 为黑色点留出空间 */
+  font-style: italic;
 }
 
 .exp-time::before {
@@ -425,7 +446,7 @@ body[data-page="he"] .navbar {
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: #d1d5db;
+  background-color: #e5e7eb;
 }
 
 .education-item {
@@ -479,10 +500,11 @@ body[data-page="he"] .navbar {
 .edu-time {
   font-size: 1rem;
   font-weight: 600;
-  color: #374151;
+  color: #C0C0C0;
   margin: 0;
   position: relative;
   padding-left: 1.5rem; /* 为黑色点留出空间 */
+  font-style: italic;
 }
 
 .edu-time::before {
@@ -498,8 +520,8 @@ body[data-page="he"] .navbar {
 }
 
 .edu-chinese {
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1rem;
+  font-weight: 400;
   color: #1f2937;
   margin: 0;
   line-height: 1.4;
@@ -528,7 +550,7 @@ body[data-page="he"] .navbar {
   top: 0;
   bottom: 0;
   width: 1px;
-  background-color: #d1d5db;
+  background-color: #e5e7eb;
 }
 
 .contact-item {
@@ -819,26 +841,150 @@ body[data-page="he"] .navbar {
   border-left: 4px solid #4caf50;
 }
 
-.achievement-list {
-  list-style: none;
-  padding: 0;
+/* Section 4: 人生成就清单样式 */
+#section4 .achievement-content {
+  width: 100%;
+  font-family: 'Fusion Pixel', monospace;
 }
 
-.achievement-list li {
-  padding: 0.8rem 0;
-  color: #424242;
+/* 标题样式 - 与"有生之年"保持一致 */
+#section4 .achievement-main-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #000;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+/* 副标题样式 - 与"有生之年"下面的文字保持一致 */
+#section4 .achievement-subtitle {
+  font-size: 20px;
+  color: #999;
+  font-style: italic;
+  margin: 0 0 2rem 0;
+  line-height: 1.6;
+}
+
+#section4 .achievement-list-container {
+  margin-top: 2rem;
+}
+
+/* 成就项样式 - 参考 collection 页面风格 */
+#section4 .achievement-item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem; /* 12px */
+  align-items: flex-start;
+  margin-bottom: 0.3rem;
+}
+
+/* 序号部分 - 替代 collection 中的时间部分 */
+#section4 .achievement-number {
   font-size: 1rem;
-  position: relative;
-  padding-left: 2rem;
+  color: #000000;
+  text-align: left;
+  flex: 0 0 auto;
+  min-width: 40px;
+  font-family: 'Fusion Pixel', monospace;
 }
 
-.achievement-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: #4caf50;
-  font-weight: bold;
-  font-size: 1.2rem;
+/* 文本内容部分 - 与 collection 页面一致 */
+#section4 .achievement-text {
+  font-size: 1rem;
+  color: #cdcdcd;
+  line-height: 1.5;
+  text-align: left;
+  word-break: break-word;
+  flex: 1;
+  min-width: 0;
+  font-family: 'Fusion Pixel', monospace;
+  transition: color 0.3s ease;
+}
+
+#section4 .achievement-text:hover {
+  color: #000000;
+}
+
+/* 空状态样式 */
+#section4 .achievement-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6c757d;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+/* 分页控件样式 */
+#section4 .achievement-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding: 1rem 0;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+#section4 .achievement-pagination-btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #000;
+  background: transparent;
+  border: 1px solid #ccc;
+  border-radius: 0;
+  cursor: pointer;
+  font-family: 'Fusion Pixel', monospace;
+  transition: all 0.3s ease;
+}
+
+#section4 .achievement-pagination-btn:hover:not(:disabled) {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+#section4 .achievement-pagination-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: transparent;
+  color: #999;
+}
+
+#section4 .achievement-pagination-info {
+  font-size: 1rem;
+  color: #666;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+/* 移动端样式 */
+@media (max-width: 768px) {
+  #section4 .achievement-item {
+    gap: 0.5rem; /* 8px - 移动端间距稍小 */
+    margin-bottom: 0.2rem;
+  }
+  
+  #section4 .achievement-number {
+    font-size: 0.9rem;
+    min-width: 35px;
+  }
+  
+  #section4 .achievement-text {
+    font-size: 0.9rem;
+    line-height: 1.4;
+  }
+
+  #section4 .achievement-pagination {
+    gap: 0.75rem;
+    margin-top: 1.5rem;
+  }
+
+  #section4 .achievement-pagination-btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  #section4 .achievement-pagination-info {
+    font-size: 0.9rem;
+  }
 }
 
 .countdown-container {
@@ -1098,4 +1244,955 @@ body[data-page="he"] .navbar {
     flex-direction: column;
     gap: 0.5rem;
   }
+}
+
+/* =========================================
+   人生倒计时功能样式（仅作用于section3）
+   ========================================= */
+
+/* 调试用边框 - 可视化HTML层级 */
+#section3 {
+  width: 100% !important;
+  display: block !important;
+  flex-direction: column !important;
+  margin: 6rem 0 0 0 !important; /* 增加顶部间距，避免与section2的分隔线重叠 */
+  padding: 0 !important;
+}
+
+/* 覆盖 .he-section 的 flex 布局 */
+#section3.he-section {
+  display: block !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+}
+
+#section3 .countdown-header {
+  border: none; /* header层 - 蓝色，包含标题和正文 */
+}
+
+#section3 .countdown-title-section {
+  border: none; /* title-section层 - 绿色 */
+}
+
+#section3 .countdown-actions {
+  border: none; /* actions层 - 橙色 */
+}
+
+/* 正文内容在蓝色框内，不单独显示边框，对齐到蓝色边缘 */
+#section3 .countdown-content {
+  border: none;
+  margin-top: 2rem;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  overflow-x: visible;
+}
+
+/* 去掉正文内容内部子元素的边框，确保对齐到蓝色边缘 */
+#section3 .countdown-display {
+  border: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%;
+  overflow-x: visible;
+}
+
+#section3 .countdown-text {
+  border: none;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#section3 .countdown-canvas-container {
+  border: none;
+}
+
+#section3 .countdown-header,
+#section3 .countdown-title-section {
+  display: block !important;
+  width: 100% !important;
+  float: none !important;
+  clear: both !important;
+}
+
+#section3 .countdown-actions {
+  display: flex !important;
+  width: 100% !important;
+  float: none !important;
+  clear: both !important;
+}
+
+.countdown-header {
+  margin-bottom: 3rem;
+  display: block !important;
+  width: 100%;
+  clear: both;
+  padding: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.countdown-title-section {
+  margin-bottom: 1.5rem;
+  display: block !important;
+  width: 100%;
+  clear: both;
+  float: none;
+}
+
+.countdown-main-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #000;
+  font-family: 'Fusion Pixel', monospace;
+}
+
+.countdown-subtitle {
+  font-size: 20px;
+  color: #999;
+  font-style: italic;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.countdown-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  width: 100%;
+  clear: both;
+  float: none;
+}
+
+.countdown-btn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: #fff;
+  color: #000;
+  cursor: pointer;
+  font-family: 'Fusion Pixel', monospace;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.countdown-btn:hover {
+  background: #f5f5f5;
+  border-color: #999;
+}
+
+.countdown-btn-export {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.countdown-btn-export:hover {
+  background: #333;
+}
+
+.countdown-btn-add {
+  background: #f0f0f0;
+  border-color: #ddd;
+}
+
+.countdown-btn-remove {
+  background: #fff;
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+}
+
+.countdown-btn-remove:hover {
+  background: #ffebee;
+}
+
+.countdown-content {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.countdown-display {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.countdown-text {
+  margin-bottom: 2rem;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 1.8;
+  font-size: 16px;
+  color: #999; /* 与副标题相同的灰色 */
+  width: 100%;
+}
+
+.countdown-text p {
+  margin: 1rem 0;
+}
+
+/* "我剩下可以体验这个世界的时间还有："段落，增加底部间距 */
+.countdown-text p:nth-of-type(3) {
+  margin-bottom: 3rem; /* 增加两行空行（约2rem） */
+}
+
+/* 人生周历标识 */
+.countdown-week-calendar-label {
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  margin: 1rem 0 0.4rem 0; /* 缩小底部间距到原来的40%（60%的缩小） */
+}
+
+/* 显示模式中的其他段落（"而现在，我的生命在这个阶段："等） */
+#section3 .countdown-display > p {
+  font-size: 16px;
+  color: #999;
+  margin: 1rem 0;
+}
+
+/* 生命周历下方的主要说明文字 */
+.countdown-week-chart-main-description {
+  font-size: 16px;
+  color: #999;
+  margin: 0.4rem 0 1rem 0;
+}
+
+/* 生命周图注释说明容器 */
+.countdown-week-chart-note {
+  margin: 0.5rem 0 0 0; /* 减少顶部间距 */
+}
+
+/* 生命周图说明文字（小字） */
+.countdown-week-chart-note .countdown-week-chart-description {
+  font-size: 12px;
+  color: #ccc; /* 更浅的灰色 */
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Canvas容器样式 */
+.countdown-canvas-container {
+  margin: 0px 0 0px 0; /* 缩小顶部间距到原来的40%（60%的缩小），保持底部间距 */
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  padding: 10px;
+  padding-bottom: 0px; /* 增加底部间距（已增加一倍） */
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.countdown-canvas-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  position: relative;
+  padding-bottom: 20px; /* 增加底部间距，让滚动条和内容有更多间隔（已增加一倍） */
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 不同Canvas的高度限制 */
+.countdown-canvas-container:nth-of-type(1) .countdown-canvas-wrapper {
+  max-height: 300px; /* 生命周图 */
+}
+
+.countdown-canvas-container:nth-of-type(2) .countdown-canvas-wrapper {
+  max-height: 500px; /* 生命阶段图 */
+}
+
+.countdown-canvas-container:nth-of-type(3) .countdown-canvas-wrapper {
+  max-height: 300px; /* 想做的事情表格 */
+}
+
+.countdown-canvas-wrapper::-webkit-scrollbar {
+  height: 8px;
+}
+
+.countdown-canvas-wrapper::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.countdown-canvas-wrapper::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.countdown-canvas-wrapper::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.countdown-canvas-wrapper canvas {
+  display: block;
+  height: auto;
+}
+
+/* 进度条样式 */
+.countdown-progress-bar-container {
+  margin: 1rem 0 3rem 0; /* 上面1行空行，下面3行空行 */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 16px;
+  color: #999;
+}
+
+.countdown-progress-label {
+  white-space: nowrap;
+}
+
+.countdown-progress-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.countdown-progress-bracket {
+  font-size: 16px;
+  color: #999;
+}
+
+.countdown-progress-bar {
+  display: inline-block;
+  width: 120px;
+  height: 16px;
+  border: 2px solid #000;
+  background-color: #fff;
+  position: relative;
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+.countdown-progress-filled {
+  height: 100%;
+  background-color: #000;
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+.countdown-progress-percentage {
+  font-size: 16px;
+  color: #000;
+  font-weight: bold;
+  font-family: 'Fusion Pixel', monospace;
+  white-space: nowrap;
+}
+
+/* 活动列表样式 */
+.countdown-activities-list {
+  margin: 0 0 20px 0;
+}
+
+.countdown-activities-list p {
+  margin: 10px 0;
+  line-height: 1.6;
+  font-size: 16px;
+  color: #999;
+}
+
+/* 编辑模式样式 */
+.countdown-edit {
+  width: 100%;
+}
+
+.countdown-form {
+  width: 100%;
+}
+
+.countdown-form-section {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+}
+
+.countdown-form-section h4 {
+  margin: 0 0 1rem 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.countdown-form-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+
+.countdown-form-group label {
+  min-width: 120px;
+  font-size: 14px;
+}
+
+.countdown-input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Fusion Pixel', monospace;
+  font-size: 14px;
+}
+
+.countdown-input:focus {
+  outline: none;
+  border-color: #000;
+}
+
+/* 活动项样式 */
+.countdown-activity-item {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+  background: #fafafa;
+}
+
+.countdown-activity-item .countdown-form-group {
+  margin-bottom: 0.8rem;
+}
+
+.countdown-activity-item .countdown-btn-remove {
+  margin-top: 0.5rem;
+}
+
+/* 待办事项样式 */
+.countdown-todo-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 0.8rem;
+}
+
+.countdown-todo-item .countdown-input {
+  flex: 1;
+}
+
+.countdown-todo-item .countdown-btn-remove {
+  flex-shrink: 0;
+}
+
+.countdown-activities-edit,
+.countdown-todo-list-edit {
+  margin-bottom: 1rem;
+}
+
+/* 引用文字样式 */
+.countdown-quotes {
+  margin: 3rem 0 2rem 0;
+  padding: 2rem 0;
+}
+
+.countdown-quotes-divider {
+  border-top: 1px solid #e0e0e0;
+  margin-bottom: 2rem;
+}
+
+.countdown-quotes p {
+  margin: 1rem 0;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #999;
+  font-style: italic;
+}
+
+/* 默认显示的文字（编辑模式下隐藏） */
+.countdown-default-text {
+  display: block;
+}
+
+.countdown-life-stage-title {
+  display: none;
+  margin: 1rem 0 0.4rem 0;
+  font-weight: bold;
+  color: #000;
+  font-size: 16px;
+}
+
+body[data-edit-mode="true"] .countdown-life-stage-title {
+  display: block;
+}
+
+body[data-edit-mode="true"] .countdown-default-text {
+  display: none;
+}
+
+/* 用户数据且非编辑模式：隐藏默认文本，只显示用户自己写的内容 */
+body[data-user-data="true"] .countdown-user-hide {
+  display: none;
+}
+
+.countdown-edit-gap {
+  display: none;
+  margin: 3rem 0 2rem;
+}
+
+/* 用户内容页：显示"我想做的是："和"我的思考："标题 */
+body[data-user-data="true"] .countdown-user-show {
+  display: block;
+}
+
+body[data-user-data="true"] .countdown-edit-gap {
+  display: block;
+}
+
+body[data-user-data="true"] #countdownReflectionDisplay {
+  display: block;
+}
+
+/* 用户内容页：显示想做的事情表格 */
+body[data-user-data="true"] .countdown-todo-inline-edit {
+  display: block;
+}
+
+body[data-user-data="true"] .countdown-todo-table-container {
+  display: none;
+}
+
+.countdown-todo-inline-edit {
+  display: none;
+  margin: 1.5rem 0;
+}
+
+.countdown-todo-inline-edit .countdown-btn {
+  margin-top: 0.75rem;
+}
+
+body[data-edit-mode="true"] .countdown-todo-inline-edit {
+  display: block;
+}
+
+body[data-edit-mode="true"] .countdown-todo-table-container {
+  display: none;
+}
+
+/* 想做的事情表格编辑样式 */
+.countdown-todo-table-edit-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
+}
+
+.countdown-todo-table-edit {
+  display: flex;
+  gap: 0;
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
+  padding: 0;
+  min-width: fit-content;
+  box-sizing: border-box;
+}
+
+.countdown-todo-column {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #CCCCCC;
+  min-width: 150px;
+}
+
+.countdown-todo-column:last-child {
+  border-right: none;
+}
+
+.countdown-todo-cell {
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 8px 12px;
+  min-height: 50px;
+  border-bottom: 1px solid #CCCCCC;
+  position: relative;
+}
+
+.countdown-todo-cell:last-child {
+  border-bottom: none;
+}
+
+.countdown-todo-number {
+  font-size: 14px;
+  color: #666666;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  min-width: 30px;
+  flex-shrink: 0;
+  line-height: 1.4;
+  padding-top: 4px;
+}
+
+.countdown-todo-input {
+  flex: 1;
+  border: none;
+  border-bottom: 2px solid #999;
+  background: transparent;
+  color: #000;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  padding: 4px 0;
+  outline: none;
+  min-width: 0;
+}
+
+.countdown-todo-input:focus {
+  border-bottom-color: #000;
+}
+
+.countdown-todo-input::placeholder {
+  color: #999;
+}
+
+.countdown-todo-text {
+  flex: 1;
+  color: #000;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  padding: 4px 0;
+  cursor: pointer;
+  min-width: 0;
+  line-height: 1.4;
+  word-break: break-all;
+  white-space: normal;
+  display: inline-block;
+}
+
+.countdown-todo-text:hover {
+  opacity: 0.7;
+}
+
+.countdown-todo-remove {
+  background: transparent;
+  border: none;
+  color: #ff6b6b;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 0;
+  line-height: 1;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.countdown-todo-cell:hover .countdown-todo-remove {
+  opacity: 1;
+}
+
+.countdown-todo-remove:hover {
+  color: #d32f2f;
+  transform: scale(1.2);
+}
+
+.countdown-todo-add-column {
+  background: transparent;
+  border: none;
+  border-top: 1px solid #CCCCCC;
+  color: #666;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px;
+  line-height: 1;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.countdown-todo-add-column:hover {
+  color: #000;
+  background: #f5f5f5;
+}
+
+.countdown-edit-text {
+  margin: 1rem 0 0.4rem 0;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+body[data-edit-mode="true"] .countdown-edit-gap {
+  display: block;
+}
+
+/* 编辑模式下的反思文本输入框 */
+.countdown-reflection-edit {
+  margin: 2rem 0;
+}
+
+/* 统一标题样式 */
+.countdown-reflection-title,
+.countdown-edit-text {
+  margin: 1rem 0 0.4rem 0;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+}
+
+
+.countdown-btn-export-week-chart {
+  padding: 6px 12px;
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
+  color: #000;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.countdown-btn-export-week-chart:hover {
+  border-color: #999;
+  background: #f5f5f5;
+}
+
+.countdown-btn-export-week-chart:active,
+.countdown-btn-export-week-chart.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.countdown-btn-export-life-stage-chart {
+  padding: 6px 12px;
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
+  color: #000;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  outline: none;
+  margin-top: 8px;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+
+.countdown-btn-export-life-stage-chart:hover {
+  border-color: #999;
+  background: #f5f5f5;
+}
+
+.countdown-btn-export-life-stage-chart:active,
+.countdown-btn-export-life-stage-chart.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.countdown-btn-export-todo-list {
+  padding: 6px 12px;
+  border: 1px solid #CCCCCC;
+  background: #FFFFFF;
+  color: #000;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  outline: none;
+  margin: 1rem 0;
+  display: block;
+}
+
+.countdown-btn-export-todo-list:hover {
+  border-color: #999;
+  background: #f5f5f5;
+}
+
+.countdown-btn-export-todo-list:active,
+.countdown-btn-export-todo-list.active {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.countdown-reflection-textarea {
+  width: 100%;
+  min-height: 150px;
+  max-height: none;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  resize: none;
+  outline: none;
+  overflow-y: hidden;
+}
+
+.countdown-reflection-textarea:focus {
+  border-color: #000;
+}
+
+.countdown-reflection-textarea::placeholder {
+  color: #999;
+}
+
+.countdown-reflection-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 12px;
+  flex-wrap: wrap;
+}
+
+.countdown-btn-save,
+.countdown-btn-continue,
+.countdown-btn-clear {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #fff;
+  color: #000;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.countdown-btn-save:hover,
+.countdown-btn-continue:hover,
+.countdown-btn-clear:hover {
+  background: #f5f5f5;
+  border-color: #000;
+}
+
+.countdown-btn-save {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.countdown-btn-save:hover {
+  background: #333;
+}
+
+.countdown-btn-clear {
+  color: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+.countdown-btn-clear:hover {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+.countdown-closing {
+  margin-top: 2rem !important;
+  font-style: normal !important;
+  color: #999 !important;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* 体验制作按钮容器 */
+.countdown-create-button-container {
+  margin-top: 1.5rem;
+  margin-bottom: 0;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.countdown-btn-create {
+  background: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.countdown-btn-create:hover {
+  background: #333;
+}
+
+/* 响应式适配 */
+@media (max-width: 768px) {
+  #section3 .countdown-content {
+    max-width: 100%;
+    padding: 0 1rem;
+  }
+  
+  #section3 .countdown-main-title {
+    font-size: 2rem;
+  }
+  
+  #section3 .countdown-subtitle {
+    font-size: 13px;
+  }
+  
+  #section3 .countdown-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  
+  #section3 .countdown-btn {
+    flex: 1;
+    min-width: 100px;
+  }
+  
+  #section3 .countdown-form-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  #section3 .countdown-form-group label {
+    min-width: auto;
+  }
+}
+
+/* 编辑模式下的下划线输入框 */
+.countdown-inline-input {
+  display: inline-block;
+  border: none;
+  border-bottom: 2px solid #000;
+  background: transparent;
+  color: #000;
+  font-weight: bold;
+  font-family: 'Fusion Pixel', Arial, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  padding: 0 4px;
+  margin: 0 2px;
+  min-width: 60px;
+  text-align: center;
+  outline: none;
+}
+
+.countdown-inline-input:focus {
+  border-bottom-color: #333;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.countdown-inline-input-date {
+  min-width: 120px;
+}
+
+.countdown-inline-input-number {
+  min-width: 40px;
 }
