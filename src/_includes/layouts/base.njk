@@ -92,6 +92,9 @@
   <footer class="footer">
     <div class="footer-content">
       
+      <div class="footer-beian">
+        <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="beian-link">京ICP备2025150627号</a>
+      </div>
       
       <div class="footer-copyright copyright-link">
         <span class="copyright-text"> ©2025 Zhang Minghua.</span>
@@ -149,11 +152,7 @@
           <button type="button" class="contact-btn">咨询/合作/委托</button>
       </div>
 
-      <div class="message">
-        <a href="/message/" class="message-btn">留言</a>
-        </div>
-        
-        <div class="footer-like">
+      <div class="footer-like">
           <button type="button" class="like-btn" id="likeButton">喜欢你</button>
         </div>
       </div>
@@ -526,5 +525,8 @@
 ${locationInfo}`;
     }
   </script>
+
+  {# ===== 文章点赞功能 ===== #}
+  <script src="{{ '/assets/js/article-like.js' | url }}"></script>
 </body>
 </html>

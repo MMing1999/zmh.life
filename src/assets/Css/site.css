@@ -144,6 +144,24 @@ main.page-wrap {
   font-size: 14px;
 }
 
+.footer-beian {
+  color: #666;
+  font-family: 'Fusion Pixel', sans-serif;
+  font-size: 14px;
+}
+
+.beian-link {
+  color: #666;
+  text-decoration: underline;
+  text-decoration-style: solid;
+  text-underline-offset: 2px;
+  transition: color 0.2s;
+}
+
+.beian-link:hover {
+  color: #333;
+}
+
 .footer-copyright {
   color: #666;
   font-family: 'Fusion Pixel', sans-serif;
@@ -861,6 +879,118 @@ body[data-section="yi"]  .navlink[href="/yi/"] {
 .thanks-btn:hover {
   background: #333;
   transform: translateY(-1px);
+}
+
+/* =========================================
+   文章点赞按钮样式
+   ========================================= */
+.article-like-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 48px 0 32px;
+  padding: 0;
+}
+
+.article-like-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 67px;
+  height: 67px;
+  padding: 0;
+  background: transparent;
+  background-image: url('/assets/Icons/circle.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: 'Fusion Pixel', sans-serif;
+  position: relative;
+}
+
+.article-like-btn:hover {
+  background-image: url('/assets/Icons/circle-selected.svg');
+  transform: scale(1.05);
+}
+
+.article-like-btn:hover svg {
+  color: #fff;
+}
+
+.article-like-btn:active {
+  transform: scale(0.95);
+}
+
+.article-like-btn svg {
+  width: 24px;
+  height: 24px;
+  color: #000;
+  transition: color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.article-like-btn .like-count {
+  position: absolute;
+  bottom: -20px;
+  font-size: 12px;
+  color: #666;
+  font-family: 'Fusion Pixel', sans-serif;
+  white-space: nowrap;
+}
+
+.article-like-btn.liked {
+  background-image: url('/assets/Icons/circle-selected.svg');
+}
+
+.article-like-btn.liked svg {
+  color: #fff;
+}
+
+.article-like-btn.liked .like-count {
+  color: #000;
+}
+
+.article-like-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.article-like-btn:disabled:hover {
+  background-image: url('/assets/Icons/circle.svg');
+  transform: none;
+}
+
+.article-like-btn:disabled:hover svg {
+  color: #000;
+}
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .article-like-container {
+    margin: 32px 0 24px;
+  }
+  
+  .article-like-btn {
+    width: 56px;
+    height: 56px;
+    background-size: 56px 56px;
+  }
+  
+  
+  .article-like-btn svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  .article-like-btn .like-count {
+    font-size: 11px;
+    bottom: -18px;
+  }
 }
 
 /* =========================================
