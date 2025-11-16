@@ -9,8 +9,11 @@ column: "摄影技巧"
 layout: "writing.njk"
 pageCSS: "/assets/Css/writing.css"
 section: "zhi"
+<<<<<<< HEAD
 permalink: /zhi/writing/2023-10-10-light-shadow-photography/index.html
 pageName: "writing"
+=======
+>>>>>>> dev
 ---
 
 ## 光影之路：摄影中的光线运用

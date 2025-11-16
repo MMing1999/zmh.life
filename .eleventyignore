@@ -1,0 +1,10 @@
+# 排除不必要的文件和目录
+postEditor/
+node_modules/
+dist/
+.git/
+*.log
+.DS_Store
+.env*
+*.tmp
+*.temp

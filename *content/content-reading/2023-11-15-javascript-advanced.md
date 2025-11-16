@@ -9,9 +9,12 @@ cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/�
 description: "这是一本JavaScript领域的经典著作，深入讲解了JavaScript的核心概念和高级特性。"
 type: "reading"
 section: "zhi"
+<<<<<<< HEAD
 layout: "reading.njk"
 pageName: "reading"
 permalink: /zhi/reading/2023-11-15-javascript-advanced/index.html
+=======
+>>>>>>> dev
 pageCSS: "/assets/Css/reading.css"
 ---
 

@@ -9,8 +9,11 @@ column: "设计思考专栏"
 layout: "writing.njk"
 pageCSS: "/assets/Css/writing.css"
 section: "zhi"
+<<<<<<< HEAD
 permalink: /zhi/writing/2023-10-20-abstract-design/index.html
 pageName: "writing"
+=======
+>>>>>>> dev
 ---
 
 ## 抽象构成：设计中的秩序与美

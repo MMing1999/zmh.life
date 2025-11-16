@@ -8,7 +8,10 @@ module.exports = {
         if (layout.startsWith("layouts/")) {
           layout = layout.replace("layouts/", "");
         }
+<<<<<<< HEAD
         // 确保返回的是相对于 includes 目录的路径
+=======
+>>>>>>> dev
         return layout;
       }
       
@@ -46,6 +49,7 @@ module.exports = {
       return null;
     },
     permalink: (data) => {
+<<<<<<< HEAD
       // 如果文件已经指定了permalink，则使用文件中的permalink
       if (data.permalink) {
         return data.permalink;
@@ -80,10 +84,39 @@ module.exports = {
       }
       // content-writing -> /zhi/writing/
       if (pathToCheck.includes('content-writing')) {
+=======
+      const slug    = data.page.fileSlug;
+      const section = data.section || "misc";
+      const type    = data.type || "note";
+      
+      // 根据目录结构设置正确的 permalink
+      // 使用 inputPath 来检测目录（在 Eleventy 中，inputPath 是相对于 input 目录的路径）
+      const inputPath = data.page.inputPath || '';
+      
+      
+      // content-xing -> /xing/
+      if (inputPath.indexOf('content-xing') !== -1) {
+        return `/xing/${slug}/index.html`;
+      }
+      // content-observation -> /zhi/observation/
+      if (inputPath.indexOf('content-observation') !== -1) {
+        return `/zhi/observation/${slug}/index.html`;
+      }
+      // content-reading -> /zhi/reading/
+      if (inputPath.indexOf('content-reading') !== -1) {
+        return `/zhi/reading/${slug}/index.html`;
+      }
+      // content-writing -> /zhi/writing/
+      if (inputPath.indexOf('content-writing') !== -1) {
+>>>>>>> dev
         return `/zhi/writing/${slug}/index.html`;
       }
       
       // 默认规则（根据 frontmatter）
+<<<<<<< HEAD
+=======
+      if (section === "xing" && (type === "work" || !type)) return `/xing/${slug}/index.html`;
+>>>>>>> dev
       if (section === "zhi" && type === "note")        return `/zhi/writing/${slug}/index.html`;
       if (section === "zhi" && type === "observation") return `/zhi/observation/${slug}/index.html`;
       if (section === "zhi" && type === "reading")     return `/zhi/reading/${slug}/index.html`;

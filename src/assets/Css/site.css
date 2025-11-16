@@ -144,6 +144,7 @@ main.page-wrap {
   font-size: 14px;
 }
 
+<<<<<<< HEAD
 .footer-beian {
   color: #666;
   font-family: 'Fusion Pixel', sans-serif;
@@ -162,6 +163,8 @@ main.page-wrap {
   color: #333;
 }
 
+=======
+>>>>>>> dev
 .footer-copyright {
   color: #666;
   font-family: 'Fusion Pixel', sans-serif;
@@ -882,6 +885,8 @@ body[data-section="yi"]  .navlink[href="/yi/"] {
 }
 
 /* =========================================
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/assets/Css/site.css
    文章点赞按钮样式
    ========================================= */
 .article-like-container {
@@ -994,6 +999,10 @@ body[data-section="yi"]  .navlink[href="/yi/"] {
 }
 
 /* =========================================
+========
+>>>>>>>> dev:dist/assets/site.css
+=======
+>>>>>>> dev
    提示：
    - 各分类页/详情页额外样式：
      /assets/Css/xing.css

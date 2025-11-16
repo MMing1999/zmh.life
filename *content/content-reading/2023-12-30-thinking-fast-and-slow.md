@@ -9,9 +9,12 @@ cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/�
 description: "这是一本关于人类思维和决策的经典著作，作者Daniel Kahneman深入探讨了人类认知的两个系统。"
 type: "reading"
 section: "zhi"
+<<<<<<< HEAD
 layout: "reading.njk"
 pageName: "reading"
 permalink: /zhi/reading/2023-12-30-thinking-fast-and-slow/index.html
+=======
+>>>>>>> dev
 pageCSS: "/assets/Css/reading.css"
 ---
 

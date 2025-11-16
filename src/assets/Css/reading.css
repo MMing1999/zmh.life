@@ -787,6 +787,7 @@ body .control-btn.active {
    读书笔记详情页面样式
    ========================================= */
 
+<<<<<<< HEAD
 /* =========================================
    reading.css — 阅读详情页样式
    命名空间：.reading*
@@ -807,6 +808,13 @@ body[data-section="zhi"] .reading {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 20px 0 !important;
+=======
+/* 读书笔记详情页面容器 */
+.reading {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+>>>>>>> dev
 }
 
 /* 书籍信息容器 - 左右分栏布局 */
@@ -1010,7 +1018,11 @@ body[data-section="zhi"] .reading {
 }
 
 .link-back {
+<<<<<<< HEAD
   color: #000;
+=======
+  color: #667eea;
+>>>>>>> dev
   text-decoration: none;
   font-family: 'Fusion Pixel', monospace;
   font-size: 0.9rem;

@@ -4,6 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/_includes/layouts/yi.njk
+=======
+>>>>>>> dev
   {# ===== 标题（优先页面标题，后缀站点名） ===== #}
   {% if title %}
     {% set _title = title ~ ' · zmh.life' %}
@@ -11,6 +15,16 @@
     {% set _title = 'zmh.life' %}
   {% endif %}
   <title>{{ _title }}</title>
+<<<<<<< HEAD
+========
+  
+  
+    
+  
+  <title>Collection · 收集 · zmh.life</title>
+>>>>>>>> dev:dist/zhi/collection/index.html
+=======
+>>>>>>> dev
 
   {# ===== 可选描述 / OG（复用 summary） ===== #}
   {% if summary %}
@@ -24,6 +38,10 @@
   <link rel="canonical" href="{{ (page.url or '/') | url }}">
   <meta name="theme-color" content="#ffffff">
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/_includes/layouts/yi.njk
+=======
+>>>>>>> dev
   {# ===== 页面级样式（优先加载，确保优先级）===== #}
   {% if pageCSS %}
     {% if pageCSS.push %} {# array #}
@@ -37,20 +55,50 @@
 
   {# ===== 全局样式（统一入口）===== #}
   <link rel="stylesheet" href="{{ '/assets/Css/site.css' | url }}">
+<<<<<<< HEAD
+========
+  
+  
+     
+      <link rel="stylesheet" href="/assets/Css/collection.css">
+    
+  
+
+  
+  <link rel="stylesheet" href="/assets/Css/site.css">
+>>>>>>>> dev:dist/zhi/collection/index.html
 
   {# ===== Favicon（使用现有图标）===== #}
   <link rel="icon" type="image/svg+xml" href="{{ '/assets/Icons/character.svg' | url }}">
   <link rel="alternate icon" href="{{ '/assets/Pics/Ellipse 1.png' | url }}">
+=======
+
+  {# ===== Favicon（按需更换路径）===== #}
+  <link rel="icon" href="{{ '/assets/favicon.ico' | url }}">
+>>>>>>> dev
 </head>
 
 <body
   data-section="{{ section or 'home' }}"
   data-page="{{ page.fileSlug }}"
 >
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/_includes/layouts/yi.njk
+=======
+>>>>>>> dev
   {# ===== 顶部导航（非浮动） ===== #}
   <nav class="navbar navbar-static" role="navigation" aria-label="主导航">
     <a href="{{ '/' | url }}" id="navlogo" aria-label="首页">
       <img src="{{ 'https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/misc/Ellipse 1.png' | url }}" alt="Logo">
+<<<<<<< HEAD
+========
+  
+  <nav class="navbar" role="navigation" aria-label="主导航">
+    <a href="/" id="navlogo" aria-label="首页">
+      <img src="https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/misc/Ellipse 1.png" alt="Logo">
+>>>>>>>> dev:dist/zhi/collection/index.html
+=======
+>>>>>>> dev
     </a>
     <ul class="nav-list">
       <li><a class="navlink" href="{{ '/zhi/'  | url }}">知</a></li>
@@ -58,23 +106,126 @@
       <li><a class="navlink" href="{{ '/he/'   | url }}">合</a></li>
       <li><a class="navlink" href="{{ '/yi/'   | url }}">一</a></li>
     </ul>
+<<<<<<< HEAD
+    
+    
+    
+    <div class="secondary-nav">
+      <div class="secondary-nav-container">
+        <a href="/zhi/collection/" class="secondary-nav-link active">收集</a>
+        <a href="/zhi/observation/" class="secondary-nav-link">观察</a>
+        <a href="/zhi/writing/" class="secondary-nav-link">写作</a>
+        <a href="/zhi/reading/" class="secondary-nav-link">阅读</a>
+      </div>
+    </div>
+    
+  </nav>
+
+<<<<<<<< HEAD:src/_includes/layouts/yi.njk
+  {# ===== 页面主体（全屏布局，无1400px限制） ===== #}
+  <main id="main" class="yi-page-wrap">
+    {{ content | safe }}
+========
+  
+  <main id="main" class="page-wrap">
+    
+收集灵感与想法
+
+<div class="collection-content">
+  <!-- 全局按钮组 -->
+  <div class="part1-btn">
+    <button class="tab-button active" data-tab="ideas">想法</button>
+    <span class="tab-separator">/</span>
+    <button class="tab-button" data-tab="questions">问题</button>
+  </div>
+
+    <!-- 想法内容 -->
+    <div class="tab-content active" id="ideas-content">
+      
+      <div class="part2-notion">
+        <div class="part2-notion-time">2025.11.4 00:28</div>
+        <div class="part2-notion-text">这是一个示例想法，用于演示页面功能。请设置Notion API密钥以获取真实数据。</div>
+      </div>
+      
+      <div class="part2-notion">
+        <div class="part2-notion-time">2025.11.3 00:28</div>
+        <div class="part2-notion-text">今天看到一个很棒的设计作品，色彩搭配很有创意，值得学习借鉴。</div>
+      </div>
+      
+    </div>
+
+    <!-- 问题内容 -->
+    <div class="tab-content" id="questions-content">
+      
+      <div class="part2-notion">
+        <div class="part2-notion-time">2025.11.4 00:28</div>
+        <div class="part2-notion-text">这是一个示例问题，用于演示页面功能。请设置Notion API密钥以获取真实数据。</div>
+      </div>
+      
+      <div class="part2-notion">
+        <div class="part2-notion-time">2025.11.2 00:28</div>
+        <div class="part2-notion-text">如何更好地组织前端代码结构？是否需要引入新的架构模式？</div>
+      </div>
+      
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const tabButtons = document.querySelectorAll('.tab-button');
+  const tabContents = document.querySelectorAll('.tab-content');
+
+  tabButtons.forEach(button => {
+    button.addEventListener('click', function() {
+      const targetTab = this.getAttribute('data-tab');
+      
+      // 移除所有活动状态
+      tabButtons.forEach(btn => btn.classList.remove('active'));
+      tabContents.forEach(content => content.classList.remove('active'));
+      
+      // 添加当前活动状态
+      this.classList.add('active');
+      const targetContent = document.getElementById(targetTab + '-content');
+      if (targetContent) {
+        targetContent.classList.add('active');
+      }
+    });
+  });
+});
+</script>
+
+>>>>>>>> dev:dist/zhi/collection/index.html
+=======
   </nav>
 
   {# ===== 页面主体（全屏布局，无1400px限制） ===== #}
   <main id="main" class="yi-page-wrap">
     {{ content | safe }}
+>>>>>>> dev
   </main>
 
   {# ===== 页脚 ===== #}
   <footer class="footer">
     <div class="footer-content">
       
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/_includes/layouts/yi.njk
       <div class="footer-beian">
         <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" class="beian-link">京ICP备2025150627号</a>
       </div>
       
       <div class="footer-copyright copyright-link">
         <span class="copyright-text">「©2025 Zhang Minghua.</span>
+========
+      
+      <div class="footer-copyright copyright-link">
+        <span class="copyright-text"> ©2025 Zhang Minghua.</span>
+>>>>>>>> dev:dist/zhi/collection/index.html
+=======
+      
+      <div class="footer-copyright copyright-link">
+        <span class="copyright-text">「©2025 Zhang Minghua.</span>
+>>>>>>> dev
         <div class="copyright-popup">
           <div class="copyright-popup-content">
             <p>本作品采用 Creative Commons 署名-非商业-相同方式共享 4.0 国际许可协议 (CC BY-NC-SA 4.0) 进行许可。</p>
@@ -127,6 +278,14 @@
       
         <div class="footer-contact">
           <button type="button" class="contact-btn">咨询/合作/委托</button>
+<<<<<<< HEAD
+      </div>
+
+      <div class="message">
+        <a href="/message/" class="message-btn">留言</a>
+=======
+          <a href="/message/" class="message-btn">留言</a>
+>>>>>>> dev
         </div>
         
         <div class="footer-like">
@@ -184,7 +343,15 @@
     </div>
   </div>
 
+<<<<<<< HEAD
+<<<<<<<< HEAD:src/_includes/layouts/yi.njk
   {# ===== 回到顶部悬浮按钮 ===== #}
+========
+  
+>>>>>>>> dev:dist/zhi/collection/index.html
+=======
+  {# ===== 回到顶部悬浮按钮 ===== #}
+>>>>>>> dev
   <button id="backToTop" class="back-to-top" aria-label="回到顶部" title="回到顶部">
     <svg width="17" height="10" viewBox="0 0 17 10" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M1.62755 9.15745L1.62755 7.63745L0.0975482 7.63745L0.0975481 9.15745L1.62755 9.15745Z" fill="currentColor"/>
@@ -502,8 +669,11 @@
 ${locationInfo}`;
     }
   </script>
+<<<<<<< HEAD
 
   {# ===== 文章点赞功能 ===== #}
   <script src="{{ '/assets/js/article-like.js' | url }}"></script>
+=======
+>>>>>>> dev
 </body>
 </html>

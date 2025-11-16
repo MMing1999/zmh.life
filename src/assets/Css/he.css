@@ -40,6 +40,7 @@ body[data-page="he"] .navbar {
   background-color: #e0e0e0;
 }
 
+<<<<<<< HEAD
 /* 上下布局样式 */
 .section-vertical {
   flex-direction: column;
@@ -58,6 +59,8 @@ body[data-page="he"] .navbar {
   margin: 2rem 0;
 }
 
+=======
+>>>>>>> dev
 /* Section 1 全屏高度样式 */
 .fullscreen-section {
   min-height: calc(100vh - 80px);
@@ -276,7 +279,11 @@ body[data-page="he"] .navbar {
 .profile-tagline {
   font-size: 0.9rem;
   line-height: 1.6;
+<<<<<<< HEAD
   color: #C0C0C0;
+=======
+  color: #6b7280;
+>>>>>>> dev
   margin: 0 0 0.5rem 0;
   font-style: italic;
 }
@@ -323,13 +330,20 @@ body[data-page="he"] .navbar {
   color: #4b5563;
   margin: 0 0 0.5rem 0;
   text-align: left;
+<<<<<<< HEAD
   font-weight: 400;
+=======
+>>>>>>> dev
 }
 
 .description-english {
   font-style: italic;
+<<<<<<< HEAD
   color: #C0C0C0;
   line-height: 1.2;
+=======
+  color: #6b7280;
+>>>>>>> dev
 }
 
 /* Profile Modules */
@@ -363,7 +377,11 @@ body[data-page="he"] .navbar {
   top: 0;
   bottom: 0;
   width: 1px;
+<<<<<<< HEAD
   background-color: #e5e7eb;
+=======
+  background-color: #d1d5db;
+>>>>>>> dev
 }
 
 .experience-item {
@@ -391,11 +409,18 @@ body[data-page="he"] .navbar {
 .exp-time {
   font-size: 1rem;
   font-weight: 600;
+<<<<<<< HEAD
   color: #C0C0C0;
   margin: 0;
   position: relative;
   padding-left: 1.5rem; /* 为黑色点留出空间 */
   font-style: italic;
+=======
+  color: #374151;
+  margin: 0;
+  position: relative;
+  padding-left: 1.5rem; /* 为黑色点留出空间 */
+>>>>>>> dev
 }
 
 .exp-time::before {
@@ -446,7 +471,11 @@ body[data-page="he"] .navbar {
   top: 0;
   bottom: 0;
   width: 1px;
+<<<<<<< HEAD
   background-color: #e5e7eb;
+=======
+  background-color: #d1d5db;
+>>>>>>> dev
 }
 
 .education-item {
@@ -500,11 +529,18 @@ body[data-page="he"] .navbar {
 .edu-time {
   font-size: 1rem;
   font-weight: 600;
+<<<<<<< HEAD
   color: #C0C0C0;
   margin: 0;
   position: relative;
   padding-left: 1.5rem; /* 为黑色点留出空间 */
   font-style: italic;
+=======
+  color: #374151;
+  margin: 0;
+  position: relative;
+  padding-left: 1.5rem; /* 为黑色点留出空间 */
+>>>>>>> dev
 }
 
 .edu-time::before {
@@ -520,8 +556,13 @@ body[data-page="he"] .navbar {
 }
 
 .edu-chinese {
+<<<<<<< HEAD
   font-size: 1rem;
   font-weight: 400;
+=======
+  font-size: 1.1rem;
+  font-weight: 600;
+>>>>>>> dev
   color: #1f2937;
   margin: 0;
   line-height: 1.4;
@@ -550,7 +591,11 @@ body[data-page="he"] .navbar {
   top: 0;
   bottom: 0;
   width: 1px;
+<<<<<<< HEAD
   background-color: #e5e7eb;
+=======
+  background-color: #d1d5db;
+>>>>>>> dev
 }
 
 .contact-item {
@@ -841,6 +886,7 @@ body[data-page="he"] .navbar {
   border-left: 4px solid #4caf50;
 }
 
+<<<<<<< HEAD
 /* Section 4: 人生成就清单样式 */
 #section4 .achievement-content {
   width: 100%;
@@ -985,6 +1031,28 @@ body[data-page="he"] .navbar {
   #section4 .achievement-pagination-info {
     font-size: 0.9rem;
   }
+=======
+.achievement-list {
+  list-style: none;
+  padding: 0;
+}
+
+.achievement-list li {
+  padding: 0.8rem 0;
+  color: #424242;
+  font-size: 1rem;
+  position: relative;
+  padding-left: 2rem;
+}
+
+.achievement-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #4caf50;
+  font-weight: bold;
+  font-size: 1.2rem;
+>>>>>>> dev
 }
 
 .countdown-container {
@@ -1244,6 +1312,7 @@ body[data-page="he"] .navbar {
     flex-direction: column;
     gap: 0.5rem;
   }
+<<<<<<< HEAD
 }
 
 /* =========================================
@@ -2195,4 +2264,6 @@ body[data-edit-mode="true"] .countdown-edit-gap {
 
 .countdown-inline-input-number {
   min-width: 40px;
+=======
+>>>>>>> dev
 }

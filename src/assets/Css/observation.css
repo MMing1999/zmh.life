@@ -6,6 +6,7 @@
    ========================================= */
 
 /* -------- 1) 页面结构 -------- */
+<<<<<<< HEAD
 body[data-section="zhi"] main.page-wrap {
   max-width: 900px !important;       /* 版心宽度 */
   width: 100% !important;
@@ -17,6 +18,12 @@ body[data-section="zhi"] .observation-article {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+=======
+body[data-section="zhi"] .observation-article {
+  max-width: 900px !important;       /* 版心宽度 */
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+>>>>>>> dev
   display: block !important;
 }
 
@@ -177,7 +184,11 @@ body[data-section="zhi"] .observation-body blockquote {
 /* -------- 8) 底部返回 -------- */
 body[data-section="zhi"] .observation-back {
   margin: 32px 0 16px !important;
+<<<<<<< HEAD
   text-align: left !important;
+=======
+  text-align: center !important;
+>>>>>>> dev
 }
 body[data-section="zhi"] .link-back {
   color: #666 !important;

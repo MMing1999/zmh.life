@@ -9,9 +9,12 @@ cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/�
 description: "《精益创业》是一本关于如何用科学方法进行创业的经典著作，提出了构建-测量-学习的循环。"
 type: "reading"
 section: "zhi"
+<<<<<<< HEAD
 layout: "reading.njk"
 pageName: "reading"
 permalink: /zhi/reading/2023-10-20-lean-startup/index.html
+=======
+>>>>>>> dev
 pageCSS: "/assets/Css/reading.css"
 ---
 

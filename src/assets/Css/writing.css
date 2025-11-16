@@ -669,6 +669,7 @@
    ========================================= */
 
 /* -------- 1) 页面结构 -------- */
+<<<<<<< HEAD
 body[data-section="zhi"] main.page-wrap {
   max-width: 900px !important;       /* 版心宽度 */
   width: 100% !important;
@@ -680,6 +681,12 @@ body[data-section="zhi"] .writing {
   max-width: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
+=======
+body[data-section="zhi"] .writing {
+  max-width: 900px !important;       /* 版心宽度 */
+  margin: 32px auto !important;
+  padding: 0 16px !important;
+>>>>>>> dev
   display: block !important;
 }
 

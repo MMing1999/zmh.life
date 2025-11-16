@@ -9,9 +9,12 @@ cover: "https://zmh-life.oss-cn-hangzhou.aliyuncs.com/zmh-life/zhi/zhi-reading/�
 description: "这是一本关于设计心理学的经典著作，作者唐纳德·A·诺曼深入探讨了设计与人类心理的关系。"
 type: "reading"
 section: "zhi"
+<<<<<<< HEAD
 layout: "reading.njk"
 pageName: "reading"
 permalink: /zhi/reading/2023-12-01-design-psychology/index.html
+=======
+>>>>>>> dev
 pageCSS: "/assets/Css/reading.css"
 ---
 

@@ -109,6 +109,7 @@ module.exports = function(eleventyConfig) {
       return `/zhi/writing/${slug}/index.html`;
     }
     return null;
+<<<<<<< HEAD
   });
 
   // 定义collections - 使用新的 *content 目录结构
@@ -133,6 +134,17 @@ module.exports = function(eleventyConfig) {
       });
   });
 
+=======
+  });
+
+  // 定义collections - 使用新的 *content 目录结构
+  // 通过 src/content 符号链接访问 *content 目录
+  eleventyConfig.addCollection("xing_all", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("content/content-xing/*.md")
+      .filter(item => !item.data.isDraft);
+  });
+
+>>>>>>> dev
   eleventyConfig.addCollection("zhi-observation", function(collectionApi) {
     // 使用 fallback 方法，因为 glob 模式在处理符号链接时可能有问题
     let items = collectionApi.getFilteredByGlob("content/content-observation/*.md");
@@ -183,6 +195,7 @@ module.exports = function(eleventyConfig) {
   
   // 添加 content 目录到监听列表，确保符号链接中的文件能被 Eleventy 识别
   eleventyConfig.addWatchTarget("content/");
+<<<<<<< HEAD
 
   // 使用 eleventyComputed 来设置 permalink
   eleventyConfig.addGlobalData("eleventyComputed", {
@@ -209,6 +222,8 @@ module.exports = function(eleventyConfig) {
       return false; // 返回 false 让其他 permalink 逻辑生效
     }
   });
+=======
+>>>>>>> dev
 
   // 设置输入和输出目录
   return {

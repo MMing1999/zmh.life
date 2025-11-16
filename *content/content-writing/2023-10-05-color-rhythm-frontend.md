@@ -9,8 +9,11 @@ column: "前端开发"
 layout: "writing.njk"
 pageCSS: "/assets/Css/writing.css"
 section: "zhi"
+<<<<<<< HEAD
 permalink: /zhi/writing/2023-10-05-color-rhythm-frontend/index.html
 pageName: "writing"
+=======
+>>>>>>> dev
 ---
 
 ## 色彩律动：前端色彩搭配指南
